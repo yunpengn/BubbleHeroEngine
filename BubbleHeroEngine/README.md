@@ -19,18 +19,15 @@ CS3217 Problem Set 4
 
 ## Problem 1.1
 
-Please save your diagram as `class-diagram.png` in the root directory of the repository.
-
+![Class Diagram](class-diagram.png)
 
 ## Problem 1.2
 
 Your answer here
 
-
 ## Problem 2.1
 
 Your answer here
-
 
 ## Problem 3: Testing
 

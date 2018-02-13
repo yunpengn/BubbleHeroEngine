@@ -13,6 +13,7 @@
 		F224EDF2203306EC00310F48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F224EDF1203306EC00310F48 /* Assets.xcassets */; };
 		F224EDF5203306EC00310F48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F224EDF3203306EC00310F48 /* LaunchScreen.storyboard */; };
 		F224EE00203306EC00310F48 /* BubbleHeroEngineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224EDFF203306EC00310F48 /* BubbleHeroEngineUITests.swift */; };
+		F224EE0C203309CB00310F48 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F224EE0B203309CB00310F48 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		F224EDFB203306EC00310F48 /* BubbleHeroEngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BubbleHeroEngineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F224EDFF203306EC00310F48 /* BubbleHeroEngineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleHeroEngineUITests.swift; sourceTree = "<group>"; };
 		F224EE01203306EC00310F48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F224EE0B203309CB00310F48 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		F224EDDE203306EC00310F48 = {
 			isa = PBXGroup;
 			children = (
+				F224EE0B203309CB00310F48 /* README.md */,
 				F224EDE9203306EC00310F48 /* BubbleHeroEngine */,
 				F224EDFE203306EC00310F48 /* BubbleHeroEngineUITests */,
 				F224EDE8203306EC00310F48 /* Products */,
@@ -182,6 +185,7 @@
 			files = (
 				F224EDF5203306EC00310F48 /* LaunchScreen.storyboard in Resources */,
 				F224EDF2203306EC00310F48 /* Assets.xcassets in Resources */,
+				F224EE0C203309CB00310F48 /* README.md in Resources */,
 				F224EDF0203306EC00310F48 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
