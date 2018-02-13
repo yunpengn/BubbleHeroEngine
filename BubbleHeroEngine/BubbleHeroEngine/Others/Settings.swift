@@ -16,4 +16,6 @@ class Settings {
     static let numOfRows = 12
     /// The allowed number of bubbles on even rows.
     static let cellPerRow = 12
+    /// The number of types of bubbles in the game currently.
+    static let numOfTypes = 4
 }

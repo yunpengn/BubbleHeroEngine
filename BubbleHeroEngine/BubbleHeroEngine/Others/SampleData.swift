@@ -49,10 +49,7 @@ class SampleData {
     ///    - row: The row number of the new bubble.
     ///    - column: The column number of the new bubble.
     private static func addRandomTypeBubble(to level: Level, row: Int, column: Int) {
-        let randomValue = Int(arc4random_uniform(4))
-        guard let type = BubbleType(rawValue: randomValue) else {
-            fatalError("Couldn't generate a random type.")
-        }
+        let type = BubbleType.getRandomType()
         level.addOrUpdateBubble(Bubble(row: row, column: column, type: type))
     }
 }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DF9-pe-RjS" userLabel="BubbleArena">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="874"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1843"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="NEs-Ni-ogT" userLabel="FlowLayout">
                                     <size key="itemSize" width="50" height="50"/>
@@ -41,30 +42,62 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vs-Cd-7W0" userLabel="TurretBase">
+                                <rect key="frame" x="0.0" y="994" width="768" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="JCW-Zf-jn1"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAU-zl-uGg" userLabel="BubbleLauncher">
+                                <rect key="frame" x="334" y="894" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="ShB-iY-9X4"/>
+                                    <constraint firstAttribute="height" constant="100" id="eKy-g0-lnv"/>
+                                </constraints>
+                                <state key="normal" image="bubble-green"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="2vs-Cd-7W0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="1ZA-a3-Itt"/>
                             <constraint firstItem="tIZ-zp-7IT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="47I-sV-ZH2"/>
                             <constraint firstItem="tIZ-zp-7IT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7TP-zo-y4s"/>
+                            <constraint firstItem="2vs-Cd-7W0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Jlk-eu-TQc"/>
                             <constraint firstItem="tIZ-zp-7IT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ste-aC-wEI"/>
+                            <constraint firstItem="bAU-zl-uGg" firstAttribute="centerX" secondItem="tIZ-zp-7IT" secondAttribute="centerX" id="XYp-hb-BCN"/>
                             <constraint firstItem="tIZ-zp-7IT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dHJ-AA-fyx"/>
                             <constraint firstItem="DF9-pe-RjS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hDT-h7-zGm"/>
                             <constraint firstItem="DF9-pe-RjS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="joQ-Bh-dQK"/>
                             <constraint firstItem="DF9-pe-RjS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lGo-YN-1Go"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DF9-pe-RjS" secondAttribute="bottom" constant="150" id="ywk-Ex-3tA"/>
+                            <constraint firstItem="bAU-zl-uGg" firstAttribute="bottom" secondItem="2vs-Cd-7W0" secondAttribute="top" id="s0u-gI-V4V"/>
+                            <constraint firstItem="bAU-zl-uGg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="sVG-3F-St4"/>
+                            <constraint firstItem="2vs-Cd-7W0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="x3d-2F-R3x"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DF9-pe-RjS" secondAttribute="centerY" constant="102.5" id="ywk-Ex-3tA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1nL-Ju-eZP" appends="YES" id="W6E-Eo-0iI"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="bubbleArena" destination="DF9-pe-RjS" id="9bE-a0-gyn"/>
+                        <outlet property="bubbleLauncher" destination="bAU-zl-uGg" id="zaI-8m-iTd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1nL-Ju-eZP">
+                    <connections>
+                        <action selector="handleBubbleLaunch:" destination="BYZ-38-t0r" id="WJi-tR-Boq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.71875" y="132.421875"/>
         </scene>
     </scenes>
     <resources>
         <image name="background-planet" width="374" height="640"/>
+        <image name="bubble-green" width="168" height="168"/>
     </resources>
 </document>

@@ -6,6 +6,8 @@
 //  Copyright © 2018 Yunpeng Niu. All rights reserved.
 //
 
+import Darwin
+
 /**
  `BubbleTypes` is an enumeration that defines the type of a bubble.
  Notice: Although the type here only defines the color of the bubble
@@ -34,5 +36,15 @@ enum BubbleType: Int, Codable {
         case .red:
             return .blue
         }
+    }
+
+    /// Returns a pseudo-random type of `BubbleType`.
+    /// - Returns: The random type got.
+    static func getRandomType() -> BubbleType {
+        let randomValue = arc4random_uniform(Settings.numOfTypes)
+        guard let type = BubbleType(rawValue: randomValue) else {
+            fatalError("The numOfTypes setting is wrong.")
+        }
+        return type
     }
 }
