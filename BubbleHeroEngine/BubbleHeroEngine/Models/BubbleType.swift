@@ -41,7 +41,7 @@ enum BubbleType: Int, Codable {
     /// Returns a pseudo-random type of `BubbleType`.
     /// - Returns: The random type got.
     static func getRandomType() -> BubbleType {
-        let randomValue = arc4random_uniform(Settings.numOfTypes)
+        let randomValue = Int(arc4random_uniform(Settings.numOfTypes))
         guard let type = BubbleType(rawValue: randomValue) else {
             fatalError("The numOfTypes setting is wrong.")
         }

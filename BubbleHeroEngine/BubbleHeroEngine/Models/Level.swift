@@ -11,9 +11,9 @@
  i.e., the placement of all bubbles.
 
  Internally, `Level` uses a 2D array to store all bubbles with their positions
- inside the grid. The elements of this 2D array are of type `Bubble?`. In other
- words, if a cell in this array is `nil`, it implies there is no bubble at this
- position.
+ inside the grid. The elements of this 2D array are of type `FilledBubble?`. In
+ other words, if a cell in this array is `nil`, it implies there is no bubble at
+ this position.
 
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
@@ -30,14 +30,14 @@ class Level: Codable {
     let oddCount: Int
 
     /// Internal storage structure for all bubbles in a `Level`.
-    private var bubbles: [[Bubble?]]
+    private var bubbles: [[FilledBubble?]]
 
     /// Creates a new level with default size.
     init() {
         numOfRows = Settings.numOfRows
         evenCount = Settings.cellPerRow
         oddCount = evenCount - 1
-        bubbles = [[Bubble?]](repeating: [Bubble?](repeating: nil, count: evenCount),
+        bubbles = [[FilledBubble?]](repeating: [FilledBubble?](repeating: nil, count: evenCount),
                               count: numOfRows)
     }
 
@@ -46,7 +46,7 @@ class Level: Codable {
     /// method will simply do nothing if the given bubble is not at a legal
     /// position of the current `Level`.
     /// - Parameter toAdd: The bubble being added.
-    func addOrUpdateBubble(_ toAdd: Bubble) {
+    func addOrUpdateBubble(_ toAdd: FilledBubble) {
         guard isValidLocation(row: toAdd.row, column: toAdd.column) else {
             return
         }
@@ -57,7 +57,7 @@ class Level: Codable {
     /// - Parameters:
     ///    - row: The row number of the intended location (zero-based).
     ///    - column: The column number of the intended location (zero-based).
-    func hasBubble(_ toCheck: Bubble) -> Bool {
+    func hasBubble(_ toCheck: FilledBubble) -> Bool {
         let row = toCheck.row
         let column = toCheck.column
         guard isValidLocation(row: row, column: column) else {
@@ -86,7 +86,7 @@ class Level: Codable {
     ///    - row: The row number of the intended location (zero-based).
     ///    - column: The column number of the intended location (zero-based).
     /// - Returns: the bubble at that location if it exists; nil otherwise.
-    func getBubbleAt(row: Int, column: Int) -> Bubble? {
+    func getBubbleAt(row: Int, column: Int) -> FilledBubble? {
         guard isValidLocation(row: row, column: column) else {
             return nil
         }
@@ -96,7 +96,7 @@ class Level: Codable {
     /// Deletes a certain bubble from the current `Level`; if it does not exist,
     /// do nothing.
     /// - Parameter toDelete: the bubble being deleted.
-    func deleteBubble(_ toDelete: Bubble) {
+    func deleteBubble(_ toDelete: FilledBubble) {
         guard hasBubble(toDelete) else {
             return
         }

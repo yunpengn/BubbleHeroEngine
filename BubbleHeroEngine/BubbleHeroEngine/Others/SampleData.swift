@@ -50,6 +50,6 @@ class SampleData {
     ///    - column: The column number of the new bubble.
     private static func addRandomTypeBubble(to level: Level, row: Int, column: Int) {
         let type = BubbleType.getRandomType()
-        level.addOrUpdateBubble(Bubble(row: row, column: column, type: type))
+        level.addOrUpdateBubble(FilledBubble(row: row, column: column, type: type))
     }
 }
