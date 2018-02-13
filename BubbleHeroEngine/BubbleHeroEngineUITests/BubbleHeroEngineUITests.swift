@@ -3,7 +3,7 @@
 //  BubbleHeroEngineUITests
 //
 //  Created by Yunpeng Niu on 13/02/18.
-//  Copyright © 2018年 Yunpeng Niu. All rights reserved.
+//  Copyright © 2018 Yunpeng Niu. All rights reserved.
 //
 
 import XCTest
