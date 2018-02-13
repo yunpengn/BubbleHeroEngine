@@ -22,9 +22,22 @@ class SampleData {
 
         for i in 0..<12 {
             addRandomTypeBubble(to: level, row: 0, column: i)
+            addRandomTypeBubble(to: level, row: 2, column: i)
+            if i != 5 && i != 8 {
+                addRandomTypeBubble(to: level, row: 4, column: i)
+            }
+            addRandomTypeBubble(to: level, row: 6, column: i)
+            addRandomTypeBubble(to: level, row: 8, column: i)
+
         }
         for i in 0..<11 {
             addRandomTypeBubble(to: level, row: 1, column: i)
+            addRandomTypeBubble(to: level, row: 3, column: i)
+            if i != 3 && i != 10 {
+                addRandomTypeBubble(to: level, row: 5, column: i)
+            }
+            addRandomTypeBubble(to: level, row: 7, column: i)
+            addRandomTypeBubble(to: level, row: 9, column: i)
         }
 
         return level
