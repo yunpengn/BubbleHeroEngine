@@ -21,6 +21,40 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-planet" translatesAutoresizingMaskIntoConstraints="NO" id="tIZ-zp-7IT" userLabel="Background">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DF9-pe-RjS" userLabel="BubbleArena">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="874"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NEs-Ni-ogT" userLabel="FlowLayout">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bubble" id="0xP-D5-P5R" userLabel="BubbleCell" customClass="BubbleCell" customModule="BubbleHeroEngine" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ohd-vp-zV3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Ohd-vp-zV3" firstAttribute="leading" secondItem="0xP-D5-P5R" secondAttribute="leading" id="5gu-qY-5sa"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ohd-vp-zV3" secondAttribute="trailing" id="7cM-zf-Oy8"/>
+                                            <constraint firstItem="Ohd-vp-zV3" firstAttribute="top" secondItem="0xP-D5-P5R" secondAttribute="top" id="Zjq-UY-Km3"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ohd-vp-zV3" secondAttribute="bottom" id="yYG-gw-gqq"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="image" destination="Ohd-vp-zV3" id="4o0-x4-9eC"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -28,6 +62,10 @@
                             <constraint firstItem="tIZ-zp-7IT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7TP-zo-y4s"/>
                             <constraint firstItem="tIZ-zp-7IT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ste-aC-wEI"/>
                             <constraint firstItem="tIZ-zp-7IT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dHJ-AA-fyx"/>
+                            <constraint firstItem="DF9-pe-RjS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hDT-h7-zGm"/>
+                            <constraint firstItem="DF9-pe-RjS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="joQ-Bh-dQK"/>
+                            <constraint firstItem="DF9-pe-RjS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lGo-YN-1Go"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DF9-pe-RjS" secondAttribute="bottom" constant="150" id="ywk-Ex-3tA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

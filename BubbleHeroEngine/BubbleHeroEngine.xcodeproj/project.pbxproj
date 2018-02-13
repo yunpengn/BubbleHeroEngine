@@ -13,7 +13,7 @@
 		F224EDF2203306EC00310F48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F224EDF1203306EC00310F48 /* Assets.xcassets */; };
 		F224EDF5203306EC00310F48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F224EDF3203306EC00310F48 /* LaunchScreen.storyboard */; };
 		F224EE00203306EC00310F48 /* BubbleHeroEngineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224EDFF203306EC00310F48 /* BubbleHeroEngineUITests.swift */; };
-		F224EE0C203309CB00310F48 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F224EE0B203309CB00310F48 /* README.md */; };
+		F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224EE11203313BD00310F48 /* BubbleCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		F224EDFB203306EC00310F48 /* BubbleHeroEngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BubbleHeroEngineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F224EDFF203306EC00310F48 /* BubbleHeroEngineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleHeroEngineUITests.swift; sourceTree = "<group>"; };
 		F224EE01203306EC00310F48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F224EE0B203309CB00310F48 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F224EE11203313BD00310F48 /* BubbleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,6 @@
 		F224EDDE203306EC00310F48 = {
 			isa = PBXGroup;
 			children = (
-				F224EE0B203309CB00310F48 /* README.md */,
 				F224EDE9203306EC00310F48 /* BubbleHeroEngine */,
 				F224EDFE203306EC00310F48 /* BubbleHeroEngineUITests */,
 				F224EDE8203306EC00310F48 /* Products */,
@@ -81,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				F224EE0E2033131300310F48 /* Controllers */,
+				F224EE102033138F00310F48 /* Models */,
 				F224EE0D2033130B00310F48 /* Views */,
 				F224EE0F2033133500310F48 /* Others */,
 				F224EDF6203306EC00310F48 /* Info.plist */,
@@ -103,6 +103,7 @@
 				F224EDF1203306EC00310F48 /* Assets.xcassets */,
 				F224EDF3203306EC00310F48 /* LaunchScreen.storyboard */,
 				F224EDEE203306EC00310F48 /* Main.storyboard */,
+				F224EE11203313BD00310F48 /* BubbleCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,6 +122,13 @@
 				F224EDEA203306EC00310F48 /* AppDelegate.swift */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		F224EE102033138F00310F48 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +217,6 @@
 			files = (
 				F224EDF5203306EC00310F48 /* LaunchScreen.storyboard in Resources */,
 				F224EDF2203306EC00310F48 /* Assets.xcassets in Resources */,
-				F224EE0C203309CB00310F48 /* README.md in Resources */,
 				F224EDF0203306EC00310F48 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F224EDED203306EC00310F48 /* ViewController.swift in Sources */,
+				F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */,
 				F224EDEB203306EC00310F48 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

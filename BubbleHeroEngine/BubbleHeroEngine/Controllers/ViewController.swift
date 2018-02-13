@@ -8,6 +8,12 @@
 
 import UIKit
 
+/**
+The main controller for the game view.
+
+ - Author: Niu Yunpeng @ CS3217
+ - Date: Feb 2018
+ */
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
