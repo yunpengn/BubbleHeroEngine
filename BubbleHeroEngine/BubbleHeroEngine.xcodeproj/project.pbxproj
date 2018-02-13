@@ -80,11 +80,9 @@
 		F224EDE9203306EC00310F48 /* BubbleHeroEngine */ = {
 			isa = PBXGroup;
 			children = (
-				F224EDEA203306EC00310F48 /* AppDelegate.swift */,
-				F224EDEC203306EC00310F48 /* ViewController.swift */,
-				F224EDEE203306EC00310F48 /* Main.storyboard */,
-				F224EDF1203306EC00310F48 /* Assets.xcassets */,
-				F224EDF3203306EC00310F48 /* LaunchScreen.storyboard */,
+				F224EE0E2033131300310F48 /* Controllers */,
+				F224EE0D2033130B00310F48 /* Views */,
+				F224EE0F2033133500310F48 /* Others */,
 				F224EDF6203306EC00310F48 /* Info.plist */,
 			);
 			path = BubbleHeroEngine;
@@ -97,6 +95,32 @@
 				F224EE01203306EC00310F48 /* Info.plist */,
 			);
 			path = BubbleHeroEngineUITests;
+			sourceTree = "<group>";
+		};
+		F224EE0D2033130B00310F48 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F224EDF1203306EC00310F48 /* Assets.xcassets */,
+				F224EDF3203306EC00310F48 /* LaunchScreen.storyboard */,
+				F224EDEE203306EC00310F48 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F224EE0E2033131300310F48 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F224EDEC203306EC00310F48 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F224EE0F2033133500310F48 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				F224EDEA203306EC00310F48 /* AppDelegate.swift */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
