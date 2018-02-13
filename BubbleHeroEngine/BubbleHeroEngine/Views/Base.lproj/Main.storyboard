@@ -37,21 +37,7 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ohd-vp-zV3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                </imageView>
-                                            </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="Ohd-vp-zV3" firstAttribute="leading" secondItem="0xP-D5-P5R" secondAttribute="leading" id="5gu-qY-5sa"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ohd-vp-zV3" secondAttribute="trailing" id="7cM-zf-Oy8"/>
-                                            <constraint firstItem="Ohd-vp-zV3" firstAttribute="top" secondItem="0xP-D5-P5R" secondAttribute="top" id="Zjq-UY-Km3"/>
-                                            <constraint firstAttribute="bottom" secondItem="Ohd-vp-zV3" secondAttribute="bottom" id="yYG-gw-gqq"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="image" destination="Ohd-vp-zV3" id="4o0-x4-9eC"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -69,6 +55,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="bubbleArena" destination="DF9-pe-RjS" id="9bE-a0-gyn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

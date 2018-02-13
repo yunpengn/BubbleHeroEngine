@@ -14,6 +14,11 @@
 		F224EDF5203306EC00310F48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F224EDF3203306EC00310F48 /* LaunchScreen.storyboard */; };
 		F224EE00203306EC00310F48 /* BubbleHeroEngineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224EDFF203306EC00310F48 /* BubbleHeroEngineUITests.swift */; };
 		F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224EE11203313BD00310F48 /* BubbleCell.swift */; };
+		F224EE14203316BA00310F48 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224EE13203316BA00310F48 /* Settings.swift */; };
+		F26681592033180200AFF5DB /* ViewController+BubbleArena.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26681582033180200AFF5DB /* ViewController+BubbleArena.swift */; };
+		F266815B20331A5900AFF5DB /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266815A20331A5900AFF5DB /* Level.swift */; };
+		F266815D20331AC300AFF5DB /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266815C20331AC300AFF5DB /* Bubble.swift */; };
+		F266815F20331AF100AFF5DB /* BubbleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266815E20331AF100AFF5DB /* BubbleType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		F224EDFF203306EC00310F48 /* BubbleHeroEngineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleHeroEngineUITests.swift; sourceTree = "<group>"; };
 		F224EE01203306EC00310F48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F224EE11203313BD00310F48 /* BubbleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
+		F224EE13203316BA00310F48 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = "/Users/yunpeng/Projects/2018-ps4-yunpengn/BubbleHeroEngine/BubbleHeroEngine/Others/Settings.swift"; sourceTree = "<absolute>"; };
+		F26681582033180200AFF5DB /* ViewController+BubbleArena.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BubbleArena.swift"; sourceTree = "<group>"; };
+		F266815A20331A5900AFF5DB /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		F266815C20331AC300AFF5DB /* Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
+		F266815E20331AF100AFF5DB /* BubbleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				F224EDEC203306EC00310F48 /* ViewController.swift */,
+				F26681582033180200AFF5DB /* ViewController+BubbleArena.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -119,6 +130,7 @@
 		F224EE0F2033133500310F48 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				F224EE13203316BA00310F48 /* Settings.swift */,
 				F224EDEA203306EC00310F48 /* AppDelegate.swift */,
 			);
 			path = Others;
@@ -127,6 +139,9 @@
 		F224EE102033138F00310F48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F266815A20331A5900AFF5DB /* Level.swift */,
+				F266815C20331AC300AFF5DB /* Bubble.swift */,
+				F266815E20331AF100AFF5DB /* BubbleType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,9 +267,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F266815B20331A5900AFF5DB /* Level.swift in Sources */,
+				F266815F20331AF100AFF5DB /* BubbleType.swift in Sources */,
 				F224EDED203306EC00310F48 /* ViewController.swift in Sources */,
 				F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */,
+				F224EE14203316BA00310F48 /* Settings.swift in Sources */,
+				F266815D20331AC300AFF5DB /* Bubble.swift in Sources */,
 				F224EDEB203306EC00310F48 /* AppDelegate.swift in Sources */,
+				F26681592033180200AFF5DB /* ViewController+BubbleArena.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
