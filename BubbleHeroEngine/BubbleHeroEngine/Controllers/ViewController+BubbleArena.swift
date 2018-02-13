@@ -61,11 +61,9 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = getReusableBubbleCell(for: indexPath)
-        let row = indexPath.section
-        let column = indexPath.row
 
         // Fills the cell with the correct color of the bubble.
-        if let bubble = level.getBubbleAt(row: row, column: column) {
+        if let bubble = level.getBubbleAt(row: indexPath.section, column: indexPath.row) {
             cell.fill(image: toBubbleImage(of: bubble.type))
         }
 
@@ -74,7 +72,7 @@ extension ViewController: UICollectionViewDataSource {
 
     /// Gets a reusable cell for preparing a new cell.
     private func getReusableBubbleCell(for indexPath: IndexPath) -> BubbleCell {
-        guard let cell = bubbleArena.dequeueReusableCell(withReuseIdentifier: "bubbleCell", for: indexPath)
+        guard let cell = bubbleArena.dequeueReusableCell(withReuseIdentifier: "bubble", for: indexPath)
             as? BubbleCell else {
                 fatalError("Unable to dequeue a reusable cell.")
         }

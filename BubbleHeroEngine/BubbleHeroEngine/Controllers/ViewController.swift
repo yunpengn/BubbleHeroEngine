@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var bubbleArena: UICollectionView!
 
     /// The `Level` object as the access point to model.
-    var level = Level()
+    var level = SampleData.loadSampleLevel()
 
     // Always hide the status bar (since in a full-screen game).
     override var prefersStatusBarHidden: Bool {
@@ -31,10 +31,5 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         bubbleArena.delegate = self
         bubbleArena.dataSource = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

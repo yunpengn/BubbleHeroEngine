@@ -46,9 +46,7 @@ class BubbleCell: UICollectionViewCell {
 
     /// Customizes the cell to make it look like a bubble.
     private func setup() {
-        layer.cornerRadius = frame.width / 2
-        backgroundColor = UIColor.orange
-        clear()
+        layer.cornerRadius = BubbleCell.radius
     }
 
     /// Removes the background image of the cell and thus makes it transparent.

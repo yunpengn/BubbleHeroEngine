@@ -6,7 +6,6 @@
 //  Copyright © 2018 Yunpeng Niu. All rights reserved.
 //
 
-
 /**
  `Level` is an abstract data structure that represents a certain game level,
  i.e., the placement of all bubbles.
@@ -35,8 +34,8 @@ class Level: Codable {
 
     /// Creates a new level with default size.
     init() {
-        numOfRows = Setting.numOfRows
-        evenCount = Setting.cellPerRow
+        numOfRows = Settings.numOfRows
+        evenCount = Settings.cellPerRow
         oddCount = evenCount - 1
         bubbles = [[Bubble?]](repeating: [Bubble?](repeating: nil, count: evenCount),
                               count: numOfRows)
