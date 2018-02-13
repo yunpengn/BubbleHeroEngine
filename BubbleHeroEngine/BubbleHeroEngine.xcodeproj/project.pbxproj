@@ -21,6 +21,7 @@
 		F266815F20331AF100AFF5DB /* BubbleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266815E20331AF100AFF5DB /* BubbleType.swift */; };
 		F266816120331BA600AFF5DB /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266816020331BA600AFF5DB /* SampleData.swift */; };
 		F26681632033364B00AFF5DB /* BubbleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26681622033364B00AFF5DB /* BubbleProvider.swift */; };
+		F26681652033389C00AFF5DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F26681642033389C00AFF5DB /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		F266815E20331AF100AFF5DB /* BubbleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleType.swift; sourceTree = "<group>"; };
 		F266816020331BA600AFF5DB /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		F26681622033364B00AFF5DB /* BubbleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleProvider.swift; sourceTree = "<group>"; };
+		F26681642033389C00AFF5DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		F224EDDE203306EC00310F48 = {
 			isa = PBXGroup;
 			children = (
+				F26681642033389C00AFF5DB /* README.md */,
 				F224EDE9203306EC00310F48 /* BubbleHeroEngine */,
 				F224EDFE203306EC00310F48 /* BubbleHeroEngineUITests */,
 				F224EDE8203306EC00310F48 /* Products */,
@@ -238,6 +241,7 @@
 			files = (
 				F224EDF5203306EC00310F48 /* LaunchScreen.storyboard in Resources */,
 				F224EDF2203306EC00310F48 /* Assets.xcassets in Resources */,
+				F26681652033389C00AFF5DB /* README.md in Resources */,
 				F224EDF0203306EC00310F48 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
