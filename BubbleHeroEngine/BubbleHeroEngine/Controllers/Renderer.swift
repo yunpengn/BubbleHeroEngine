@@ -28,14 +28,29 @@ class Renderer {
     }
 
     @objc private func step(displayLink: CADisplayLink) {
-        let newX = obj.frame.minX + xDisplacement
-        let newY = obj.frame.minY + yDisplacement
-        let width = obj.frame.width
-        let height = obj.frame.height
-        obj.frame = CGRect(x: newX, y: newY, width: width, height: height)
+        checkHorizontalReflect()
+        checkTopStick()
+        let frame = obj.frame
+        let newX = frame.minX + xDisplacement
+        let newY = frame.minY + yDisplacement
+        obj.frame = CGRect(x: newX, y: newY, width: frame.width, height: frame.height)
     }
 
-    func stopDisplayLink() {
+    private func checkHorizontalReflect() {
+        if obj.frame.minX <= 0 || obj.frame.maxX >= UIScreen.main.bounds.width {
+            xDisplacement = -xDisplacement
+        }
+    }
+
+    private func checkTopStick() {
+        if obj.frame.minY <= 0 {
+            xDisplacement = 0
+            yDisplacement = 0
+            stopDisplayLink()
+        }
+    }
+
+    private func stopDisplayLink() {
         displayLink?.invalidate()
         displayLink = nil
     }
