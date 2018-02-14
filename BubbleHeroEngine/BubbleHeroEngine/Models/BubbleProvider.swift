@@ -9,21 +9,21 @@
 import Darwin
 
 /**
- Provides bubbles of random types continously, i.e., acts as the
+ Provides random `BubbleType`s continously, i.e., acts as the
  source for bubble launcher.
 
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
 struct BubbleProvider {
-    var current = ShootBubble(type: BubbleType.getRandomType())
+    var current = BubbleType.getRandomType()
 
-    func peek() -> ShootBubble {
+    func peek() -> BubbleType {
         return current
     }
 
-    mutating func pop() -> ShootBubble {
-        current = ShootBubble(type: BubbleType.getRandomType())
+    mutating func pop() -> BubbleType {
+        current = BubbleType.getRandomType()
         return current
     }
 }

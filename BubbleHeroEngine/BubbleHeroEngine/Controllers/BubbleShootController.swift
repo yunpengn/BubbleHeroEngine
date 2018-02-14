@@ -9,20 +9,22 @@
 import UIKit
 
 class BubbleShootController {
+    private let obj: UIView
+    private let type: BubbleType
+    private let arenaDelegate: ArenaDelegate
+
     private var displayLink: CADisplayLink?
-    private var obj: UIView
-    private var arenaDelegate: ArenaDelegate
     private var xDisplacement = CGFloat(0)
     private var yDisplacement = CGFloat(0)
 
-    init(for obj: UIView, within delegate: ArenaDelegate) {
+    init(for obj: UIView, type: BubbleType, within delegate: ArenaDelegate) {
         self.obj = obj
+        self.type = type
         self.arenaDelegate = delegate
     }
 
-    func moveObject(_ obj: UIView, atX xDisplacement: CGFloat, atY yDisplacement: CGFloat) {
+    func moveObject(atX xDisplacement: CGFloat, atY yDisplacement: CGFloat) {
         stopDisplayLink()
-        self.obj = obj
         self.xDisplacement = xDisplacement
         self.yDisplacement = yDisplacement
         displayLink = CADisplayLink(target: self, selector: #selector(step))
@@ -56,6 +58,8 @@ class BubbleShootController {
         let neighbors = arenaDelegate.getBubbleNear(by: point)
         if !neighbors.isEmpty {
             stopDisplayLink()
+            obj.removeFromSuperview()
+            arenaDelegate.fillNearByCell(by: point, type: type)
         }
     }
 

@@ -61,13 +61,25 @@ class ViewController: UIViewController, ArenaDelegate {
         let neighbors = level.getNeighborsOf(row: row, column: column)
 
         return neighbors.filter { bubble in
-            let bubbleX = CGFloat(bubble.row) * BubbleCell.height
-            let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
-            let bubbleY = CGFloat(bubble.column) * BubbleCell.diameter + leftOffset
-            let deltaX = bubbleX - point.x
-            let deltaY = bubbleY - point.y
-            return deltaX * deltaX + deltaY * deltaY <= BubbleCell.diameterSquare
+            return shouldCollide(bubble, with: point)
         }
+    }
+
+    private func shouldCollide(_ bubble: FilledBubble, with point: CGPoint) -> Bool {
+        let leftOffset = (bubble.row % 2 == 0) ? 0 : BubbleCell.leftOffset
+        let bubbleX = CGFloat(bubble.column) * BubbleCell.diameter + leftOffset
+        let bubbleY = CGFloat(bubble.row) * BubbleCell.height
+        let deltaX = bubbleX - point.x
+        let deltaY = bubbleY - point.y
+        return deltaX * deltaX + deltaY * deltaY <= BubbleCell.diameterSquare
+    }
+
+    func fillNearByCell(by point: CGPoint, type: BubbleType) {
+        let row = Int(round(point.y / BubbleCell.height))
+        let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
+        let column = Int(round((point.x - leftOffset) / BubbleCell.diameter))
+        level.addOrUpdateBubble(FilledBubble(row: row, column: column, type: type))
+        bubbleArena.reloadItems(at: [IndexPath(row: column, section: row)])
     }
 }
 
@@ -80,4 +92,11 @@ protocol ArenaDelegate {
     /// - Parameter point: The point being computed
     /// - Returns: an array of neighboring bubbles if there exists; nil otherwise.
     func getBubbleNear(by point: CGPoint) -> [FilledBubble]
+
+    /// Given a specific location, fills the the closest available empty cell
+    /// with a certain type of bubble.
+    /// - Parameters:
+    ///    - point: The location given
+    ///    - type: The `BubbleType` that will be filled with
+    func fillNearByCell(by point: CGPoint, type: BubbleType)
 }
