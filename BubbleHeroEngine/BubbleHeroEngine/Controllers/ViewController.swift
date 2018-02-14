@@ -14,7 +14,7 @@ The main controller for the game view.
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-class ViewController: UIViewController {
+class ViewController: UIViewController, ArenaDelegate {
     /// The collection view that shows all bubbles.
     @IBOutlet weak var bubbleArena: UICollectionView!
     /// The place where the shooting bubbles are launched.
@@ -53,4 +53,12 @@ class ViewController: UIViewController {
             return #imageLiteral(resourceName: "bubble-red")
         }
     }
+
+    func getBubbleNear() -> [FilledBubble] {
+        return []
+    }
+}
+
+protocol ArenaDelegate {
+    func getBubbleNear() -> [FilledBubble]
 }

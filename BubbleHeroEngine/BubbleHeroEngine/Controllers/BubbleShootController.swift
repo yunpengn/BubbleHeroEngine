@@ -11,11 +11,13 @@ import UIKit
 class BubbleShootController {
     private var displayLink: CADisplayLink?
     private var obj: UIView
+    private var arenaDelegate: ArenaDelegate
     private var xDisplacement = CGFloat(0)
     private var yDisplacement = CGFloat(0)
 
-    init(for obj: UIView) {
+    init(for obj: UIView, within delegate: ArenaDelegate) {
         self.obj = obj
+        self.arenaDelegate = delegate
     }
 
     func moveObject(_ obj: UIView, atX xDisplacement: CGFloat, atY yDisplacement: CGFloat) {
@@ -30,6 +32,7 @@ class BubbleShootController {
     @objc private func step(displayLink: CADisplayLink) {
         checkHorizontalReflect()
         checkTopStick()
+        checkCollision()
         let frame = obj.frame
         let newX = frame.minX + xDisplacement
         let newY = frame.minY + yDisplacement
@@ -46,6 +49,10 @@ class BubbleShootController {
         if obj.frame.minY <= 0 {
             stopDisplayLink()
         }
+    }
+
+    private func checkCollision() {
+        
     }
 
     private func stopDisplayLink() {
