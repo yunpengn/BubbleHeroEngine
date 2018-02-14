@@ -16,7 +16,14 @@ import Darwin
  - Date: Feb 2018
  */
 struct BubbleProvider {
-    func getNext() -> ShootBubble {
-        return ShootBubble(type: BubbleType.getRandomType())
+    var current = ShootBubble(type: BubbleType.getRandomType())
+
+    func peek() -> ShootBubble {
+        return current
+    }
+
+    mutating func pop() -> ShootBubble {
+        current = ShootBubble(type: BubbleType.getRandomType())
+        return current
     }
 }

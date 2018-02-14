@@ -5,6 +5,8 @@
 //  Created by Yunpeng Niu on 13/02/18.
 //
 
+import UIKit
+
 /**
  Defines some global level settings for the application.
 
@@ -18,4 +20,6 @@ class Settings {
     static let cellPerRow = 12
     /// The number of types of bubbles in the game currently.
     static let numOfTypes = UInt32(4)
+    /// The speed in which the shooting bubble will travel.
+    static let speed = CGFloat(3)
 }
