@@ -22,6 +22,8 @@ import Foundation
 class BubbleCell: UICollectionViewCell {
     /// The diameter of each bubble
     static let diameter = UIScreen.main.bounds.width / CGFloat(Settings.cellPerRow)
+    /// The square of the diameter of each bubble
+    static let diameterSquare = BubbleCell.diameter * BubbleCell.diameter
     /// The radius of each bubble
     static let radius = BubbleCell.diameter / 2
     /// The offset on y-axis for bubbles on odd rows.

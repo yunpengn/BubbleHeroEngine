@@ -54,11 +54,30 @@ class ViewController: UIViewController, ArenaDelegate {
         }
     }
 
-    func getBubbleNear() -> [FilledBubble] {
-        return []
+    func getBubbleNear(by point: CGPoint) -> [FilledBubble] {
+        let row = Int(round(point.y / BubbleCell.height))
+        let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
+        let column = Int(round((point.x - leftOffset) / BubbleCell.diameter))
+        let neighbors = level.getNeighborsOf(row: row, column: column)
+
+        return neighbors.filter { bubble in
+            let bubbleX = CGFloat(bubble.row) * BubbleCell.height
+            let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
+            let bubbleY = CGFloat(bubble.column) * BubbleCell.diameter + leftOffset
+            let deltaX = bubbleX - point.x
+            let deltaY = bubbleY - point.y
+            return deltaX * deltaX + deltaY * deltaY <= BubbleCell.diameterSquare
+        }
     }
 }
 
 protocol ArenaDelegate {
-    func getBubbleNear() -> [FilledBubble]
+    /// Computes the bubbles nearby a point. The bubble is considered to be
+    /// "nearby" if the following condition is `true`:
+    ///
+    /// If there exists a bubble centered at `point`, the distances between
+    /// their centers are smaller or equal to the diameter of a bubble.
+    /// - Parameter point: The point being computed
+    /// - Returns: an array of neighboring bubbles if there exists; nil otherwise.
+    func getBubbleNear(by point: CGPoint) -> [FilledBubble]
 }

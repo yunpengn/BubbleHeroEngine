@@ -81,6 +81,48 @@ class Level: Codable {
             && bubbles[row][column] != nil
     }
 
+    /// Gets the neighbors of a certain location, the items at the nearby indices
+    /// are not `nil`.
+    ///
+    /// Notice: the nearby indices here are defined as the cellular network. Thus,
+    /// there are at most 6 neighbors.
+    /// - Parameters:
+    ///    - row: The row number of the intended location (zero-based).
+    ///    - column: The column number of the intended location (zero-based).
+    /// - Returns: An array of neighbors if there exists; empty array otherwise.
+    func getNeighborsOf(row: Int, column: Int) -> [FilledBubble] {
+        guard isValidLocation(row: row, column: column) else {
+            return []
+        }
+        var neighbors: [FilledBubble?] = []
+
+        let nearRowOffset = (row % 2 == 0) ? -1 : 1
+        if isValidLocation(row: row, column: column - 1) {
+            neighbors.append(bubbles[row][column - 1])
+        }
+        if isValidLocation(row: row, column: column + 1) {
+            neighbors.append(bubbles[row][column + 1])
+        }
+        if isValidLocation(row: row - 1, column: column) {
+            neighbors.append(bubbles[row - 1][column])
+        }
+        if isValidLocation(row: row - 1, column: column + nearRowOffset) {
+            neighbors.append(bubbles[row - 1][column + nearRowOffset])
+        }
+        if isValidLocation(row: row + 1, column: column) {
+            neighbors.append(bubbles[row + 1][column])
+        }
+        if isValidLocation(row: row + 1, column: column + nearRowOffset) {
+            neighbors.append(bubbles[row + 1][column + nearRowOffset])
+        }
+
+        return neighbors.flatMap { $0 }
+    }
+
+    private func addIfExists(to items: [FilledBubble], row: Int, column: Int) {
+
+    }
+
     /// Gets the bubble located at the specified location.
     /// - Parameters:
     ///    - row: The row number of the intended location (zero-based).
@@ -121,14 +163,14 @@ class Level: Codable {
     ///    - row: The row number of the checked location (zero-based).
     ///    - column: The column number of the checked location (zero-based).
     private func isValidLocation(row: Int, column: Int) -> Bool {
-        guard row < numOfRows else {
+        guard row >= 0 && row < numOfRows else {
             return false
         }
 
         if row % 2 == 0 {
-            return column < evenCount
+            return column >= 0 && column < evenCount
         } else {
-            return column < oddCount
+            return column >= 0 && column < oddCount
         }
     }
 }

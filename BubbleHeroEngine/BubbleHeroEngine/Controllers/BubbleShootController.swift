@@ -52,7 +52,11 @@ class BubbleShootController {
     }
 
     private func checkCollision() {
-        
+        let point = CGPoint(x: obj.frame.minX, y: obj.frame.minY)
+        let neighbors = arenaDelegate.getBubbleNear(by: point)
+        if !neighbors.isEmpty {
+            stopDisplayLink()
+        }
     }
 
     private func stopDisplayLink() {
