@@ -25,6 +25,7 @@
 		F26681652033389C00AFF5DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F26681642033389C00AFF5DB /* README.md */; };
 		F2668167203339E100AFF5DB /* ShootBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2668166203339E100AFF5DB /* ShootBubble.swift */; };
 		F276D29F2033CF1C00E4123B /* BubbleShootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276D29E2033CF1C00E4123B /* BubbleShootController.swift */; };
+		F2F8FE0820348A8B00CCFE15 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8FE0720348A8A00CCFE15 /* Stack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		F26681642033389C00AFF5DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F2668166203339E100AFF5DB /* ShootBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootBubble.swift; sourceTree = "<group>"; };
 		F276D29E2033CF1C00E4123B /* BubbleShootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleShootController.swift; sourceTree = "<group>"; };
+		F2F8FE0720348A8A00CCFE15 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			children = (
 				F266816020331BA600AFF5DB /* SampleData.swift */,
 				F224EE13203316BA00310F48 /* Settings.swift */,
+				F2F8FE0720348A8A00CCFE15 /* Stack.swift */,
 				F224EDEA203306EC00310F48 /* AppDelegate.swift */,
 			);
 			path = Others;
@@ -288,6 +291,7 @@
 			files = (
 				F213C3A02033472500F0B72C /* ViewController+Launcher.swift in Sources */,
 				F266815B20331A5900AFF5DB /* Level.swift in Sources */,
+				F2F8FE0820348A8B00CCFE15 /* Stack.swift in Sources */,
 				F266815F20331AF100AFF5DB /* BubbleType.swift in Sources */,
 				F224EDED203306EC00310F48 /* ViewController.swift in Sources */,
 				F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */,

@@ -119,9 +119,30 @@ class Level: Codable {
         return neighbors.flatMap { $0 }
     }
 
-    func getSameColorConnectedItemsOf(_ bubble: FilledBubble) -> [FilledBubble] {
+    func getSameColorNeighborsOf(_ bubble: FilledBubble) -> [FilledBubble] {
         let neighbors = getNeighborsOf(row: bubble.row, column: bubble.column)
         return neighbors.filter { $0.type == bubble.type }
+    }
+
+    func getSameColorConnectedItemsOf(_ bubble: FilledBubble) -> [FilledBubble] {
+        var result: [FilledBubble] = []
+        var toVisit = Stack<FilledBubble>()
+        toVisit.push(bubble)
+
+        // Starts a DFS to find all connected items with the same color.
+        while let next = toVisit.pop() {
+            if result.index(of: next) == nil {
+                result.append(next)
+            }
+
+            for neighbor in getSameColorNeighborsOf(next) {
+                if result.index(of: neighbor) == nil {
+                    toVisit.push(neighbor)
+                }
+            }
+        }
+
+        return result
     }
 
     /// Gets the bubble located at the specified location.

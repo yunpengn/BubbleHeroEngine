@@ -22,8 +22,11 @@ class Settings {
     static let numOfTypes = UInt32(4)
     /// The speed in which the shooting bubble will travel.
     static let speed = CGFloat(10)
+    /// To avoid the user from shooting a bubble with nearly
+    /// the angle of 0 or 180 degrees.
+    static let launchVerticalLimit = CGFloat(60)
     /// The threshold value for collision, i.e., we may ignore
     /// "collision" when the gap can let the bubble merely pass
     /// through.
-    static let collisionThreshold = CGFloat(0.9)
+    static let collisionThreshold = CGFloat(0.85)
 }

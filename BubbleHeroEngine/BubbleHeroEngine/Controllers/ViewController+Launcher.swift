@@ -11,7 +11,11 @@ import UIKit
 extension ViewController {
     /// Handles the launch of a bubble when the user single-taps on the screen.
     @IBAction func handleBubbleLaunch(_ sender: UITapGestureRecognizer) {
-        let angle = getShootAngle(by: sender.location(in: view))
+        let location = sender.location(in: view)
+        guard bubbleLauncher.center.y >= location.y + Settings.launchVerticalLimit else {
+            return
+        }
+        let angle = getShootAngle(by: location)
         moveBubble(at: angle)
         updateBubbleLauncher()
     }
