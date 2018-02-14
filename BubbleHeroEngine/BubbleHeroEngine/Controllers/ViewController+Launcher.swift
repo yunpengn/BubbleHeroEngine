@@ -34,7 +34,7 @@ extension ViewController {
         let bubble = shootBubbleFactory(at: angle)
         let xDisplacement = -Settings.speed * cos(angle)
         let yDisplacement = -Settings.speed * sin(angle)
-        let renderer = Renderer(for: bubble)
+        let renderer = BubbleShootController(for: bubble)
         renderer.moveObject(bubble, atX: xDisplacement, atY: yDisplacement)
     }
 

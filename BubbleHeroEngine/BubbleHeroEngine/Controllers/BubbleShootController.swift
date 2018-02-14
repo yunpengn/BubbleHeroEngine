@@ -1,5 +1,5 @@
 //
-//  Renderer.swift
+//  BubbleShootController.swift
 //  BubbleHeroEngine
 //
 //  Created by Yunpeng Niu on 14/02/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Renderer {
+class BubbleShootController {
     private var displayLink: CADisplayLink?
     private var obj: UIView
     private var xDisplacement = CGFloat(0)

@@ -37,7 +37,6 @@ class SampleData {
                 addRandomTypeBubble(to: level, row: 5, column: i)
             }
             addRandomTypeBubble(to: level, row: 7, column: i)
-            addRandomTypeBubble(to: level, row: 9, column: i)
         }
 
         return level

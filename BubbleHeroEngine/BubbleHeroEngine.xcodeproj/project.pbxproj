@@ -24,7 +24,7 @@
 		F26681632033364B00AFF5DB /* BubbleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26681622033364B00AFF5DB /* BubbleProvider.swift */; };
 		F26681652033389C00AFF5DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F26681642033389C00AFF5DB /* README.md */; };
 		F2668167203339E100AFF5DB /* ShootBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2668166203339E100AFF5DB /* ShootBubble.swift */; };
-		F276D29F2033CF1C00E4123B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276D29E2033CF1C00E4123B /* Renderer.swift */; };
+		F276D29F2033CF1C00E4123B /* BubbleShootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276D29E2033CF1C00E4123B /* BubbleShootController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +59,7 @@
 		F26681622033364B00AFF5DB /* BubbleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleProvider.swift; sourceTree = "<group>"; };
 		F26681642033389C00AFF5DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F2668166203339E100AFF5DB /* ShootBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootBubble.swift; sourceTree = "<group>"; };
-		F276D29E2033CF1C00E4123B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		F276D29E2033CF1C00E4123B /* BubbleShootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleShootController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +137,7 @@
 				F224EDEC203306EC00310F48 /* ViewController.swift */,
 				F26681582033180200AFF5DB /* ViewController+BubbleArena.swift */,
 				F213C39F2033472500F0B72C /* ViewController+Launcher.swift */,
-				F276D29E2033CF1C00E4123B /* Renderer.swift */,
+				F276D29E2033CF1C00E4123B /* BubbleShootController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -291,7 +291,7 @@
 				F266815F20331AF100AFF5DB /* BubbleType.swift in Sources */,
 				F224EDED203306EC00310F48 /* ViewController.swift in Sources */,
 				F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */,
-				F276D29F2033CF1C00E4123B /* Renderer.swift in Sources */,
+				F276D29F2033CF1C00E4123B /* BubbleShootController.swift in Sources */,
 				F224EE14203316BA00310F48 /* Settings.swift in Sources */,
 				F266815D20331AC300AFF5DB /* FilledBubble.swift in Sources */,
 				F2668167203339E100AFF5DB /* ShootBubble.swift in Sources */,
