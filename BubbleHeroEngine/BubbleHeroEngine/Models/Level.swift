@@ -119,8 +119,9 @@ class Level: Codable {
         return neighbors.flatMap { $0 }
     }
 
-    private func addIfExists(to items: [FilledBubble], row: Int, column: Int) {
-
+    func getSameColorConnectedItemsOf(_ bubble: FilledBubble) -> [FilledBubble] {
+        let neighbors = getNeighborsOf(row: bubble.row, column: bubble.column)
+        return neighbors.filter { $0.type == bubble.type }
     }
 
     /// Gets the bubble located at the specified location.
@@ -133,6 +134,15 @@ class Level: Codable {
             return nil
         }
         return bubbles[row][column]
+    }
+
+    /// Deletes a list of bubbles from the current `Level`; if any one of them does
+    /// not exist, do nothing.
+    /// - Parameter toDelete: the list of bubbles being deleted.
+    func deleteBubbles(_ toDelete: [FilledBubble]) {
+        for bubble in toDelete {
+            deleteBubble(bubble)
+        }
     }
 
     /// Deletes a certain bubble from the current `Level`; if it does not exist,

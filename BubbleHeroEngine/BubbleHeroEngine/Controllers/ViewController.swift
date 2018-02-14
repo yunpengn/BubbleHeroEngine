@@ -71,15 +71,32 @@ class ViewController: UIViewController, ArenaDelegate {
         let bubbleY = CGFloat(bubble.row) * BubbleCell.height
         let deltaX = bubbleX - point.x
         let deltaY = bubbleY - point.y
-        return deltaX * deltaX + deltaY * deltaY <= BubbleCell.diameterSquare
+        return deltaX * deltaX + deltaY * deltaY
+            <= BubbleCell.diameterSquare * Settings.collisionThreshold
     }
 
     func fillNearByCell(by point: CGPoint, type: BubbleType) {
         let row = Int(round(point.y / BubbleCell.height))
         let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
         let column = Int(round((point.x - leftOffset) / BubbleCell.diameter))
-        level.addOrUpdateBubble(FilledBubble(row: row, column: column, type: type))
+
+        let newBubble = FilledBubble(row: row, column: column, type: type)
+        level.addOrUpdateBubble(newBubble)
         bubbleArena.reloadItems(at: [IndexPath(row: column, section: row)])
+        removeSameColorNeighbors(from: newBubble)
+
+    }
+
+    private func removeSameColorNeighbors(from bubble: FilledBubble) {
+        var sameColorBubbles = level.getSameColorConnectedItemsOf(bubble)
+        sameColorBubbles.append(bubble)
+        if sameColorBubbles.count >= 3 {
+            level.deleteBubbles(sameColorBubbles)
+            let indexPaths = sameColorBubbles.map { bubble in
+                return IndexPath(row: bubble.column, section: bubble.row)
+            }
+            bubbleArena.reloadItems(at: indexPaths)
+        }
     }
 }
 

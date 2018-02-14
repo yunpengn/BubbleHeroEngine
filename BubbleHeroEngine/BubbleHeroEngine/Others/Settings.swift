@@ -22,8 +22,8 @@ class Settings {
     static let numOfTypes = UInt32(4)
     /// The speed in which the shooting bubble will travel.
     static let speed = CGFloat(10)
-    /// The threshold value for collision, i.e., we allow
-    /// "collision" even if there exists a small invisible gap
-    /// between two objects.
-    static let collisionThreshold = 1.05
+    /// The threshold value for collision, i.e., we may ignore
+    /// "collision" when the gap can let the bubble merely pass
+    /// through.
+    static let collisionThreshold = CGFloat(0.9)
 }

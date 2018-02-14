@@ -27,7 +27,6 @@ class SampleData {
                 addRandomTypeBubble(to: level, row: 4, column: i)
             }
             addRandomTypeBubble(to: level, row: 6, column: i)
-            addRandomTypeBubble(to: level, row: 8, column: i)
 
         }
         for i in 0..<11 {
