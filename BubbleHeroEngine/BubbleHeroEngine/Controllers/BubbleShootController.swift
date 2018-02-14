@@ -51,6 +51,7 @@ class BubbleShootController {
         if obj.frame.minY <= 0 {
             stopDisplayLink()
             let point = CGPoint(x: obj.frame.minX, y: obj.frame.minY)
+            obj.removeFromSuperview()
             arenaDelegate.fillNearByCell(by: point, type: type)
         }
     }

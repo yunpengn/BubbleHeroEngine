@@ -88,8 +88,7 @@ class ViewController: UIViewController, ArenaDelegate {
     }
 
     private func removeSameColorNeighbors(from bubble: FilledBubble) {
-        var sameColorBubbles = level.getSameColorConnectedItemsOf(bubble)
-        sameColorBubbles.append(bubble)
+        let sameColorBubbles = level.getSameColorConnectedItemsOf(bubble)
         if sameColorBubbles.count >= 3 {
             level.deleteBubbles(sameColorBubbles)
             let indexPaths = sameColorBubbles.map { bubble in
