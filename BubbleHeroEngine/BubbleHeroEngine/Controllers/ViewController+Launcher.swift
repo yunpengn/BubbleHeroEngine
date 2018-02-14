@@ -48,7 +48,7 @@ extension ViewController {
         return imageView
     }
 
-    private func updateBubbleLauncher() {
+    func updateBubbleLauncher() {
         let type = provider.peek().type
         bubbleLauncher.setImage(toBubbleImage(of: type), for: .normal)
     }

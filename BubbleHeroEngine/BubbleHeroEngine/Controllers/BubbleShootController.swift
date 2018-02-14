@@ -44,13 +44,13 @@ class BubbleShootController {
 
     private func checkTopStick() {
         if obj.frame.minY <= 0 {
-            xDisplacement = 0
-            yDisplacement = 0
             stopDisplayLink()
         }
     }
 
     private func stopDisplayLink() {
+        xDisplacement = 0
+        yDisplacement = 0
         displayLink?.invalidate()
         displayLink = nil
     }

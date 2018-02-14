@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         bubbleArena.delegate = self
         bubbleArena.dataSource = self
+        updateBubbleLauncher()
     }
 
     /// Gets an image of the bubble cell according to its type.
