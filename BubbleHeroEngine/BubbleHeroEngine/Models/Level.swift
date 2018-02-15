@@ -143,33 +143,52 @@ class Level: Codable {
         var toCheck = Stack<FilledBubble>()
 
         // All bubbles in the first row are (directly) attached (to the top wall).
-        isAttached[0] = Array(repeating: true, count: evenCount)
-
-        return []
-    }
-
-    /// Finds the bubbles which are hanged by the bubble at a certain location.
-    /// In other words, name the bubble at that certain location as x. There
-    /// are at most 4 bubbles hanged by x: the left, the right, the left bottom
-    /// and the right bottom of x.
-    /// - Parameters:
-    ///    - row: The row number of x's location (zero-based).
-    ///    - column: The column number of x's location (zero-based).
-    /// - Returns: An array of bubbles hanged by x if exists; nil if the given
-    /// location is invalid, x does not exist or no bubble is hanged by x.
-    private func getBubblesHangedBy(row: Int, column: Int) -> [FilledBubble] {
-        guard hasBubbleAt(row: row, column: column) else {
-            return []
+        for column in 0..<evenCount {
+            if let bubble = bubbles[0][column] {
+                isAttached[0][column] = true
+                toCheck.push(bubble)
+            }
         }
 
-        var result: [FilledBubble?] = []
-        let nextRowOffset = (row % 2 == 0) ? -1 : 1
-        result.append(getBubbleAt(row: row, column: column - 1))
-        result.append(getBubbleAt(row: row, column: column + 1))
-        result.append(getBubbleAt(row: row + 1, column: column))
-        result.append(getBubbleAt(row: row + 1, column: column + nextRowOffset))
+        // Starts a DFS to find all attached bubbles.
+        while let next = toCheck.pop() {
+            if !isAttached[next.row][next.column] {
+                isAttached[next.row][next.column] = true
+            }
 
-        return result.flatMap { $0 }
+            for neighbor in getNeighborsOf(row: next.row, column: next.column) {
+                if !isAttached[neighbor.row][neighbor.column] {
+                    isAttached[neighbor.row][neighbor.column] = true
+                    toCheck.push(neighbor)
+                }
+            }
+        }
+
+        // Those existing (non-nil) bubbles who are not labelled as attached
+        // should be removed and returned.
+        var result: [FilledBubble] = []
+        for i in 0..<numOfRows / 2 {
+            for j in 0..<evenCount {
+                guard !isAttached[i * 2][j] else {
+                    continue
+                }
+                if let bubble = bubbles[i * 2][j] {
+                    result.append(bubble)
+                    bubbles[i * 2][j] = nil
+                }
+            }
+            for k in 0..<oddCount {
+                guard !isAttached[i * 2 + 1][k] else {
+                    continue
+                }
+                if let bubble = bubbles[i * 2 + 1][k] {
+                    result.append(bubble)
+                    bubbles[i * 2][k] = nil
+                }
+            }
+        }
+
+        return result
     }
 
     /// Gets the bubble located at the specified location.
