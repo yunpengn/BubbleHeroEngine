@@ -133,18 +133,43 @@ class Level: Codable {
         return result
     }
 
+    /// Removes and returns unattached bubbles. A bubble is defined as "unattached"
+    /// if it is not connected to the top wall or any other attached bubbles.
+    /// - Returns: an array of unattached bubbles that have been removed.
     func removeUnattachedBubbles() -> [FilledBubble] {
-        var result: [FilledBubble] = []
-        return result
+        // To find and remove unattached bubbles, we first label those attached ones.
+        var isAttached = [[Bool]](repeating: [Bool](repeating: false, count: evenCount),
+                                  count: numOfRows)
+        var toCheck = Stack<FilledBubble>()
+
+        // All bubbles in the first row are (directly) attached (to the top wall).
+        isAttached[0] = Array(repeating: true, count: evenCount)
+
+        return []
     }
 
-    private func hasHangingNeighbors(row: Int, column: Int) -> Bool {
-        guard isValidLocation(row: row, column: column) else {
-            return false
+    /// Finds the bubbles which are hanged by the bubble at a certain location.
+    /// In other words, name the bubble at that certain location as x. There
+    /// are at most 4 bubbles hanged by x: the left, the right, the left bottom
+    /// and the right bottom of x.
+    /// - Parameters:
+    ///    - row: The row number of x's location (zero-based).
+    ///    - column: The column number of x's location (zero-based).
+    /// - Returns: An array of bubbles hanged by x if exists; nil if the given
+    /// location is invalid, x does not exist or no bubble is hanged by x.
+    private func getBubblesHangedBy(row: Int, column: Int) -> [FilledBubble] {
+        guard hasBubbleAt(row: row, column: column) else {
+            return []
         }
-        return hasBubbleAt(row: row, column: column - 1)
-            || hasBubbleAt(row: row, column: column + 1)
-            || hasBubbleAt(row: row - 1, column: column)
+
+        var result: [FilledBubble?] = []
+        let nextRowOffset = (row % 2 == 0) ? -1 : 1
+        result.append(getBubbleAt(row: row, column: column - 1))
+        result.append(getBubbleAt(row: row, column: column + 1))
+        result.append(getBubbleAt(row: row + 1, column: column))
+        result.append(getBubbleAt(row: row + 1, column: column + nextRowOffset))
+
+        return result.flatMap { $0 }
     }
 
     /// Gets the bubble located at the specified location.
