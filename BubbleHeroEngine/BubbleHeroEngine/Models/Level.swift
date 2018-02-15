@@ -133,11 +133,39 @@ class Level: Codable {
         return result
     }
 
-    /// Removes and returns unattached bubbles. A bubble is defined as "unattached"
+    /// Finds the unattached bubbles. A bubble is defined as "unattached"
     /// if it is not connected to the top wall or any other attached bubbles.
-    /// - Returns: an array of unattached bubbles that have been removed.
+    /// - Returns: an array of unattached bubbles.
     func removeUnattachedBubbles() -> [FilledBubble] {
         // To find and remove unattached bubbles, we first label those attached ones.
+        var isAttached = checkAttached()
+
+        // Those existing (non-nil) bubbles who are not labelled as attached
+        // should be removed and returned.
+        var result: [FilledBubble] = []
+        for i in 0..<numOfRows / 2 {
+            for j in 0..<evenCount {
+                guard !isAttached[i * 2][j] else {
+                    continue
+                }
+                if let bubble = bubbles[i * 2][j] {
+                    result.append(bubble)
+                }
+            }
+            for k in 0..<oddCount {
+                guard !isAttached[i * 2 + 1][k] else {
+                    continue
+                }
+                if let bubble = bubbles[i * 2 + 1][k] {
+                    result.append(bubble)
+                }
+            }
+        }
+
+        return result
+    }
+
+    private func checkAttached() -> [[Bool]] {
         var isAttached = [[Bool]](repeating: [Bool](repeating: false, count: evenCount),
                                   count: numOfRows)
         var toCheck = Stack<FilledBubble>()
@@ -164,31 +192,7 @@ class Level: Codable {
             }
         }
 
-        // Those existing (non-nil) bubbles who are not labelled as attached
-        // should be removed and returned.
-        var result: [FilledBubble] = []
-        for i in 0..<numOfRows / 2 {
-            for j in 0..<evenCount {
-                guard !isAttached[i * 2][j] else {
-                    continue
-                }
-                if let bubble = bubbles[i * 2][j] {
-                    result.append(bubble)
-                    bubbles[i * 2][j] = nil
-                }
-            }
-            for k in 0..<oddCount {
-                guard !isAttached[i * 2 + 1][k] else {
-                    continue
-                }
-                if let bubble = bubbles[i * 2 + 1][k] {
-                    result.append(bubble)
-                    bubbles[i * 2][k] = nil
-                }
-            }
-        }
-
-        return result
+        return isAttached
     }
 
     /// Gets the bubble located at the specified location.

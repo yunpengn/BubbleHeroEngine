@@ -84,7 +84,7 @@ class ViewController: UIViewController, ArenaDelegate {
         level.addOrUpdateBubble(newBubble)
         bubbleArena.reloadItems(at: [IndexPath(row: column, section: row)])
         removeSameColorNeighbors(from: newBubble)
-
+        removeUnattachedBubbles()
     }
 
     private func removeSameColorNeighbors(from bubble: FilledBubble) {
@@ -100,6 +100,7 @@ class ViewController: UIViewController, ArenaDelegate {
 
     private func removeUnattachedBubbles() {
         let unattachedBubbles = level.removeUnattachedBubbles()
+        level.deleteBubbles(unattachedBubbles)
         let indexPaths = unattachedBubbles.map { bubble in
             return IndexPath(row: bubble.column, section: bubble.row)
         }
