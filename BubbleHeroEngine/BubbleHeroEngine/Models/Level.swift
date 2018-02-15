@@ -97,24 +97,12 @@ class Level: Codable {
         var neighbors: [FilledBubble?] = []
 
         let nearRowOffset = (row % 2 == 0) ? -1 : 1
-        if isValidLocation(row: row, column: column - 1) {
-            neighbors.append(bubbles[row][column - 1])
-        }
-        if isValidLocation(row: row, column: column + 1) {
-            neighbors.append(bubbles[row][column + 1])
-        }
-        if isValidLocation(row: row - 1, column: column) {
-            neighbors.append(bubbles[row - 1][column])
-        }
-        if isValidLocation(row: row - 1, column: column + nearRowOffset) {
-            neighbors.append(bubbles[row - 1][column + nearRowOffset])
-        }
-        if isValidLocation(row: row + 1, column: column) {
-            neighbors.append(bubbles[row + 1][column])
-        }
-        if isValidLocation(row: row + 1, column: column + nearRowOffset) {
-            neighbors.append(bubbles[row + 1][column + nearRowOffset])
-        }
+        neighbors.append(getBubbleAt(row: row, column: column - 1))
+        neighbors.append(getBubbleAt(row: row, column: column + 1))
+        neighbors.append(getBubbleAt(row: row - 1, column: column))
+        neighbors.append(getBubbleAt(row: row - 1, column: column + nearRowOffset))
+        neighbors.append(getBubbleAt(row: row + 1, column: column))
+        neighbors.append(getBubbleAt(row: row + 1, column: column + nearRowOffset))
 
         return neighbors.flatMap { $0 }
     }
@@ -143,6 +131,20 @@ class Level: Codable {
         }
 
         return result
+    }
+
+    func removeUnattachedBubbles() -> [FilledBubble] {
+        var result: [FilledBubble] = []
+        return result
+    }
+
+    private func hasHangingNeighbors(row: Int, column: Int) -> Bool {
+        guard isValidLocation(row: row, column: column) else {
+            return false
+        }
+        return hasBubbleAt(row: row, column: column - 1)
+            || hasBubbleAt(row: row, column: column + 1)
+            || hasBubbleAt(row: row - 1, column: column)
     }
 
     /// Gets the bubble located at the specified location.

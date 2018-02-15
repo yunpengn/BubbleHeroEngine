@@ -97,6 +97,14 @@ class ViewController: UIViewController, ArenaDelegate {
             bubbleArena.reloadItems(at: indexPaths)
         }
     }
+
+    private func removeUnattachedBubbles() {
+        let unattachedBubbles = level.removeUnattachedBubbles()
+        let indexPaths = unattachedBubbles.map { bubble in
+            return IndexPath(row: bubble.column, section: bubble.row)
+        }
+        bubbleArena.reloadItems(at: indexPaths)
+    }
 }
 
 protocol ArenaDelegate {
