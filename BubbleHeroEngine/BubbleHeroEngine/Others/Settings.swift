@@ -21,7 +21,7 @@ class Settings {
     /// The number of types of bubbles in the game currently.
     static let numOfTypes = UInt32(4)
     /// The speed in which the shooting bubble will travel.
-    static let speed = CGFloat(10)
+    static let speed = CGFloat(15)
     /// To avoid the user from shooting a bubble with nearly
     /// the angle of 0 or 180 degrees.
     static let launchVerticalLimit = CGFloat(60)
