@@ -14,12 +14,14 @@ import UIKit
 class BubbleFallController {
     private let obj: UIView
     private var displayLink: CADisplayLink?
+    private var speed: CGFloat = 0
 
     init(for obj: UIView) {
         self.obj = obj
     }
 
     func fall() {
+        speed = 0
         displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink?.add(to: .current, forMode: .defaultRunLoopMode)
     }
@@ -27,8 +29,9 @@ class BubbleFallController {
     @objc private func step(displayLink: CADisplayLink) {
         checkTouchButtom()
         let frame = obj.frame
-        let newY = frame.minY + Settings.speed
+        let newY = frame.minY + speed
         obj.frame = CGRect(x: frame.minX, y: newY, width: frame.width, height: frame.height)
+        speed += Settings.gravityConstant
     }
 
     private func checkTouchButtom() {

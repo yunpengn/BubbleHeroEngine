@@ -20,8 +20,10 @@ class Settings {
     static let cellPerRow = 12
     /// The number of types of bubbles in the game currently.
     static let numOfTypes = UInt32(4)
+    /// The constant that represents the gravitational force.
+    static let gravityConstant = CGFloat(0.6)
     /// The speed in which the shooting bubble will travel.
-    static let speed = CGFloat(15)
+    static let shootSpeed = CGFloat(15)
     /// To avoid the user from shooting a bubble with nearly
     /// the angle of 0 or 180 degrees.
     static let launchVerticalLimit = CGFloat(60)
