@@ -2,12 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/yunpeng/Projects/2018-ps4-yunpengn/BubbleHeroEngine/BubbleHeroEngine/Others/Setting.swift">
+      location = "group:/Users/yunpeng/Projects/2018-ps4-yunpengn/BubbleHeroEngine/BubbleHeroEngine/Controllers/ViewController+Launcher.swift">
    </FileRef>
    <FileRef
-      location = "group:../../README.md">
-   </FileRef>
-   <FileRef
-      location = "self:BubbleHeroEngine.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

@@ -101,10 +101,26 @@ class ViewController: UIViewController, ArenaDelegate {
     private func removeUnattachedBubbles() {
         let unattachedBubbles = level.removeUnattachedBubbles()
         level.deleteBubbles(unattachedBubbles)
-        let indexPaths = unattachedBubbles.map { bubble in
-            return IndexPath(row: bubble.column, section: bubble.row)
+
+        var indexPaths: [IndexPath] = []
+        for bubble in unattachedBubbles {
+            let indexPath = IndexPath(row: bubble.column, section: bubble.row)
+            createFallingBubble(of: bubble.type, at: indexPath)
+            indexPaths.append(indexPath)
         }
         bubbleArena.reloadItems(at: indexPaths)
+    }
+
+    private func createFallingBubble(of type: BubbleType, at indexPath: IndexPath) {
+        guard let frame = bubbleArena.cellForItem(at: indexPath)?.frame else {
+            return
+        }
+        let image = toBubbleImage(of: type)
+        let imageView = UIImageView(image: image)
+        imageView.frame = frame
+        view.addSubview(imageView)
+        let renderer = BubbleFallController(for: imageView)
+        renderer.fall()
     }
 }
 
