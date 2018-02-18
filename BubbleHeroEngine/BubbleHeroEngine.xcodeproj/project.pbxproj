@@ -25,6 +25,7 @@
 		F26681632033364B00AFF5DB /* BubbleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26681622033364B00AFF5DB /* BubbleProvider.swift */; };
 		F26681652033389C00AFF5DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F26681642033389C00AFF5DB /* README.md */; };
 		F27CAD22203958C0007FF459 /* ViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */; };
+		F27CAD2420396AC3007FF459 /* ViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD2320396AC3007FF459 /* ViewController+Delegate.swift */; };
 		F2B4DDDD20381B670043CA0A /* ViewController+Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */; };
 		F2F8FE0820348A8B00CCFE15 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8FE0720348A8A00CCFE15 /* Stack.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		F26681622033364B00AFF5DB /* BubbleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleProvider.swift; sourceTree = "<group>"; };
 		F26681642033389C00AFF5DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Helpers.swift"; sourceTree = "<group>"; };
+		F27CAD2320396AC3007FF459 /* ViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Delegate.swift"; sourceTree = "<group>"; };
 		F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController+Launcher.swift"; path = "/Users/yunpeng/Projects/2018-ps4-yunpengn/BubbleHeroEngine/BubbleHeroEngine/Controllers/ViewController+Launcher.swift"; sourceTree = "<absolute>"; };
 		F2F8FE0720348A8A00CCFE15 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 			children = (
 				F224EDEC203306EC00310F48 /* ViewController.swift */,
 				F26681582033180200AFF5DB /* ViewController+BubbleArena.swift */,
+				F27CAD2320396AC3007FF459 /* ViewController+Delegate.swift */,
 				F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */,
 				F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */,
 				F260297020391B2200779944 /* PhysicsEngine.swift */,
@@ -305,6 +308,7 @@
 				F27CAD22203958C0007FF459 /* ViewController+Helpers.swift in Sources */,
 				F224EDEB203306EC00310F48 /* AppDelegate.swift in Sources */,
 				F266816120331BA600AFF5DB /* SampleData.swift in Sources */,
+				F27CAD2420396AC3007FF459 /* ViewController+Delegate.swift in Sources */,
 				F26681592033180200AFF5DB /* ViewController+BubbleArena.swift in Sources */,
 				F26681632033364B00AFF5DB /* BubbleProvider.swift in Sources */,
 			);
