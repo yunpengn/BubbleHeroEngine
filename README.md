@@ -21,6 +21,13 @@ CS3217 Problem Set 4
 
 ![Class Diagram](class-diagram.png)
 
+_(Credit to [ProcessOn](https://www.processon.com/) for providing us with an excellent online tool to draw UML diagram)_
+
+This `Bubble Hero Engine` application follows the MVC (_model, view, controller_) architecture. Each component is explained as follows:
+- **Model**: The model provides a reliable backend store for all the data in the game. 
+- **Controller**:
+- **View**:
+
 ## Problem 1.2
 
 Your answer here

@@ -198,11 +198,10 @@ class Level: Codable {
                 isAttached[next.row][next.column] = true
             }
 
-            for neighbor in getNeighborsOf(row: next.row, column: next.column) {
-                if !isAttached[neighbor.row][neighbor.column] {
-                    isAttached[neighbor.row][neighbor.column] = true
-                    toCheck.push(neighbor)
-                }
+            for neighbor in getNeighborsOf(row: next.row, column: next.column)
+                where !isAttached[neighbor.row][neighbor.column] {
+                isAttached[neighbor.row][neighbor.column] = true
+                toCheck.push(neighbor)
             }
         }
 

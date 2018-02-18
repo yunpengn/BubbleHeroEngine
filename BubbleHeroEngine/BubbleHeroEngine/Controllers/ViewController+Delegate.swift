@@ -121,7 +121,7 @@ extension ViewController: ControllerDelegate {
     }
 }
 
-protocol ControllerDelegate {
+protocol ControllerDelegate: AnyObject {
     /// Handles the condition when a `GameObject` collides with either the top of the
     /// screen or a bubble in the `bubbleArena`.
     /// - Parameter object: The `GameObject` of concern.

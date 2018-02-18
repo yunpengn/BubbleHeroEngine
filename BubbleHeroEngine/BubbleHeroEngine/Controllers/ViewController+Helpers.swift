@@ -30,7 +30,7 @@ extension ViewController {
         view.addSubview(imageView)
         return imageView
     }
-    
+
     /// Gets an image of the bubble cell according to its type.
     /// - Parameter type: The type of the bubble
     /// - Returns: The background image corresponding to this type.
