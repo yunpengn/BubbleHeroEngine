@@ -17,7 +17,8 @@ import UIKit
 extension ViewController: ControllerDelegate {
     func handleCollision(by object: GameObject) {
         let location = findNearbyCell(of: object)
-        guard let type = gameObjects.popShootedBubble(of: object) else {
+        guard let type = gameObjects.popShootedBubble(of: object),
+            level.isValidLocation(row: location.row, column: location.column) else {
             return
         }
         let newBubble = fillCell(row: location.row, column: location.column, type: type)

@@ -257,7 +257,7 @@ class Level: Codable {
     /// - Parameters:
     ///    - row: The row number of the checked location (zero-based).
     ///    - column: The column number of the checked location (zero-based).
-    private func isValidLocation(row: Int, column: Int) -> Bool {
+    func isValidLocation(row: Int, column: Int) -> Bool {
         guard row >= 0 && row < numOfRows else {
             return false
         }
