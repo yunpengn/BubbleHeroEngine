@@ -10,13 +10,14 @@ import UIKit
 
 extension ViewController {
     /// Handles the launch of a bubble when the user single-taps on the screen.
+    /// - Parameter sender: The sender of the single-tap gesture.
     @IBAction func handleBubbleLaunch(_ sender: UITapGestureRecognizer) {
         let location = sender.location(in: view)
         guard bubbleLauncher.center.y >= location.y + Settings.launchVerticalLimit else {
             return
         }
         let angle = getShootAngle(by: location)
-        moveBubble(at: angle)
+        shootBubble(at: angle)
         updateBubbleLauncher()
     }
 
@@ -34,7 +35,9 @@ extension ViewController {
         return atan2(newDeltaY, deltaX)
     }
 
-    private func moveBubble(at angle: CGFloat) {
+    /// Shoots a bubble from `bubbleLauncher` at a specific angle.
+    /// - Parameter angle: The angle at which the bubble will be shooted.
+    private func shootBubble(at angle: CGFloat) {
         let bubble = movingBubbleFactory(of: provider.peek(), center: bubbleLauncher.center)
         let xDisplacement = -Settings.shootSpeed * cos(angle)
         let yDisplacement = -Settings.shootSpeed * sin(angle)
@@ -42,6 +45,7 @@ extension ViewController {
         renderer.moveObject(atX: xDisplacement, atY: yDisplacement)
     }
 
+    /// Updates the status of the `bubbleLauncher` after one bubble in shooted.
     func updateBubbleLauncher() {
         let type = provider.pop()
         bubbleLauncher.setImage(toBubbleImage(of: type), for: .normal)
