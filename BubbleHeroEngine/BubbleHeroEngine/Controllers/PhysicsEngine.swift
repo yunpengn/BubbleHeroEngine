@@ -114,8 +114,7 @@ class PhysicsEngine {
     private func checkTouchTop(of object: GameObject) {
         if object.centerY - object.radius <= 0 {
             removeGameObject(object)
-            // Call delegate methods to fill nearby cells.
-            print("Touch top screen")
+            delegate?.handleTouchTop(by: object)
         }
     }
 

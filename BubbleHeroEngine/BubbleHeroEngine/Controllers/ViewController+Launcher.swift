@@ -54,10 +54,18 @@ extension ViewController {
     /// Shoots a bubble from `bubbleLauncher` at a specific angle.
     /// - Parameter angle: The angle at which the bubble will be shooted.
     private func shootBubble(at angle: CGFloat) {
+        // Creates a shooted bubble visually.
+        let type = provider.peek()
         let bubble = movingBubbleFactory(of: provider.peek(), center: bubbleLauncher.center)
+
+        // Creates a `GameObject` for the shooted bubble and register it into the
+        // `PhysicsEngine` (to take over the control).
         let gameObject = GameObject(view: bubble, radius: BubbleCell.radius)
         gameObject.speed = getShootSpeed(by: angle)
         engine.registerGameObject(gameObject)
+
+        // Keeps a record of the shooted bubble.
+        shootedBubbles.append((gameObject, type))
     }
 
     /// Updates the status of the `bubbleLauncher` after one bubble in shooted.

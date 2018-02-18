@@ -10,24 +10,52 @@ import UIKit
 
 extension ViewController: ControllerDelegate {
     func handleTouchTop(by object: GameObject) {
-        
+        let location = findNearbyCell(of: object)
+        guard let type = popShootedBubble(of: object) else {
+            return
+        }
+        let newBubble = fillCell(row: location.row, column: location.column, type: type)
+        removeSameColorNeighbors(from: newBubble)
+        removeUnattachedBubbles()
     }
 
-    /// Given a specific location, fills the the closest available empty cell
-    /// with a certain type of bubble.
-    /// - Parameters:
-    ///    - point: The location given
-    ///    - type: The `BubbleType` that will be filled with
-    func fillNearByCell(by point: CGPoint, type: BubbleType) {
-        let row = Int(round(point.y / BubbleCell.height))
-        let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
-        let column = Int(round((point.x - leftOffset) / BubbleCell.diameter))
+    /// Finds the coordinates of the nearby cell of a given `GameObject`.
+    /// - Parameter object: The `GameObject` being checked.
+    /// - Returns: a tuple representing the row & column number of the nearby cell.
+    private func findNearbyCell(of object: GameObject) -> (row: Int, column: Int) {
+        // Gets the (minX, minY) of the `GameObject` (its top-left corner).
+        let minX = object.centerX - object.radius
+        let minY = object.centerY - object.radius
 
+        // Calculates the row & column number.
+        let row = Int(round((minY) / BubbleCell.height))
+        let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
+        let column = Int(round((minX - leftOffset) / BubbleCell.diameter))
+
+        return (row, column)
+    }
+
+    /// Finds the type of the shooted bubble when triggered by its `GameObject`
+    /// representation.
+    /// - Parameter object: The `GameObject` being checked.
+    /// - Returns: the `BubbleType` of the shooted bubble.
+    private func popShootedBubble(of object: GameObject) -> BubbleType? {
+        let bubble = shootedBubbles.first { $0.object === object }
+        shootedBubbles = shootedBubbles.filter { $0.object !== object }
+        return bubble?.type
+    }
+
+    /// Fills a cell at the specific location with a certain `BubbleType`.
+    /// - Parameters:
+    ///    - row: Thw row number of the intended cell.
+    ///    - column: The column number of the intended cell.
+    ///    - type: The `BubbleType` that the cell will be filled with.
+    /// - Returns: the cell being filled.
+    private func fillCell(row: Int, column: Int, type: BubbleType) -> FilledBubble {
         let newBubble = FilledBubble(row: row, column: column, type: type)
         level.addOrUpdateBubble(newBubble)
         bubbleArena.reloadItems(at: [IndexPath(row: column, section: row)])
-        removeSameColorNeighbors(from: newBubble)
-        removeUnattachedBubbles()
+        return newBubble
     }
 
     /// Computes the bubbles nearby a point. The bubble is considered to be
@@ -60,13 +88,15 @@ extension ViewController: ControllerDelegate {
 
     private func removeSameColorNeighbors(from bubble: FilledBubble) {
         let sameColorBubbles = level.getSameColorConnectedItemsOf(bubble)
-        if sameColorBubbles.count >= 3 {
-            level.deleteBubbles(sameColorBubbles)
-            let indexPaths = sameColorBubbles.map { bubble in
-                return IndexPath(row: bubble.column, section: bubble.row)
-            }
-            bubbleArena.reloadItems(at: indexPaths)
+        guard sameColorBubbles.count >= 3 else {
+            return
         }
+
+        level.deleteBubbles(sameColorBubbles)
+        let indexPaths = sameColorBubbles.map { bubble in
+            return IndexPath(row: bubble.column, section: bubble.row)
+        }
+        bubbleArena.reloadItems(at: indexPaths)
     }
 
     private func removeUnattachedBubbles() {
