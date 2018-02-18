@@ -39,8 +39,14 @@ If the `BubbleType` is just the normal colors, the behavior would be the same as
 
 ## Problem 2.1
 
-Your answer here
+In the current design, the user can specify the angle to launch the bubble by single-tap on any position of the screen. However, notice that the single-tap must happen at which is at least slightly higher than the `BubbleLauncher`. After that, the position of the single-tap gesture will be computed relative to the position of the `BubbleLauncher`. After that, the angle will be calculated using `θ = atan(dy/dx)`. If `dy < 0` (which means the angle will be negative and the bubble will be shooted downwards), the input will not be accepted.
+
+Then, we will create a `GameObject` whose intial position will be the same as `BubbleLauncher`. The magnitude of its speed will be a constant, while the angle changes according to the user input. This `GameObject` will be registered into the `PhysicsEngine`, which will in turn handle its movement and collision afterwards.
+
+In the meantime, the `BubbleLauncher` will also be updated by asking `BubbleProvider` to supply it with the next randomly-generated bubble ready for launch.
 
 ## Problem 3: Testing
 
-Your answer here
+The strategy for testing this application is stated as follows:
+
+- Black-box testing
