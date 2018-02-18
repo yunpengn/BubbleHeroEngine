@@ -43,8 +43,10 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 }
 
 /**
- Extension for `ViewController`.
- This extension is the data source for the grid of bubbles.
+ Extension for `ViewController`. This extension is the data source for the grid of bubbles.
+
+ - Author: Niu Yunpeng @ CS3217
+ - Date: Feb 2018
  */
 extension ViewController: UICollectionViewDataSource {
     /// Sets the number of sections to be 12 (i.e., 12 rows of bubbles).

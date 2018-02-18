@@ -8,6 +8,13 @@
 
 import UIKit
 
+/**
+ Extension for `ViewController`, which controls the logic about launching & shooting
+ bubbles.
+
+ - Author: Niu Yunpeng @ CS3217
+ - Date: Feb 2018
+ */
 extension ViewController {
     /// Handles the launch of a bubble when the user single-taps on the screen.
     /// - Parameter sender: The sender of the single-tap gesture.
