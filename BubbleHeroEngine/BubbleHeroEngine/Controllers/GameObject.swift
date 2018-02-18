@@ -87,7 +87,7 @@ class GameObject {
 
     /// Indicates whether a `GameObject` is static by checking whether its current speed
     /// and acceleration are both (0, 0).
-    var isMoving: Bool {
+    var isStatic: Bool {
         return speed == CGVector.zero && acceleration == CGVector.zero
     }
 

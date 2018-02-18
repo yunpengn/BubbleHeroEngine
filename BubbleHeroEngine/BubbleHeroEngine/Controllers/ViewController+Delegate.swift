@@ -9,6 +9,34 @@
 import UIKit
 
 extension ViewController: ControllerDelegate {
+    func handleTouchTop(by object: GameObject) {
+        
+    }
+
+    /// Given a specific location, fills the the closest available empty cell
+    /// with a certain type of bubble.
+    /// - Parameters:
+    ///    - point: The location given
+    ///    - type: The `BubbleType` that will be filled with
+    func fillNearByCell(by point: CGPoint, type: BubbleType) {
+        let row = Int(round(point.y / BubbleCell.height))
+        let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
+        let column = Int(round((point.x - leftOffset) / BubbleCell.diameter))
+
+        let newBubble = FilledBubble(row: row, column: column, type: type)
+        level.addOrUpdateBubble(newBubble)
+        bubbleArena.reloadItems(at: [IndexPath(row: column, section: row)])
+        removeSameColorNeighbors(from: newBubble)
+        removeUnattachedBubbles()
+    }
+
+    /// Computes the bubbles nearby a point. The bubble is considered to be
+    /// "nearby" if the following condition is `true`:
+    ///
+    /// If there exists a bubble centered at `point`, the distances between
+    /// their centers are smaller or equal to the diameter of a bubble.
+    /// - Parameter point: The point being computed
+    /// - Returns: an array of neighboring bubbles if there exists; nil otherwise.
     func getBubbleNear(by point: CGPoint) -> [FilledBubble] {
         let row = Int(round(point.y / BubbleCell.height))
         let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
@@ -28,18 +56,6 @@ extension ViewController: ControllerDelegate {
         let deltaY = bubbleY - point.y
         return deltaX * deltaX + deltaY * deltaY
             <= BubbleCell.diameterSquare * Settings.collisionThreshold
-    }
-
-    func fillNearByCell(by point: CGPoint, type: BubbleType) {
-        let row = Int(round(point.y / BubbleCell.height))
-        let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
-        let column = Int(round((point.x - leftOffset) / BubbleCell.diameter))
-
-        let newBubble = FilledBubble(row: row, column: column, type: type)
-        level.addOrUpdateBubble(newBubble)
-        bubbleArena.reloadItems(at: [IndexPath(row: column, section: row)])
-        removeSameColorNeighbors(from: newBubble)
-        removeUnattachedBubbles()
     }
 
     private func removeSameColorNeighbors(from bubble: FilledBubble) {
@@ -87,19 +103,7 @@ extension ViewController: ControllerDelegate {
 }
 
 protocol ControllerDelegate {
-    /// Computes the bubbles nearby a point. The bubble is considered to be
-    /// "nearby" if the following condition is `true`:
-    ///
-    /// If there exists a bubble centered at `point`, the distances between
-    /// their centers are smaller or equal to the diameter of a bubble.
-    /// - Parameter point: The point being computed
-    /// - Returns: an array of neighboring bubbles if there exists; nil otherwise.
-    func getBubbleNear(by point: CGPoint) -> [FilledBubble]
-
-    /// Given a specific location, fills the the closest available empty cell
-    /// with a certain type of bubble.
-    /// - Parameters:
-    ///    - point: The location given
-    ///    - type: The `BubbleType` that will be filled with
-    func fillNearByCell(by point: CGPoint, type: BubbleType)
+    /// Handles the condition when a `GameObject` touches the top of the screen.
+    /// - Parameter object: The `GameObject` of concern.
+    func handleTouchTop(by object: GameObject)
 }

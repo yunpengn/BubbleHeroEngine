@@ -81,6 +81,9 @@ class PhysicsEngine {
     /// the refresh rate of the display.
     @objc private func step(displayLink: CADisplayLink) {
         for object in gameObjects {
+            guard !object.isStatic else {
+                continue
+            }
             object.move()
             checkHorizontalReflect(of: object)
             checkTouchButtom(of: object)
