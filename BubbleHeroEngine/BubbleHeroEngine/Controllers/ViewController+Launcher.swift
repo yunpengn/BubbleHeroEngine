@@ -35,14 +35,22 @@ extension ViewController {
         return atan2(newDeltaY, deltaX)
     }
 
+    /// Computes the initial speed of the shooted bubble according to the angle.
+    /// - Parameter angle: The angle in which the bubble is shooted.
+    /// - Returns: A `CGVector` representing the speed of the shooted bubble.
+    private func getShootSpeed(by angle: CGFloat) -> CGVector {
+        let dX = Settings.shootSpeed * cos(angle)
+        let dY = Settings.shootSpeed * sin(angle)
+        return CGVector(dx: dX, dy: dY)
+    }
+
     /// Shoots a bubble from `bubbleLauncher` at a specific angle.
     /// - Parameter angle: The angle at which the bubble will be shooted.
     private func shootBubble(at angle: CGFloat) {
         let bubble = movingBubbleFactory(of: provider.peek(), center: bubbleLauncher.center)
-        let xDisplacement = -Settings.shootSpeed * cos(angle)
-        let yDisplacement = -Settings.shootSpeed * sin(angle)
-        let renderer = BubbleShootController(for: bubble, type: provider.peek(), within: self)
-        renderer.moveObject(atX: xDisplacement, atY: yDisplacement)
+        let gameObject = GameObject(view: bubble, radius: BubbleCell.radius)
+        gameObject.speed = getShootSpeed(by: angle)
+        engine.registerGameObject(gameObject)
     }
 
     /// Updates the status of the `bubbleLauncher` after one bubble in shooted.

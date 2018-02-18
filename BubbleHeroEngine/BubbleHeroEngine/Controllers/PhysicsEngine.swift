@@ -32,29 +32,60 @@ import UIKit
  - Date: Feb 2018
  */
 class PhysicsEngine {
+    /// The delegate of the `ViewController` which handles the logic specific to the game.
+    var delegate: ArenaDelegate?
     /// A list of all `GameObject`s controlled by this `PhysicsEngine`.
     private var gameObjects: [GameObject] = []
 
+    /// Initializes a physics engine.
     init() {
         let displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: .defaultRunLoopMode)
     }
 
+    /// Registers a new `GameObject` into this `PhysicsEngine`. The movement
+    /// and collision detection of this `GameObject` will be managed by this
+    /// `PhysicsEngine` from now on. Each `GameObject` should be registered
+    /// in at most one `PhysicsEngine`.
+    /// - Parameter toRegister: The `GameObject` being registered.
     func registerGameObject(_ toRegister: GameObject) {
         gameObjects.append(toRegister)
     }
 
+    /// Deregisters a `GameObject` from this `PhysicsEngine`, who will not be in
+    /// charge of its movement and collision detection from on. This method will
+    /// do nothing if the `GameObject` was not registered with this `PhysicsEngine`
+    /// before.
+    /// - Parameter toDeregister: The `GameObject` being deregistered.
     func deregisterGameObject(_ toDeregister: GameObject) {
         // We have to use identity operator because there is no other possible
         // way to identify the most generic form of a `GameObject`.
         gameObjects = gameObjects.filter { $0 !== toDeregister }
     }
 
+    /// Fully removes a `GameObject` in the following steps:
+    /// 1. Stops the movement of the `GameObject`.
+    /// 2. Makes the `GameObject` disappear from the view.
+    /// 3. Deregisters the `GameObject` from this `GameEngine`.
+    /// - Parameter toRemove: The `GameObject` being removed.
+    func removeGameObject(_ toRemove: GameObject) {
+        toRemove.stop()
+        toRemove.disappear()
+        deregisterGameObject(toRemove)
+    }
+
+    /// A "step" that each registered `GameObject` should perform per frame of the
+    /// `CADisplayLink`. This object includes the control over object movement and
+    /// collision detection.
+    /// - Parameter displayLink: The timer object that synchronizes the drawing to
+    /// the refresh rate of the display.
     @objc private func step(displayLink: CADisplayLink) {
         for object in gameObjects {
             object.move()
             checkHorizontalReflect(of: object)
             checkTouchButtom(of: object)
+            checkTouchTop(of: object)
+            checkCollision(of: object)
         }
     }
 
@@ -67,20 +98,40 @@ class PhysicsEngine {
         }
     }
 
-    /// Stops and disapears the `GameObject` when it touches the buttom of the screen.
+    /// Removes the `GameObject` when it touches the buttom of the screen.
     /// - Parameter object: The `GameObject` being checked.
     private func checkTouchButtom(of object: GameObject) {
         if object.centerY + object.radius >= screenHeight {
-            object.stop()
-            object.disappear()
-            deregisterGameObject(object)
+            removeGameObject(object)
         }
     }
 
     /// Stops the `GameObject` and notifies when it touches the top of the screen.
     /// - Parameter object: The `GameObject` being checked.
     private func checkTouchTop(of object: GameObject) {
+        if object.centerY - object.radius <= 0 {
+            removeGameObject(object)
+            // Call delegate methods to fill nearby cells.
+        }
+    }
 
+    /// Checks whether this `GameObject` collides with any other `GameObject`
+    /// registered in the same `PhysicsEngine`.
+    /// - Parameter object: The `GameObject` being checked.
+    private func checkCollision(of object: GameObject) {
+
+    }
+
+    /// Checks whether two `GameObject`s will collide with each other.
+    /// - Parameters:
+    ///    - lhs: One of the two `GameObject`s to check.
+    ///    - rhs: The other `GameObject` to check.
+    /// - Returns: true if they will collide.
+    private func willCollide(lhs: GameObject, rhs: GameObject) -> Bool {
+        let sqrX = (lhs.centerX - rhs.centerX) * (lhs.centerX - rhs.centerX)
+        let sqrY = (lhs.centerY - rhs.centerY) * (lhs.centerY - rhs.centerY)
+        let sqrRadius = (lhs.radius + rhs.radius) * (lhs.radius + rhs.radius)
+        return sqrX + sqrY <= sqrRadius * Settings.collisionThreshold
     }
 
     /// The height of the screen size.

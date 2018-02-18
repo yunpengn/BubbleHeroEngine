@@ -27,16 +27,16 @@ class ViewController: UIViewController, ArenaDelegate {
     /// The physics engine to support the game.
     let engine = PhysicsEngine()
 
-    // Always hide the status bar (since in a full-screen game).
+    /// Always hide the status bar (since in a full-screen game).
     override var prefersStatusBarHidden: Bool {
         return true
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         bubbleArena.delegate = self
         bubbleArena.dataSource = self
+        engine.delegate = self
         updateBubbleLauncher()
     }
 
