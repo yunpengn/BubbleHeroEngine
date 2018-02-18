@@ -56,7 +56,7 @@ extension ViewController {
     private func shootBubble(at angle: CGFloat) {
         // Creates a shooted bubble visually.
         let type = provider.peek()
-        let bubble = movingBubbleFactory(of: provider.peek(), center: bubbleLauncher.center)
+        let bubble = movingBubbleFactory(of: type, center: bubbleLauncher.center)
 
         // Creates a `GameObject` for the shooted bubble and register it into the
         // `PhysicsEngine` (to take over the control).
@@ -65,7 +65,7 @@ extension ViewController {
         engine.registerGameObject(gameObject)
 
         // Keeps a record of the shooted bubble.
-        shootedBubbles.append((gameObject, type))
+        gameObjects.addShootedBubble(object: gameObject, type: type)
     }
 
     /// Updates the status of the `bubbleLauncher` after one bubble in shooted.
