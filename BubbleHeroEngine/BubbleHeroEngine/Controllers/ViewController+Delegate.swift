@@ -8,6 +8,12 @@
 
 import UIKit
 
+/**
+ Extension for `ViewController`. This extension is the delegate for the `PhysicsEngine`.
+
+ - Author: Niu Yunpeng @ CS3217
+ - Date: Feb 2018
+ */
 extension ViewController: ControllerDelegate {
     func handleCollision(by object: GameObject) {
         let location = findNearbyCell(of: object)
