@@ -32,13 +32,14 @@ import UIKit
  */
 class GameObject {
     /// The current acceleration of the `GameObject`, whose initial value is (0, 0).
-    var acceleration = CGVector(dx: 0, dy: 0)
+    var acceleration = CGVector.zero
     /// The current speed of the `GameObject`, whose initial value is (0, 0).
-    var speed = CGVector(dx: 0, dy: 0)
-
+    var speed = CGVector.zero
     /// The `UIView` object associated with this `GameObject`.
     private let view: UIView
 
+    /// Creates a `GameObject` by associating it with a `UIView` object.
+    /// - Parameter view: The `UIView` object associated with.
     init(view: UIView) {
         self.view = view
     }
@@ -58,9 +59,27 @@ class GameObject {
         speed = CGVector(dx: speed.dx + acceleration.dx, dy: speed.dy + acceleration.dy)
     }
 
+    /// Stops a `GameObject` by setting its speed and acceleration both to (0, 0).
+    func stop() {
+        speed = CGVector.zero
+        acceleration = CGVector.zero
+    }
+
+    /// Applies an instantaneous brake to the `GameObject` by settings its speed to (0, 0)
+    /// without affecting its acceleration.
+    func brake() {
+        speed = CGVector.zero
+    }
+
     /// Makes a `GameObject` disappear by removing its associated `UIView` object from
     /// its `superview`.
     func disappear() {
         view.removeFromSuperview()
+    }
+
+    /// Indicates whether a `GameObject` is static by checking whether its current speed
+    /// and acceleration are both (0, 0).
+    var isMoving: Bool {
+        return speed == CGVector.zero && acceleration == CGVector.zero
     }
 }

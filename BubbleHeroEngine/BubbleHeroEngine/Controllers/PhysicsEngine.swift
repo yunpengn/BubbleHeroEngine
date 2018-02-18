@@ -6,7 +6,7 @@
 //  Copyright © 2018 Yunpeng Niu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  This class implements a simplified 2D physics engine which supports simple object
@@ -32,5 +32,17 @@ import Foundation
  - Date: Feb 2018
  */
 class PhysicsEngine {
-    
+    // A list of all `GameObject`s controlled by this `PhysicsEngine`.
+    private var gameObjects: [GameObject] = []
+
+    init() {
+        let displayLink = CADisplayLink(target: self, selector: #selector(step))
+        displayLink.add(to: .current, forMode: .defaultRunLoopMode)
+    }
+
+    @objc private func step(displayLink: CADisplayLink) {
+        for object in gameObjects {
+            object.move()
+        }
+    }
 }
