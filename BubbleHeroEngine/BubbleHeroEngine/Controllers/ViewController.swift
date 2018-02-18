@@ -23,7 +23,7 @@ class ViewController: UIViewController, ArenaDelegate {
     /// The `Level` object as the access point to model.
     let level = SampleData.loadSampleLevel()
     /// Sources for the bubbles being launched.
-    let provider = BubbleProvider()
+    var provider = BubbleProvider()
     /// The physics engine to support the game.
     let engine = PhysicsEngine()
 
@@ -121,6 +121,8 @@ class ViewController: UIViewController, ArenaDelegate {
         imageView.frame = frame
         view.addSubview(imageView)
 
+        // Adds the object to game engine and simulates a free falling (with initial
+        // speed of 0 and acceleration equal to a constant).
         let gameObject = GameObject(view: imageView, radius: BubbleCell.radius)
         gameObject.acceleration = CGVector(dx: 0, dy: Settings.gravityConstant)
         engine.registerGameObject(gameObject)
