@@ -63,12 +63,15 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = getReusableBubbleCell(for: indexPath)
-
-        // Fills the cell with the correct color of the bubble.
-        if let bubble = level.getBubbleAt(row: indexPath.section, column: indexPath.row) {
-            cell.fill(image: toBubbleImage(of: bubble.type))
+        guard let bubble = level.getBubbleAt(row: indexPath.section, column: indexPath.row) else {
+            // Early exit if the cell is empty.
+            return cell
         }
 
+        // Fills the cell with the correct color of the bubble.
+        cell.fill(image: toBubbleImage(of: bubble.type))
+        // Registers the cell with the physics engine.
+        engine.registerGameObject(GameObject(view: cell, radius: BubbleCell.radius))
         return cell
     }
 
