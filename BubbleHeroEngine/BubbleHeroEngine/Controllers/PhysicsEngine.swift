@@ -112,6 +112,7 @@ class PhysicsEngine {
         if object.centerY - object.radius <= 0 {
             removeGameObject(object)
             // Call delegate methods to fill nearby cells.
+            print("Touch top screen")
         }
     }
 
@@ -123,6 +124,7 @@ class PhysicsEngine {
             if otherObject !== object && willCollide(lhs: object, rhs: otherObject) {
                 removeGameObject(object)
                 // Call delegate methods to handle same color collsion or fill nearby cells.
+                print("Collision happens")
             }
         }
     }

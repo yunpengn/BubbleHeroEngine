@@ -39,8 +39,8 @@ extension ViewController {
     /// - Parameter angle: The angle in which the bubble is shooted.
     /// - Returns: A `CGVector` representing the speed of the shooted bubble.
     private func getShootSpeed(by angle: CGFloat) -> CGVector {
-        let dX = Settings.shootSpeed * cos(angle)
-        let dY = Settings.shootSpeed * sin(angle)
+        let dX = -Settings.shootSpeed * cos(angle)
+        let dY = -Settings.shootSpeed * sin(angle)
         return CGVector(dx: dX, dy: dY)
     }
 
