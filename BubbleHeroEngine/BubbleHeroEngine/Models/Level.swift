@@ -81,38 +81,16 @@ class Level: Codable {
             && bubbles[row][column] != nil
     }
 
-    /// Gets the neighbors of a certain location, the items at the nearby indices
-    /// are not `nil`.
-    ///
-    /// Notice: the nearby indices here are defined as the cellular network. Thus,
-    /// there are at most 6 neighbors.
-    /// - Parameters:
-    ///    - row: The row number of the intended location (zero-based).
-    ///    - column: The column number of the intended location (zero-based).
-    /// - Returns: An array of neighbors if there exists; empty array otherwise.
-    func getNeighborsOf(row: Int, column: Int) -> [FilledBubble] {
-        guard isValidLocation(row: row, column: column) else {
+    /// Finds all the connected bubbles with the same color starting from a certain
+    /// bubble. The result includes the starting bubble itself.
+    /// - Parameter bubble: The bubble acting as the starting point.
+    /// - Returns: An array of connected bubbles with the same color; an empty array
+    /// if the provided bubble does not exist.
+    func getSameColorConnectedItemsOf(_ bubble: FilledBubble) -> [FilledBubble] {
+        guard hasBubble(bubble) else {
             return []
         }
-        var neighbors: [FilledBubble?] = []
 
-        let nearRowOffset = (row % 2 == 0) ? -1 : 1
-        neighbors.append(getBubbleAt(row: row, column: column - 1))
-        neighbors.append(getBubbleAt(row: row, column: column + 1))
-        neighbors.append(getBubbleAt(row: row - 1, column: column))
-        neighbors.append(getBubbleAt(row: row - 1, column: column + nearRowOffset))
-        neighbors.append(getBubbleAt(row: row + 1, column: column))
-        neighbors.append(getBubbleAt(row: row + 1, column: column + nearRowOffset))
-
-        return neighbors.flatMap { $0 }
-    }
-
-    func getSameColorNeighborsOf(_ bubble: FilledBubble) -> [FilledBubble] {
-        let neighbors = getNeighborsOf(row: bubble.row, column: bubble.column)
-        return neighbors.filter { $0.type == bubble.type }
-    }
-
-    func getSameColorConnectedItemsOf(_ bubble: FilledBubble) -> [FilledBubble] {
         var result: [FilledBubble] = []
         var toVisit = Stack<FilledBubble>()
         toVisit.push(bubble)
@@ -131,6 +109,39 @@ class Level: Codable {
         }
 
         return result
+    }
+
+    /// Gets the same color neighbors of a certain bubble.
+    /// - Parameters:
+    ///    - row: The row number of the intended location (zero-based).
+    ///    - column: The column number of the intended location (zero-based).
+    /// - Returns: An array of same color neighbors if there exists; empty array otherwise.
+    private func getSameColorNeighborsOf(_ bubble: FilledBubble) -> [FilledBubble] {
+        let neighbors = getNeighborsOf(row: bubble.row, column: bubble.column)
+        return neighbors.filter { $0.type == bubble.type }
+    }
+
+    /// Gets the neighbors of a certain location, the items at the nearby indices
+    /// are not `nil`.
+    ///
+    /// Notice: the nearby indices here are defined as the cellular network. Thus,
+    /// there are at most 6 neighbors.
+    /// - Parameters:
+    ///    - row: The row number of the intended location (zero-based).
+    ///    - column: The column number of the intended location (zero-based).
+    /// - Returns: An array of neighbors if there exists; empty array otherwise.
+    private func getNeighborsOf(row: Int, column: Int) -> [FilledBubble] {
+        var neighbors: [FilledBubble?] = []
+
+        let nearRowOffset = (row % 2 == 0) ? -1 : 1
+        neighbors.append(getBubbleAt(row: row, column: column - 1))
+        neighbors.append(getBubbleAt(row: row, column: column + 1))
+        neighbors.append(getBubbleAt(row: row - 1, column: column))
+        neighbors.append(getBubbleAt(row: row - 1, column: column + nearRowOffset))
+        neighbors.append(getBubbleAt(row: row + 1, column: column))
+        neighbors.append(getBubbleAt(row: row + 1, column: column + nearRowOffset))
+
+        return neighbors.flatMap { $0 }
     }
 
     /// Finds the unattached bubbles. A bubble is defined as "unattached"
@@ -165,6 +176,9 @@ class Level: Codable {
         return result
     }
 
+    /// Finds all the attached bubbles. A bubble is defined as "attached" if it is
+    /// connected to the top wall or any other connected bubbles.
+    /// - Returns: an array of attached bubbles.
     private func checkAttached() -> [[Bool]] {
         var isAttached = [[Bool]](repeating: [Bool](repeating: false, count: evenCount),
                                   count: numOfRows)

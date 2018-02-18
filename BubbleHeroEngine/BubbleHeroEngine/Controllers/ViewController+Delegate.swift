@@ -55,7 +55,8 @@ extension ViewController: ControllerDelegate {
     }
 
     /// Removes the connected bubbles (with the same color) of a given bubble on
-    /// condition that they form a group of 3 or more bubbles with the same color.
+    /// condition that they form a group of 3 or more bubbles (including itself)
+    /// with the same color.
     /// - Parameter bubble: The starting point of these connected bubbles.
     private func removeSameColorConnectedBubbles(from bubble: FilledBubble) {
         let sameColorBubbles = level.getSameColorConnectedItemsOf(bubble)
