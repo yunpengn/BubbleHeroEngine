@@ -27,7 +27,7 @@ class GameObjectController {
         shootedBubbles.append((object, type))
     }
 
-    /// Removes and returnss the type of a previously shooted bubble when triggered
+    /// Removes and returns the type of a previously shooted bubble when triggered
     /// by its `GameObject` representation.
     /// - Parameter object: The `GameObject` being checked.
     /// - Returns: its `BubbleType` if the bubble has been shooted before; nil otherwise.
@@ -43,5 +43,14 @@ class GameObjectController {
     ///    - type: The `BubbleType` of the remainging bubble.
     func addRemainingBubble(object: GameObject, bubble: FilledBubble) {
         remainingBubbles.append((object, bubble))
+    }
+
+    /// Removes a certain remaining bubble and returns its `GameObject` representation.
+    /// - Parameter object: The `GameObject` being checked.
+    /// - Returns: its `GameObject` representation if the bubble exists; nil otherwise.
+    func popRemainingBubble(of bubble: FilledBubble) -> GameObject? {
+        let gameObject = remainingBubbles.first { $0.bubble == bubble }
+        remainingBubbles = remainingBubbles.filter { $0.bubble != bubble }
+        return gameObject?.object
     }
 }

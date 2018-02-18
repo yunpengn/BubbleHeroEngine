@@ -21,7 +21,7 @@ extension ViewController: ControllerDelegate {
             return
         }
         let newBubble = fillCell(row: location.row, column: location.column, type: type)
-        removeSameColorNeighbors(from: newBubble)
+        removeSameColorConnectedBubbles(from: newBubble)
         removeUnattachedBubbles()
     }
 
@@ -54,58 +54,48 @@ extension ViewController: ControllerDelegate {
         return newBubble
     }
 
-    /// Computes the bubbles nearby a point. The bubble is considered to be
-    /// "nearby" if the following condition is `true`:
-    ///
-    /// If there exists a bubble centered at `point`, the distances between
-    /// their centers are smaller or equal to the diameter of a bubble.
-    /// - Parameter point: The point being computed
-    /// - Returns: an array of neighboring bubbles if there exists; nil otherwise.
-    func getBubbleNear(by point: CGPoint) -> [FilledBubble] {
-        let row = Int(round(point.y / BubbleCell.height))
-        let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
-        let column = Int(round((point.x - leftOffset) / BubbleCell.diameter))
-        let neighbors = level.getNeighborsOf(row: row, column: column)
-
-        return neighbors.filter { bubble in
-            return shouldCollide(bubble, with: point)
-        }
-    }
-
-    private func shouldCollide(_ bubble: FilledBubble, with point: CGPoint) -> Bool {
-        let leftOffset = (bubble.row % 2 == 0) ? 0 : BubbleCell.leftOffset
-        let bubbleX = CGFloat(bubble.column) * BubbleCell.diameter + leftOffset
-        let bubbleY = CGFloat(bubble.row) * BubbleCell.height
-        let deltaX = bubbleX - point.x
-        let deltaY = bubbleY - point.y
-        return deltaX * deltaX + deltaY * deltaY
-            <= BubbleCell.diameterSquare * Settings.collisionThreshold
-    }
-
-    private func removeSameColorNeighbors(from bubble: FilledBubble) {
+    /// Removes the connected bubbles (with the same color) of a given bubble on
+    /// condition that they form a group of 3 or more bubbles with the same color.
+    /// - Parameter bubble: The starting point of these connected bubbles.
+    private func removeSameColorConnectedBubbles(from bubble: FilledBubble) {
         let sameColorBubbles = level.getSameColorConnectedItemsOf(bubble)
         guard sameColorBubbles.count >= 3 else {
             return
         }
 
         level.deleteBubbles(sameColorBubbles)
+        deregisterBubbleGameObjects(of: sameColorBubbles)
         let indexPaths = sameColorBubbles.map { bubble in
             return IndexPath(row: bubble.column, section: bubble.row)
         }
         bubbleArena.reloadItems(at: indexPaths)
     }
 
+    /// Removes the unattached bubbles. A bubble is unattached if it is not attached to
+    /// the top wall or connected to any other attached bubble.
     private func removeUnattachedBubbles() {
         let unattachedBubbles = level.removeUnattachedBubbles()
         level.deleteBubbles(unattachedBubbles)
 
         var indexPaths: [IndexPath] = []
+        deregisterBubbleGameObjects(of: unattachedBubbles)
         for bubble in unattachedBubbles {
             let indexPath = IndexPath(row: bubble.column, section: bubble.row)
             createFallingBubble(of: bubble.type, at: indexPath)
             indexPaths.append(indexPath)
         }
         bubbleArena.reloadItems(at: indexPaths)
+    }
+
+    /// Deregisters a list of bubbles from `GameObjectController` and `PhysicsEngine`.
+    /// - Parameter bubbles: The bubbles to be deregistered.
+    private func deregisterBubbleGameObjects(of bubbles: [FilledBubble]) {
+        for bubble in bubbles {
+            guard let object = gameObjects.popRemainingBubble(of: bubble) else {
+                continue
+            }
+            engine.deregisterGameObject(object)
+        }
     }
 
     /// Uses the physics engine to control the free falling process of unattached bubble.
