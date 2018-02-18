@@ -24,7 +24,6 @@
 		F266816120331BA600AFF5DB /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266816020331BA600AFF5DB /* SampleData.swift */; };
 		F26681632033364B00AFF5DB /* BubbleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26681622033364B00AFF5DB /* BubbleProvider.swift */; };
 		F26681652033389C00AFF5DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F26681642033389C00AFF5DB /* README.md */; };
-		F276D29F2033CF1C00E4123B /* BubbleShootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276D29E2033CF1C00E4123B /* BubbleShootController.swift */; };
 		F27CAD22203958C0007FF459 /* ViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */; };
 		F2B4DDDD20381B670043CA0A /* ViewController+Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */; };
 		F2F8FE0820348A8B00CCFE15 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8FE0720348A8A00CCFE15 /* Stack.swift */; };
@@ -62,7 +61,6 @@
 		F266816020331BA600AFF5DB /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		F26681622033364B00AFF5DB /* BubbleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleProvider.swift; sourceTree = "<group>"; };
 		F26681642033389C00AFF5DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		F276D29E2033CF1C00E4123B /* BubbleShootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleShootController.swift; sourceTree = "<group>"; };
 		F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Helpers.swift"; sourceTree = "<group>"; };
 		F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController+Launcher.swift"; path = "/Users/yunpeng/Projects/2018-ps4-yunpengn/BubbleHeroEngine/BubbleHeroEngine/Controllers/ViewController+Launcher.swift"; sourceTree = "<absolute>"; };
 		F2F8FE0720348A8A00CCFE15 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 				F26681582033180200AFF5DB /* ViewController+BubbleArena.swift */,
 				F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */,
 				F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */,
-				F276D29E2033CF1C00E4123B /* BubbleShootController.swift */,
 				F260297020391B2200779944 /* PhysicsEngine.swift */,
 				F260297220391FDB00779944 /* GameObject.swift */,
 			);
@@ -301,7 +298,6 @@
 				F266815F20331AF100AFF5DB /* BubbleType.swift in Sources */,
 				F224EDED203306EC00310F48 /* ViewController.swift in Sources */,
 				F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */,
-				F276D29F2033CF1C00E4123B /* BubbleShootController.swift in Sources */,
 				F260297120391B2200779944 /* PhysicsEngine.swift in Sources */,
 				F260297320391FDB00779944 /* GameObject.swift in Sources */,
 				F224EE14203316BA00310F48 /* Settings.swift in Sources */,

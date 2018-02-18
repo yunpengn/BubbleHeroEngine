@@ -119,7 +119,12 @@ class PhysicsEngine {
     /// registered in the same `PhysicsEngine`.
     /// - Parameter object: The `GameObject` being checked.
     private func checkCollision(of object: GameObject) {
-
+        for otherObject in gameObjects {
+            if otherObject !== object && willCollide(lhs: object, rhs: otherObject) {
+                removeGameObject(object)
+                // Call delegate methods to handle same color collsion or fill nearby cells.
+            }
+        }
     }
 
     /// Checks whether two `GameObject`s will collide with each other.
