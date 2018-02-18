@@ -28,6 +28,9 @@ import UIKit
  between the centers of two objects with the sum of their radii to check whether any
  collision occurs between them.
 
+ In addition, collision can only happen between two rigid bodies. This idea of "rigid
+ body" is inspired by Unity3d game engine.
+
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
@@ -130,12 +133,16 @@ class PhysicsEngine {
         }
     }
 
-    /// Checks whether two `GameObject`s will collide with each other.
+    /// Checks whether two `GameObject`s will collide with each other. Notice that
+    /// only two rigid bodies will collide with each other.
     /// - Parameters:
     ///    - lhs: One of the two `GameObject`s to check.
     ///    - rhs: The other `GameObject` to check.
     /// - Returns: true if they will collide.
     private func willCollide(lhs: GameObject, rhs: GameObject) -> Bool {
+        guard lhs.isRigidBody && rhs.isRigidBody else {
+            return false
+        }
         let sqrX = (lhs.centerX - rhs.centerX) * (lhs.centerX - rhs.centerX)
         let sqrY = (lhs.centerY - rhs.centerY) * (lhs.centerY - rhs.centerY)
         let sqrRadius = (lhs.radius + rhs.radius) * (lhs.radius + rhs.radius)

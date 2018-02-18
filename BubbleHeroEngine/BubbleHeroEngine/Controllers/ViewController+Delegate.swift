@@ -112,7 +112,8 @@ extension ViewController: ControllerDelegate {
 
         // Adds the object to game engine and simulates a free falling (with initial
         // speed of 0 and acceleration equal to a constant).
-        let gameObject = GameObject(view: bubble, radius: BubbleCell.radius)
+        // The object will not participate in any collision, thus, it is not a rigid body.
+        let gameObject = GameObject(view: bubble, radius: BubbleCell.radius, isRigidBody: false)
         gameObject.acceleration = CGVector(dx: 0, dy: Settings.gravityConstant)
         engine.registerGameObject(gameObject)
     }

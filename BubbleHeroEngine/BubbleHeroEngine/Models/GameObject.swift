@@ -37,14 +37,25 @@ class GameObject {
     var speed = CGVector.zero
     /// The radius of the `GameObject`.
     let radius: CGFloat
+    /// Indiciates whether the `GameObject` is a rigid body.
+    let isRigidBody: Bool
     /// The `UIView` object associated with this `GameObject`.
     private let view: UIView
 
     /// Creates a `GameObject` by associating it with a `UIView` object.
-    /// - Parameter view: The `UIView` object associated with.
-    init(view: UIView, radius: CGFloat) {
+    /// - Parameters:
+    ///    - view: The `UIView` object associated with.
+    ///    - radius: The radius of this `GameObject`.
+    ///    - isRigidBody: Indicates whether this `GameObject` is a rigid body.
+    init(view: UIView, radius: CGFloat, isRigidBody: Bool) {
         self.view = view
         self.radius = radius
+        self.isRigidBody = isRigidBody
+    }
+
+    /// Creates a `GameObject` with the default setting that it is a rigid body.
+    convenience init(view: UIView, radius: CGFloat) {
+        self.init(view: view, radius: radius, isRigidBody: true)
     }
 
     /// Moves the `GameObject` by its current speed. If the current acceleration is
