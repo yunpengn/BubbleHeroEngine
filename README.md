@@ -33,7 +33,9 @@ _(The idea of rigid body & collision is adapted from [Unity3D game engine](https
 
 ## Problem 1.2
 
-Your answer here
+Thanks to the flexible nature of the current design, more complex game logic can be supported easily. Notice that such kind of game logic is specific to this game. Thus, they should not be part of the game engine. Instead, they should be triggered when the `PhysicsEngine` notifies the `ViewController` that a collision happens. When the `ViewController` gets notified that a collision happens, it should show different behaviors according to the `BubbleType` of the collider.
+
+If the `BubbleType` is just the normal colors, the behavior would be the same as the current one. If it is a special type, some special behaviors will be triggered. To support removal of all bubbles of a specific color, we just need to check whether the shooted bubble collides with this special type of `FilledBubble`. If so, we will let the model, the `Level` object finds all the `FilledBubble`s with the same color. After that, we will delete these bubbles from the model, reload these cells in the collection view.
 
 ## Problem 2.1
 
