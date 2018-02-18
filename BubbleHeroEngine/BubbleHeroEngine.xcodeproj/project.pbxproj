@@ -16,6 +16,7 @@
 		F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224EE11203313BD00310F48 /* BubbleCell.swift */; };
 		F224EE14203316BA00310F48 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224EE13203316BA00310F48 /* Settings.swift */; };
 		F260297120391B2200779944 /* PhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F260297020391B2200779944 /* PhysicsEngine.swift */; };
+		F260297320391FDB00779944 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F260297220391FDB00779944 /* GameObject.swift */; };
 		F265383E20381B8800331F18 /* BubbleFallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F265383D20381B8800331F18 /* BubbleFallController.swift */; };
 		F26681592033180200AFF5DB /* ViewController+BubbleArena.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26681582033180200AFF5DB /* ViewController+BubbleArena.swift */; };
 		F266815B20331A5900AFF5DB /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266815A20331A5900AFF5DB /* Level.swift */; };
@@ -54,6 +55,7 @@
 		F224EE11203313BD00310F48 /* BubbleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
 		F224EE13203316BA00310F48 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = "/Users/yunpeng/Projects/2018-ps4-yunpengn/BubbleHeroEngine/BubbleHeroEngine/Others/Settings.swift"; sourceTree = "<absolute>"; };
 		F260297020391B2200779944 /* PhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsEngine.swift; sourceTree = "<group>"; };
+		F260297220391FDB00779944 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		F265383D20381B8800331F18 /* BubbleFallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleFallController.swift; sourceTree = "<group>"; };
 		F26681582033180200AFF5DB /* ViewController+BubbleArena.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BubbleArena.swift"; sourceTree = "<group>"; };
 		F266815A20331A5900AFF5DB /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				F265383D20381B8800331F18 /* BubbleFallController.swift */,
 				F276D29E2033CF1C00E4123B /* BubbleShootController.swift */,
 				F260297020391B2200779944 /* PhysicsEngine.swift */,
+				F260297220391FDB00779944 /* GameObject.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */,
 				F276D29F2033CF1C00E4123B /* BubbleShootController.swift in Sources */,
 				F260297120391B2200779944 /* PhysicsEngine.swift in Sources */,
+				F260297320391FDB00779944 /* GameObject.swift in Sources */,
 				F224EE14203316BA00310F48 /* Settings.swift in Sources */,
 				F266815D20331AC300AFF5DB /* FilledBubble.swift in Sources */,
 				F2668167203339E100AFF5DB /* ShootBubble.swift in Sources */,

@@ -13,9 +13,14 @@ import Foundation
  movement and collision detection.
 
  ## Object movement:
- Any object can start moving by giving it an initial speed or giving it a constant
- acceleration.
- Also, gravitational field is not taken into consideration. However, you can
+ Any object can start moving by giving it an initial speed or giving it an initial
+ acceleration. Notice that since `GameObject` does not have a mass, it will not obey
+ Newton's 2nd law and thus all acceleration must be explicitly given rather than derived
+ from an external force.
+
+ Notice that since we are in the 2D world, gravitational field is not taken into
+ consideration. However, the gavitational force can be modelled by manually giving the
+ object an acceleration equal to the gravitational constant.
 
  ## Collision detection:
  Since we only consider the 2D world, all objects only has size, but not volume. Also,
