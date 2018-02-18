@@ -114,7 +114,7 @@ class PhysicsEngine {
     private func checkTouchTop(of object: GameObject) {
         if object.centerY - object.radius <= 0 {
             removeGameObject(object)
-            delegate?.handleTouchTop(by: object)
+            delegate?.handleCollision(by: object)
         }
     }
 
@@ -125,8 +125,7 @@ class PhysicsEngine {
         for otherObject in gameObjects {
             if otherObject !== object && willCollide(lhs: object, rhs: otherObject) {
                 removeGameObject(object)
-                // Call delegate methods to handle same color collsion or fill nearby cells.
-                print("Collision happens")
+                delegate?.handleCollision(by: object)
             }
         }
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 extension ViewController: ControllerDelegate {
-    func handleTouchTop(by object: GameObject) {
+    func handleCollision(by object: GameObject) {
         let location = findNearbyCell(of: object)
         guard let type = gameObjects.popShootedBubble(of: object) else {
             return
@@ -123,7 +123,8 @@ extension ViewController: ControllerDelegate {
 }
 
 protocol ControllerDelegate {
-    /// Handles the condition when a `GameObject` touches the top of the screen.
+    /// Handles the condition when a `GameObject` collides with either the top of the
+    /// screen or a bubble in the `bubbleArena`.
     /// - Parameter object: The `GameObject` of concern.
-    func handleTouchTop(by object: GameObject)
+    func handleCollision(by object: GameObject)
 }

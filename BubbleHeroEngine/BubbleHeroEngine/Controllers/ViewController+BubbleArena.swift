@@ -74,7 +74,7 @@ extension ViewController: UICollectionViewDataSource {
         let gameObject = GameObject(view: cell, radius: BubbleCell.radius)
         engine.registerGameObject(gameObject)
         // Keeps a record of the created `GameObject`.
-        gameObjects.addRemainingBubble(object: gameObject, bubble: <#T##FilledBubble#>)
+        gameObjects.addRemainingBubble(object: gameObject, bubble: bubble)
         return cell
     }
 

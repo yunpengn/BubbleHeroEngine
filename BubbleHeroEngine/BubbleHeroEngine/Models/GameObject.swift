@@ -85,6 +85,11 @@ class GameObject {
         speed = CGVector(dx: -speed.dx, dy: speed.dy)
     }
 
+    /// Reverses the y-component of the speed to simulate a vertical "reflect".
+    func reflectY() {
+        speed = CGVector(dx: speed.dx, dy: -speed.dy)
+    }
+
     /// Indicates whether a `GameObject` is static by checking whether its current speed
     /// and acceleration are both (0, 0).
     var isStatic: Bool {
