@@ -102,16 +102,16 @@ class ViewController: UIViewController, ArenaDelegate {
     ///    - type: The type of the unattached bubble.
     ///    - indexPath: The `IndexPath` of the unattached bubble.
     private func createFallingBubble(of type: BubbleType, at indexPath: IndexPath) {
-        guard let frame = bubbleArena.cellForItem(at: indexPath)?.frame else {
+        // Creates a bubble at the same location of the unattached bubble (because the
+        // original bubble in the collection view has been removed).
+        guard let center = bubbleArena.cellForItem(at: indexPath)?.center else {
             return
         }
-        let imageView = UIImageView(image: toBubbleImage(of: type))
-        imageView.frame = frame
-        view.addSubview(imageView)
+        let bubble = movingBubbleFactory(of: type, center: center)
 
         // Adds the object to game engine and simulates a free falling (with initial
         // speed of 0 and acceleration equal to a constant).
-        let gameObject = GameObject(view: imageView, radius: BubbleCell.radius)
+        let gameObject = GameObject(view: bubble, radius: BubbleCell.radius)
         gameObject.acceleration = CGVector(dx: 0, dy: Settings.gravityConstant)
         engine.registerGameObject(gameObject)
     }
