@@ -71,7 +71,10 @@ extension ViewController: UICollectionViewDataSource {
         // Fills the cell with the correct color of the bubble.
         cell.fill(image: toBubbleImage(of: bubble.type))
         // Registers the cell with the physics engine.
-        engine.registerGameObject(GameObject(view: cell, radius: BubbleCell.radius))
+        let gameObject = GameObject(view: cell, radius: BubbleCell.radius)
+        engine.registerGameObject(gameObject)
+        // Keeps a record of the created `GameObject`.
+        gameObjects.addRemainingBubble(object: gameObject, bubble: <#T##FilledBubble#>)
         return cell
     }
 

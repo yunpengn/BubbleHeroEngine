@@ -11,7 +11,7 @@ import UIKit
 extension ViewController: ControllerDelegate {
     func handleTouchTop(by object: GameObject) {
         let location = findNearbyCell(of: object)
-        guard let type = popShootedBubble(of: object) else {
+        guard let type = gameObjects.popShootedBubble(of: object) else {
             return
         }
         let newBubble = fillCell(row: location.row, column: location.column, type: type)
@@ -33,16 +33,6 @@ extension ViewController: ControllerDelegate {
         let column = Int(round((minX - leftOffset) / BubbleCell.diameter))
 
         return (row, column)
-    }
-
-    /// Finds the type of the shooted bubble when triggered by its `GameObject`
-    /// representation.
-    /// - Parameter object: The `GameObject` being checked.
-    /// - Returns: the `BubbleType` of the shooted bubble.
-    private func popShootedBubble(of object: GameObject) -> BubbleType? {
-        let bubble = shootedBubbles.first { $0.object === object }
-        shootedBubbles = shootedBubbles.filter { $0.object !== object }
-        return bubble?.type
     }
 
     /// Fills a cell at the specific location with a certain `BubbleType`.

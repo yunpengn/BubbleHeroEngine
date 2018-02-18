@@ -22,15 +22,12 @@ class ViewController: UIViewController {
 
     /// The physics engine to support the game.
     let engine = PhysicsEngine()
+    /// The controller for all `GameObjects` in the physics engine.
+    let gameObjects = GameObjectController()
     /// The `Level` object as the access point to model.
     let level = SampleData.loadSampleLevel()
     /// Sources for the bubbles being launched.
     var provider = BubbleProvider()
-
-    /// Stores all the shooted bubbles (but not collided with any other bubble yet).
-    /// This array acts as a mapping between these shooted bubbles and corresponding
-    /// `GameObject`s in the `PhysicsEngine`.
-    var shootedBubbles: [(object: GameObject, type: BubbleType)] = []
 
     /// Always hide the status bar (since in a full-screen game).
     override var prefersStatusBarHidden: Bool {

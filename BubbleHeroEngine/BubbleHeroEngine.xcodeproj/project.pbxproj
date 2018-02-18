@@ -26,6 +26,7 @@
 		F26681652033389C00AFF5DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F26681642033389C00AFF5DB /* README.md */; };
 		F27CAD22203958C0007FF459 /* ViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */; };
 		F27CAD2420396AC3007FF459 /* ViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD2320396AC3007FF459 /* ViewController+Delegate.swift */; };
+		F27CAD26203977CA007FF459 /* GameObjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD25203977CA007FF459 /* GameObjectController.swift */; };
 		F2B4DDDD20381B670043CA0A /* ViewController+Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */; };
 		F2F8FE0820348A8B00CCFE15 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8FE0720348A8A00CCFE15 /* Stack.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		F26681642033389C00AFF5DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Helpers.swift"; sourceTree = "<group>"; };
 		F27CAD2320396AC3007FF459 /* ViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Delegate.swift"; sourceTree = "<group>"; };
+		F27CAD25203977CA007FF459 /* GameObjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectController.swift; sourceTree = "<group>"; };
 		F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController+Launcher.swift"; path = "/Users/yunpeng/Projects/2018-ps4-yunpengn/BubbleHeroEngine/BubbleHeroEngine/Controllers/ViewController+Launcher.swift"; sourceTree = "<absolute>"; };
 		F2F8FE0720348A8A00CCFE15 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +148,7 @@
 				F2B4DDDC20381B670043CA0A /* ViewController+Launcher.swift */,
 				F27CAD21203958C0007FF459 /* ViewController+Helpers.swift */,
 				F260297020391B2200779944 /* PhysicsEngine.swift */,
+				F27CAD25203977CA007FF459 /* GameObjectController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				F260297320391FDB00779944 /* GameObject.swift in Sources */,
 				F224EE14203316BA00310F48 /* Settings.swift in Sources */,
 				F266815D20331AC300AFF5DB /* FilledBubble.swift in Sources */,
+				F27CAD26203977CA007FF459 /* GameObjectController.swift in Sources */,
 				F27CAD22203958C0007FF459 /* ViewController+Helpers.swift in Sources */,
 				F224EDEB203306EC00310F48 /* AppDelegate.swift in Sources */,
 				F266816120331BA600AFF5DB /* SampleData.swift in Sources */,
