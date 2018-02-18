@@ -158,7 +158,6 @@
 			children = (
 				F266816020331BA600AFF5DB /* SampleData.swift */,
 				F224EE13203316BA00310F48 /* Settings.swift */,
-				F2F8FE0720348A8A00CCFE15 /* Stack.swift */,
 				F224EDEA203306EC00310F48 /* AppDelegate.swift */,
 			);
 			path = Others;
@@ -172,6 +171,7 @@
 				F2668166203339E100AFF5DB /* ShootBubble.swift */,
 				F266815E20331AF100AFF5DB /* BubbleType.swift */,
 				F26681622033364B00AFF5DB /* BubbleProvider.swift */,
+				F2F8FE0720348A8A00CCFE15 /* Stack.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

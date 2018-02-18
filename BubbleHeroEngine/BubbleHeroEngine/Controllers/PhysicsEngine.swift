@@ -32,7 +32,7 @@ import UIKit
  - Date: Feb 2018
  */
 class PhysicsEngine {
-    // A list of all `GameObject`s controlled by this `PhysicsEngine`.
+    /// A list of all `GameObject`s controlled by this `PhysicsEngine`.
     private var gameObjects: [GameObject] = []
 
     init() {
@@ -40,9 +40,37 @@ class PhysicsEngine {
         displayLink.add(to: .current, forMode: .defaultRunLoopMode)
     }
 
+    func registerGameObject(_ toRegister: GameObject) {
+        gameObjects.append(toRegister)
+    }
+
+    func deregisterGameObject(_ toDeregister: GameObject) {
+
+    }
+
     @objc private func step(displayLink: CADisplayLink) {
         for object in gameObjects {
             object.move()
         }
+    }
+
+    /// Stops and disapears the `GameObject` when it touches the buttom of the screen.
+    /// - Parameter object: The `GameObject` being checked.
+    private func checkTouchButtom(of object: GameObject) {
+        if object.centerY + object.radius >= screenHeight {
+            object.stop()
+            object.disappear()
+            deregisterGameObject(object)
+        }
+    }
+
+    /// The height of the screen size.
+    private var screenHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+
+    /// The width of the screen size.
+    private var screenWidth: CGFloat {
+        return UIScreen.main.bounds.width
     }
 }

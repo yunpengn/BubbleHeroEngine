@@ -35,13 +35,16 @@ class GameObject {
     var acceleration = CGVector.zero
     /// The current speed of the `GameObject`, whose initial value is (0, 0).
     var speed = CGVector.zero
+    /// The radius of the `GameObject`.
+    let radius: CGFloat
     /// The `UIView` object associated with this `GameObject`.
     private let view: UIView
 
     /// Creates a `GameObject` by associating it with a `UIView` object.
     /// - Parameter view: The `UIView` object associated with.
-    init(view: UIView) {
+    init(view: UIView, radius: CGFloat) {
         self.view = view
+        self.radius = radius
     }
 
     /// Moves the `GameObject` by its current speed. If the current acceleration is
@@ -81,5 +84,15 @@ class GameObject {
     /// and acceleration are both (0, 0).
     var isMoving: Bool {
         return speed == CGVector.zero && acceleration == CGVector.zero
+    }
+
+    /// The x-coordinate of the `GameObject`'s center.
+    var centerX: CGFloat {
+        return view.frame.midX
+    }
+
+    /// The y-coordinate of the `GameObject`'s center.
+    var centerY: CGFloat {
+        return view.frame.midY
     }
 }
