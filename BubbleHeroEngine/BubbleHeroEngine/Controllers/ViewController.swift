@@ -23,7 +23,9 @@ class ViewController: UIViewController, ArenaDelegate {
     /// The `Level` object as the access point to model.
     let level = SampleData.loadSampleLevel()
     /// Sources for the bubbles being launched.
-    var provider = BubbleProvider()
+    let provider = BubbleProvider()
+    /// The physics engine to support the game.
+    let engine = PhysicsEngine()
 
     // Always hide the status bar (since in a full-screen game).
     override var prefersStatusBarHidden: Bool {
@@ -115,12 +117,13 @@ class ViewController: UIViewController, ArenaDelegate {
         guard let frame = bubbleArena.cellForItem(at: indexPath)?.frame else {
             return
         }
-        let image = toBubbleImage(of: type)
-        let imageView = UIImageView(image: image)
+        let imageView = UIImageView(image: toBubbleImage(of: type))
         imageView.frame = frame
         view.addSubview(imageView)
-        let renderer = BubbleFallController(for: imageView)
-        renderer.fall()
+
+        let gameObject = GameObject(view: imageView, radius: BubbleCell.radius)
+        gameObject.acceleration = CGVector(dx: 0, dy: Settings.gravityConstant)
+        engine.registerGameObject(gameObject)
     }
 }
 

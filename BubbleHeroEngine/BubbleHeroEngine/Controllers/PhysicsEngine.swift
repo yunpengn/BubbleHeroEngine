@@ -45,12 +45,25 @@ class PhysicsEngine {
     }
 
     func deregisterGameObject(_ toDeregister: GameObject) {
-
+        // We have to use identity operator because there is no other possible
+        // way to identify the most generic form of a `GameObject`.
+        gameObjects = gameObjects.filter { $0 !== toDeregister }
     }
 
     @objc private func step(displayLink: CADisplayLink) {
         for object in gameObjects {
             object.move()
+            checkHorizontalReflect(of: object)
+            checkTouchButtom(of: object)
+        }
+    }
+
+    /// Reflects (by reversing the x-component of its speed) when it touches the left
+    /// or right side of the screen (acting as the "wall").
+    /// - Parameter object: The `GameObject` being checked.
+    private func checkHorizontalReflect(of object: GameObject) {
+        if object.centerX - object.radius <= 0 || object.centerX + object.radius >= screenWidth {
+            object.reflectX()
         }
     }
 
@@ -62,6 +75,12 @@ class PhysicsEngine {
             object.disappear()
             deregisterGameObject(object)
         }
+    }
+
+    /// Stops the `GameObject` and notifies when it touches the top of the screen.
+    /// - Parameter object: The `GameObject` being checked.
+    private func checkTouchTop(of object: GameObject) {
+
     }
 
     /// The height of the screen size.

@@ -80,6 +80,11 @@ class GameObject {
         view.removeFromSuperview()
     }
 
+    /// Reverses the x-component of the speed to simulate a horizontal "reflect".
+    func reflectX() {
+        speed = CGVector(dx: -speed.dx, dy: speed.dy)
+    }
+
     /// Indicates whether a `GameObject` is static by checking whether its current speed
     /// and acceleration are both (0, 0).
     var isMoving: Bool {
