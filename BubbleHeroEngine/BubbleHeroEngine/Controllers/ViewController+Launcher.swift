@@ -35,21 +35,11 @@ extension ViewController {
     }
 
     private func moveBubble(at angle: CGFloat) {
-        let bubble = shootBubbleFactory(at: angle)
+        let bubble = movingBubbleFactory(of: provider.peek(), center: bubbleLauncher.center)
         let xDisplacement = -Settings.shootSpeed * cos(angle)
         let yDisplacement = -Settings.shootSpeed * sin(angle)
         let renderer = BubbleShootController(for: bubble, type: provider.peek(), within: self)
         renderer.moveObject(atX: xDisplacement, atY: yDisplacement)
-    }
-
-    private func shootBubbleFactory(at angle: CGFloat) -> UIImageView {
-        let image = toBubbleImage(of: provider.peek())
-        let imageView = UIImageView(image: image)
-        let x = bubbleLauncher.center.x - BubbleCell.radius
-        let y = bubbleLauncher.center.y - BubbleCell.radius
-        imageView.frame = CGRect(x: x, y: y, width: BubbleCell.diameter, height: BubbleCell.diameter)
-        view.addSubview(imageView)
-        return imageView
     }
 
     func updateBubbleLauncher() {

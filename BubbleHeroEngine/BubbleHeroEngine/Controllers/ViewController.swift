@@ -40,22 +40,6 @@ class ViewController: UIViewController, ArenaDelegate {
         updateBubbleLauncher()
     }
 
-    /// Gets an image of the bubble cell according to its type.
-    /// - Parameter type: The type of the bubble
-    /// - Returns: The background image corresponding to this type.
-    func toBubbleImage(of type: BubbleType) -> UIImage {
-        switch type {
-        case .blue:
-            return #imageLiteral(resourceName: "bubble-blue")
-        case .green:
-            return #imageLiteral(resourceName: "bubble-green")
-        case .orange:
-            return #imageLiteral(resourceName: "bubble-orange")
-        case .red:
-            return #imageLiteral(resourceName: "bubble-red")
-        }
-    }
-
     func getBubbleNear(by point: CGPoint) -> [FilledBubble] {
         let row = Int(round(point.y / BubbleCell.height))
         let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
@@ -113,6 +97,10 @@ class ViewController: UIViewController, ArenaDelegate {
         bubbleArena.reloadItems(at: indexPaths)
     }
 
+    /// Uses the physics engine to control the free falling process of unattached bubble.
+    /// - Parameters:
+    ///    - type: The type of the unattached bubble.
+    ///    - indexPath: The `IndexPath` of the unattached bubble.
     private func createFallingBubble(of type: BubbleType, at indexPath: IndexPath) {
         guard let frame = bubbleArena.cellForItem(at: indexPath)?.frame else {
             return
