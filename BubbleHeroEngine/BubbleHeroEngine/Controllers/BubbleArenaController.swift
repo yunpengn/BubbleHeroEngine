@@ -9,7 +9,8 @@
 import UIKit
 
 /**
-The main controller for the game view.
+ The main controller for the game playing view. It also controls the `bubbleArena`
+ which is a collection view of all the remaining bubbles.
 
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
@@ -54,16 +55,10 @@ class BubbleArenaController: UIViewController {
     }
 }
 
-/**
- Extension for `ViewController`. This extension is the delegate for the grid of bubbles.
- */
 extension BubbleArenaController: UICollectionViewDelegate {
 
 }
 
-/**
- Extension for `ViewController`. This extension controls the size of the cells.
- */
 extension BubbleArenaController: UICollectionViewDelegateFlowLayout {
     /// Sets the size of each cell (to fit 11/12 cells per row).
     func collectionView(_ collectionView: UICollectionView,
@@ -82,9 +77,6 @@ extension BubbleArenaController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-/**
- Extension for `ViewController`. This extension is the data source for the grid of bubbles.
- */
 extension BubbleArenaController: UICollectionViewDataSource {
     /// Sets the number of sections to be 12 (i.e., 12 rows of bubbles).
     func numberOfSections(in collectionView: UICollectionView) -> Int {

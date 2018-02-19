@@ -23,7 +23,7 @@ class BubbleLauncherController {
     /// The delegate for `ShootingBubbleController`.
     var shootingController: ShootingBubbleController?
     /// The delegate for `BubbleArenaController`
-    var arenaController: BubbleArenaControllerDelegate?
+    weak var arenaController: BubbleArenaControllerDelegate?
 
     init(bubbleLauncher: UIButton) {
         self.bubbleLauncher = bubbleLauncher

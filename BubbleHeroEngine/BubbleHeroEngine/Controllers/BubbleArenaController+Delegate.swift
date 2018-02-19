@@ -8,6 +8,13 @@
 
 import UIKit
 
+/**
+ Extension for `BubbleArenaController`, which supports some functionalities to act as
+ a delegate.
+
+ - Author: Niu Yunpeng @ CS3217
+ - Date: Feb 2018
+ */
 extension BubbleArenaController: BubbleArenaControllerDelegate {
     func addMovingBubble(of type: BubbleType, center: CGPoint) -> UIImageView {
         let image = Helpers.toBubbleImage(of: type)
@@ -20,7 +27,7 @@ extension BubbleArenaController: BubbleArenaControllerDelegate {
     }
 }
 
-protocol BubbleArenaControllerDelegate {
+protocol BubbleArenaControllerDelegate: AnyObject {
     /// Creates a `UIImageView` that represents a bubble that can move (compared to
     /// those in the `bubbleArena` which are static). The moving bubble created will
     /// be shown immediately.

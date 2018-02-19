@@ -35,13 +35,11 @@ class ShootingBubbleController: EngineControllerDelegate {
 
     func addShootedBubble(object: GameObject, type: BubbleType) {
         engine.registerGameObject(object)
-        // Keeps a record of the shooted bubble.
         gameObjects.addShootedBubble(object: object, type: type)
     }
 
     func addRemainingBubble(object: GameObject, bubble: FilledBubble) {
         engine.registerGameObject(object)
-        // Keeps a record of the created `GameObject`.
         gameObjects.addRemainingBubble(object: object, bubble: bubble)
     }
 
