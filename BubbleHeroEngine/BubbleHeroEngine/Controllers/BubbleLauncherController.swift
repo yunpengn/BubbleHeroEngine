@@ -9,8 +9,9 @@
 import UIKit
 
 /**
- Extension for `ViewController`, which controls the logic about launching & shooting
- bubbles.
+ Controls the logic regarding the bubble launcher: continously randomly generate available
+ bubbles to launch, launch the bubble at user-specific angle, and then pass control to the
+ `ShootingBubbleController` and `PhysicsEngine`.
 
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
@@ -20,20 +21,26 @@ class BubbleLauncherController {
     var provider = BubbleProvider()
     /// The place where the shooting bubbles are launched.
     let bubbleLauncher: UIButton
+    /// The geometric center of `bubbleLauncher`.
+    let launcherCenter: CGPoint
     /// The delegate for `ShootingBubbleController`.
-    var shootingController: ShootingBubbleController?
+    var shootingController: ShootingBubbleControllerDelegate?
     /// The delegate for `BubbleArenaController`
     weak var arenaController: BubbleArenaControllerDelegate?
 
+    /// Creates a controller for a certain bubble launcher.
+    /// - bubbleLauncher: The bubble launcher representation in view.
     init(bubbleLauncher: UIButton) {
         self.bubbleLauncher = bubbleLauncher
+        self.launcherCenter = bubbleLauncher.center
         updateBubbleLauncher()
     }
 
     /// Handles the launch of a bubble when the user single-taps on the screen.
-    /// - Parameter sender: The sender of the single-tap gesture.
+    /// - Parameter location: The location of the single-tap gesture.
     func handleBubbleLaunch(at location: CGPoint) {
-        guard bubbleLauncher.center.y >= location.y + Settings.launchVerticalLimit else {
+        // Only accepts upward launching of bubble.
+        guard launcherCenter.y >= location.y + Settings.launchVerticalLimit else {
             return
         }
         let angle = getShootAngle(by: location)
@@ -49,8 +56,8 @@ class BubbleLauncherController {
     /// - Parameter point: The point at which the user touches.
     /// - Returns: The initial angle of the launched angle.
     private func getShootAngle(by point: CGPoint) -> CGFloat {
-        let deltaX = bubbleLauncher.center.x - point.x
-        let deltaY = bubbleLauncher.center.y - point.y
+        let deltaX = launcherCenter.x - point.x
+        let deltaY = launcherCenter.y - point.y
         let newDeltaY = deltaY > 0 ? deltaY : 0
         return atan2(newDeltaY, deltaX)
     }
@@ -69,14 +76,14 @@ class BubbleLauncherController {
     private func shootBubble(at angle: CGFloat) {
         // Creates a shooted bubble visually.
         let type = provider.peek()
-        guard let bubble = arenaController?.addMovingBubble(of: type, center: bubbleLauncher.center) else {
+        guard let bubble = arenaController?.addMovingBubble(of: type, center: launcherCenter) else {
             return
         }
 
-        // Creates a `GameObject` for the shooted bubble and register it into the
-        // `PhysicsEngine` (to take over the control).
+        // Creates a `GameObject` for the shooted bubble.
         let gameObject = GameObject(view: bubble, radius: BubbleCell.radius)
         gameObject.speed = getShootSpeed(by: angle)
+        // Lets the physics engine take over the control.
         shootingController?.addShootedBubble(object: gameObject, type: type)
     }
 

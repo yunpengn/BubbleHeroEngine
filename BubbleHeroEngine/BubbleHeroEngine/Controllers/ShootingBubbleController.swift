@@ -33,16 +33,6 @@ class ShootingBubbleController: EngineControllerDelegate {
         engine.delegate = self
     }
 
-    func addShootedBubble(object: GameObject, type: BubbleType) {
-        engine.registerGameObject(object)
-        gameObjects.addShootedBubble(object: object, type: type)
-    }
-
-    func addRemainingBubble(object: GameObject, bubble: FilledBubble) {
-        engine.registerGameObject(object)
-        gameObjects.addRemainingBubble(object: object, bubble: bubble)
-    }
-
     func handleCollision(by object: GameObject) {
         let location = findNearbyCell(of: object)
         guard let type = gameObjects.popShootedBubble(of: object),
