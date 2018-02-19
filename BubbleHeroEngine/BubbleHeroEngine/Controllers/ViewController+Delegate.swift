@@ -109,7 +109,7 @@ extension ViewController: ControllerDelegate {
         for bubble in bubbles {
             let indexPath = IndexPath(row: bubble.column, section: bubble.row)
 
-            UIView.animate(withDuration: 10, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
                 guard let cell = self.bubbleArena.cellForItem(at: indexPath) else {
                     return
                 }
