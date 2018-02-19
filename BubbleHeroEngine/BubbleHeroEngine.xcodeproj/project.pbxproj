@@ -149,7 +149,6 @@
 				F218D87B203B2BFD00B61ACB /* BubbleLauncherController.swift */,
 				F218D877203B1BDA00B61ACB /* ShootingBubbleController.swift */,
 				F218D87F203B394C00B61ACB /* ShootingBubbleController+Delegate.swift */,
-				F27CAD21203958C0007FF459 /* Helpers.swift */,
 				F260297020391B2200779944 /* PhysicsEngine.swift */,
 				F27CAD25203977CA007FF459 /* GameObjectController.swift */,
 			);
@@ -159,6 +158,7 @@
 		F224EE0F2033133500310F48 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				F27CAD21203958C0007FF459 /* Helpers.swift */,
 				F266816020331BA600AFF5DB /* SampleData.swift */,
 				F224EE13203316BA00310F48 /* Settings.swift */,
 				F224EDEA203306EC00310F48 /* AppDelegate.swift */,

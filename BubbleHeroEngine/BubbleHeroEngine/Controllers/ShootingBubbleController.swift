@@ -9,7 +9,9 @@
 import UIKit
 
 /**
- Extension for `ViewController`. This extension is the delegate for the `PhysicsEngine`.
+ Controls the main logic for playing the game. This controller will interact closely
+ with the game engine to instruct object movement and detect collision (and thus update
+ the view and model accordingly).
 
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
