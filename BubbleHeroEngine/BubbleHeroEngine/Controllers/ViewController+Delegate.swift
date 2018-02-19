@@ -31,12 +31,18 @@ extension ViewController: ControllerDelegate {
     /// - Returns: a tuple representing the row & column number of the nearby cell.
     private func findNearbyCell(of object: GameObject) -> (row: Int, column: Int) {
         // Gets the (minX, minY) of the `GameObject` (its top-left corner).
-        let minX = object.centerX - object.radius
-        let minY = object.centerY - object.radius
+        var minX = object.centerX - object.radius
+        var minY = object.centerY - object.radius
 
         // Calculates the row & column number.
+        if minY < 0 {
+            minY = 0
+        }
         let row = Int(round((minY) / BubbleCell.height))
         let leftOffset = (row % 2 == 0) ? 0 : BubbleCell.leftOffset
+        if minX - leftOffset < 0 {
+            minX = leftOffset
+        }
         let column = Int(round((minX - leftOffset) / BubbleCell.diameter))
 
         return (row, column)
