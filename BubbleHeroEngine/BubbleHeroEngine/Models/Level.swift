@@ -147,7 +147,7 @@ class Level: Codable {
     /// Finds the unattached bubbles. A bubble is defined as "unattached"
     /// if it is not connected to the top wall or any other attached bubbles.
     /// - Returns: an array of unattached bubbles.
-    func removeUnattachedBubbles() -> [FilledBubble] {
+    func getUnattachedBubbles() -> [FilledBubble] {
         // To find and remove unattached bubbles, we first label those attached ones.
         var isAttached = checkAttached()
 

@@ -1,8 +1,8 @@
 //
-//  ViewController+Delegate.swift
+//  ShootingBubbleController.swift
 //  BubbleHeroEngine
 //
-//  Created by Yunpeng Niu on 18/02/18.
+//  Created by Yunpeng Niu on 19/02/18.
 //  Copyright © 2018 Yunpeng Niu. All rights reserved.
 //
 
@@ -14,12 +14,42 @@ import UIKit
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-extension ViewController: ControllerDelegate {
+class ShootingBubbleController: EngineControllerDelegate {
+    /// The physics engine to support the game.
+    let engine = PhysicsEngine()
+    /// The controller for all `GameObjects` in the physics engine.
+    let gameObjects = GameObjectController()
+    /// The `Level` object as the access point to model.
+    let level: Level
+    /// The collection view that shows all bubbles.
+    let bubbleArena: UICollectionView
+    /// The delegate for `BubbleArenaController`
+    var arenaController: BubbleArenaControllerDelegate?
+
+    /// Creates a controller for shooting bubble related operations.
+    init(level: Level, bubbleArena: UICollectionView) {
+        self.level = level
+        self.bubbleArena = bubbleArena
+        engine.delegate = self
+    }
+
+    func addShootedBubble(object: GameObject, type: BubbleType) {
+        engine.registerGameObject(object)
+        // Keeps a record of the shooted bubble.
+        gameObjects.addShootedBubble(object: object, type: type)
+    }
+
+    func addRemainingBubble(object: GameObject, bubble: FilledBubble) {
+        engine.registerGameObject(object)
+        // Keeps a record of the created `GameObject`.
+        gameObjects.addRemainingBubble(object: object, bubble: bubble)
+    }
+
     func handleCollision(by object: GameObject) {
         let location = findNearbyCell(of: object)
         guard let type = gameObjects.popShootedBubble(of: object),
             level.isValidLocation(row: location.row, column: location.column) else {
-            return
+                return
         }
         let newBubble = fillCell(row: location.row, column: location.column, type: type)
         removeSameColorConnectedBubbles(from: newBubble)
@@ -79,7 +109,7 @@ extension ViewController: ControllerDelegate {
     /// Removes the unattached bubbles. A bubble is unattached if it is not attached to
     /// the top wall or connected to any other attached bubble.
     private func removeUnattachedBubbles() {
-        let unattachedBubbles = level.removeUnattachedBubbles()
+        let unattachedBubbles = level.getUnattachedBubbles()
         level.deleteBubbles(unattachedBubbles)
 
         var indexPaths: [IndexPath] = []
@@ -127,10 +157,10 @@ extension ViewController: ControllerDelegate {
     private func createFallingBubble(of type: BubbleType, at indexPath: IndexPath) {
         // Creates a bubble at the same location of the unattached bubble (because the
         // original bubble in the collection view has been removed).
-        guard let center = bubbleArena.cellForItem(at: indexPath)?.center else {
+        guard let center = bubbleArena.cellForItem(at: indexPath)?.center,
+            let bubble = arenaController?.addMovingBubble(of: type, center: center) else {
             return
         }
-        let bubble = movingBubbleFactory(of: type, center: center)
 
         // Adds the object to game engine and simulates a free falling (with initial
         // speed of 0 and acceleration equal to a constant).
@@ -141,9 +171,11 @@ extension ViewController: ControllerDelegate {
     }
 }
 
-protocol ControllerDelegate: AnyObject {
+protocol EngineControllerDelegate: AnyObject {
     /// Handles the condition when a `GameObject` collides with either the top of the
     /// screen or a bubble in the `bubbleArena`.
     /// - Parameter object: The `GameObject` of concern.
     func handleCollision(by object: GameObject)
 }
+
+

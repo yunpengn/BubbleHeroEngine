@@ -1,5 +1,5 @@
 //
-//  ViewController+BubbleArena.swift
+//  ViewController.swift
 //  BubbleHeroEngine
 //
 //  Created by Yunpeng Niu on 13/02/18.
@@ -9,22 +9,62 @@
 import UIKit
 
 /**
- Extension for `ViewController`. This extension is the delegate for the grid of bubbles.
+The main controller for the game view.
 
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-extension ViewController: UICollectionViewDelegate {
+class BubbleArenaController: UIViewController {
+    /// The collection view that shows all bubbles.
+    @IBOutlet weak var bubbleArena: UICollectionView!
+    /// The place where the shooting bubbles are launched.
+    @IBOutlet weak var bubbleLauncher: UIButton!
+
+    /// The `Level` object as the access point to model.
+    let level = SampleData.loadSampleLevel()
+    /// The delegate for `ShootingBubbleController`.
+    var shootingController: ShootingBubbleController?
+    /// The controller for bubble launcher.
+    var launcherController: BubbleLauncherController?
+
+    /// Always hide the status bar (since in a full-screen game).
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bubbleArena.delegate = self
+        bubbleArena.dataSource = self
+
+        /// The controller for shooting bubble related.
+        shootingController = ShootingBubbleController(level: level, bubbleArena: bubbleArena)
+        shootingController?.arenaController = self
+
+        /// The controller for launching bubbles.
+        launcherController = BubbleLauncherController(bubbleLauncher: bubbleLauncher)
+        launcherController?.arenaController = self
+        launcherController?.shootingController = shootingController
+    }
+
+    /// Handles the launch of a bubble when the user single-taps on the screen.
+    /// - Parameter sender: The sender of the single-tap gesture.
+    @IBAction func handleBubbleLaunch(_ sender: UITapGestureRecognizer) {
+        launcherController?.handleBubbleLaunch(at: sender.location(in: view))
+    }
+}
+
+/**
+ Extension for `ViewController`. This extension is the delegate for the grid of bubbles.
+ */
+extension BubbleArenaController: UICollectionViewDelegate {
 
 }
 
 /**
  Extension for `ViewController`. This extension controls the size of the cells.
-
- - Author: Niu Yunpeng @ CS3217
- - Date: Feb 2018
  */
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension BubbleArenaController: UICollectionViewDelegateFlowLayout {
     /// Sets the size of each cell (to fit 11/12 cells per row).
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -44,11 +84,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 /**
  Extension for `ViewController`. This extension is the data source for the grid of bubbles.
-
- - Author: Niu Yunpeng @ CS3217
- - Date: Feb 2018
  */
-extension ViewController: UICollectionViewDataSource {
+extension BubbleArenaController: UICollectionViewDataSource {
     /// Sets the number of sections to be 12 (i.e., 12 rows of bubbles).
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return level.numOfRows
@@ -69,12 +106,10 @@ extension ViewController: UICollectionViewDataSource {
         }
 
         // Fills the cell with the correct color of the bubble.
-        cell.fill(image: toBubbleImage(of: bubble.type))
+        cell.fill(image: Helpers.toBubbleImage(of: bubble.type))
         // Registers the cell with the physics engine.
         let gameObject = GameObject(view: cell, radius: BubbleCell.radius)
-        engine.registerGameObject(gameObject)
-        // Keeps a record of the created `GameObject`.
-        gameObjects.addRemainingBubble(object: gameObject, bubble: bubble)
+        shootingController?.addRemainingBubble(object: gameObject, bubble: bubble)
         return cell
     }
 

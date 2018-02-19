@@ -1,8 +1,8 @@
 //
-//  ViewController+Launcher.swift
+//  BubbleLauncherController.swift
 //  BubbleHeroEngine
 //
-//  Created by Yunpeng Niu on 14/02/18.
+//  Created by Yunpeng Niu on 19/02/18.
 //  Copyright © 2018 Yunpeng Niu. All rights reserved.
 //
 
@@ -15,11 +15,24 @@ import UIKit
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-extension ViewController {
+class BubbleLauncherController {
+    /// Sources for the bubbles being launched.
+    var provider = BubbleProvider()
+    /// The place where the shooting bubbles are launched.
+    let bubbleLauncher: UIButton
+    /// The delegate for `ShootingBubbleController`.
+    var shootingController: ShootingBubbleController?
+    /// The delegate for `BubbleArenaController`
+    var arenaController: BubbleArenaControllerDelegate?
+
+    init(bubbleLauncher: UIButton) {
+        self.bubbleLauncher = bubbleLauncher
+        updateBubbleLauncher()
+    }
+
     /// Handles the launch of a bubble when the user single-taps on the screen.
     /// - Parameter sender: The sender of the single-tap gesture.
-    @IBAction func handleBubbleLaunch(_ sender: UITapGestureRecognizer) {
-        let location = sender.location(in: view)
+    func handleBubbleLaunch(at location: CGPoint) {
         guard bubbleLauncher.center.y >= location.y + Settings.launchVerticalLimit else {
             return
         }
@@ -56,21 +69,20 @@ extension ViewController {
     private func shootBubble(at angle: CGFloat) {
         // Creates a shooted bubble visually.
         let type = provider.peek()
-        let bubble = movingBubbleFactory(of: type, center: bubbleLauncher.center)
+        guard let bubble = arenaController?.addMovingBubble(of: type, center: bubbleLauncher.center) else {
+            return
+        }
 
         // Creates a `GameObject` for the shooted bubble and register it into the
         // `PhysicsEngine` (to take over the control).
         let gameObject = GameObject(view: bubble, radius: BubbleCell.radius)
         gameObject.speed = getShootSpeed(by: angle)
-        engine.registerGameObject(gameObject)
-
-        // Keeps a record of the shooted bubble.
-        gameObjects.addShootedBubble(object: gameObject, type: type)
+        shootingController?.addShootedBubble(object: gameObject, type: type)
     }
 
     /// Updates the status of the `bubbleLauncher` after one bubble in shooted.
-    func updateBubbleLauncher() {
+    private func updateBubbleLauncher() {
         let type = provider.pop()
-        bubbleLauncher.setImage(toBubbleImage(of: type), for: .normal)
+        bubbleLauncher.setImage(Helpers.toBubbleImage(of: type), for: .normal)
     }
 }

@@ -36,7 +36,7 @@ import UIKit
  */
 class PhysicsEngine {
     /// The delegate of the `ViewController` which handles the logic specific to the game.
-    weak var delegate: ControllerDelegate?
+    weak var delegate: EngineControllerDelegate?
     /// A list of all `GameObject`s controlled by this `PhysicsEngine`.
     private var gameObjects: [GameObject] = []
 
