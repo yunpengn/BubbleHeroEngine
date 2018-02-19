@@ -73,10 +73,7 @@ extension ViewController: ControllerDelegate {
 
         level.deleteBubbles(sameColorBubbles)
         deregisterBubbleGameObjects(of: sameColorBubbles)
-        let indexPaths = sameColorBubbles.map { bubble in
-            return IndexPath(row: bubble.column, section: bubble.row)
-        }
-        bubbleArena.reloadItems(at: indexPaths)
+        fadeAwayBubbles(of: sameColorBubbles)
     }
 
     /// Removes the unattached bubbles. A bubble is unattached if it is not attached to
@@ -103,6 +100,23 @@ extension ViewController: ControllerDelegate {
                 continue
             }
             engine.deregisterGameObject(object)
+        }
+    }
+
+    /// Creates the fading away effect and then delete some bubbles from `bubbleArena`.
+    /// - Parameter bubbles: An array of bubbles to fade away and delete
+    private func fadeAwayBubbles(of bubbles: [FilledBubble]) {
+        for bubble in bubbles {
+            let indexPath = IndexPath(row: bubble.column, section: bubble.row)
+
+            UIView.animate(withDuration: 10, delay: 0, options: .curveEaseOut, animations: {
+                guard let cell = self.bubbleArena.cellForItem(at: indexPath) else {
+                    return
+                }
+                cell.alpha = 0
+            }, completion: { _ in
+                self.bubbleArena.reloadItems(at: [indexPath])
+            })
         }
     }
 
