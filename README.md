@@ -57,7 +57,7 @@ The strategy for testing this application is stated as follows:
     - Otherwise, I expect the bubble is launched in the direction towards the point of the single-tap gesture.
 - Test the movement of a bubble
     - When a bubble has been launched (shooted) successfully, I expect the travelling speed to be a positive constant. I also expect the bubble travels in a staight line (as long as no collision with screen edge or other bubbles happen).
-    - When a bubble is falling down, I expect it to be a free falling process (without the effect of air resistance), i.e., its acceleration is a positive constant. Visually, the velocity should increase. I also expect the falling down in straight downwards.
+    - When a bubble is falling down, I expect it to be a free falling process (without the effect of air resistance), i.e., its acceleration is a positive constant. Visually, the velocity should increase (although human eyes may not be able to observe the change). I also expect the falling down in straight downwards.
 - Test collision between two bubbles
     - When a shooted bubble collides with a remaining static bubble, I expect the shooted bubble to stop moving and snap to the nearest empty cell.
     - Following above, when there are more than 3 connected bubbles of the same color, I expect them to be removed with a fading away effect.
