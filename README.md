@@ -33,9 +33,9 @@ _(The idea of rigid body & collision is adapted from [Unity3D game engine](https
 
 ## Problem 1.2
 
-Thanks to the flexible nature of the current design, more complex game logic can be supported easily. Notice that such kind of game logic is specific to this game. Thus, they should not be part of the game engine. Instead, they should be triggered when the `PhysicsEngine` notifies the `ViewController` that a collision happens. When the `ViewController` gets notified that a collision happens, it should show different behaviors according to the `BubbleType` of the collider.
+Thanks to the flexible nature of the current design, more complex game logic can be supported easily. Notice that such kind of game logic is specific to this game. Thus, they should not be part of the game engine. Instead, they should be triggered when the `PhysicsEngine` notifies the `ShootingBubbleController` that a collision happens. When the `ShootingController` gets notified that a collision happens, it should show different behaviors according to the `BubbleType` of two parties of the collision.
 
-If the `BubbleType` is just the normal colors, the behavior would be the same as the current one. If it is a special type, some special behaviors will be triggered. To support removal of all bubbles of a specific color, we just need to check whether the shooted bubble collides with this special type of `FilledBubble`. If so, we will let the model, the `Level` object finds all the `FilledBubble`s with the same color. After that, we will delete these bubbles from the model, reload these cells in the collection view.
+If the `BubbleType` is just the normal colors, the behavior would be the same as the current one. If it is a special type, some special behaviors will be triggered. To support removal of all bubbles of a specific color, we just need to check whether the shooted bubble collides with this special type of `FilledBubble`. If so, we will let the model, the `Level` object finds all the `FilledBubble`s with the same color. After that, we will delete these bubbles from the model, reload these cells in the collection view, deregister the corresponding `GameObject`s from the physics engine (and also apply effects like _fading-away_).
 
 ## Problem 2.1
 
