@@ -90,7 +90,10 @@ The strategy for testing this application is stated as follows:
     - `init`: Create a controller with a `UICollectionView` and `Level` passed in.
     - `handleCollision`:
         - When the `GameObject` passed in is at an invalid location (defined by `level`), I expect the `markReadyForNextLaunch` should be called but nothing else will happen.
-        -
+        - When the passed in `level` is empty, I expect the `level` to be added a `FilledBubble` at the nearest empty cell. And I expect the type of this filled bubble to be the same as the one when I initialize the `GameObject`.
+        - When the passed in `level` is not empty but the number of connected bubbles with the same color is smaller than 3, the same as above should happen.
+        - When the passed in `level` is not empty and the number of connected bubbles with the same color is more than or equal to 3, these bubbles should be removed from the `level`.
+        - Following above, if there are unattached bubbles after those same-color bubbles are removed, they will also be removed.
 - `PhysicsEngine`:
 - `GameObjectController`:
 - `GameObject`:
