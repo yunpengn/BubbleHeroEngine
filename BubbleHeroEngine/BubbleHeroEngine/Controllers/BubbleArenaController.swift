@@ -22,11 +22,11 @@ class BubbleArenaController: UIViewController {
     @IBOutlet weak var bubbleLauncher: UIButton!
 
     /// The `Level` object as the access point to model.
-    let level = SampleData.loadSampleLevel()
-    /// The delegate for `ShootingBubbleController`.
-    var shootingController: ShootingBubbleController?
+    private let level = SampleData.loadSampleLevel()
+    /// The controller for shooted bubbles.
+    private var shootingController: ShootingBubbleController?
     /// The controller for bubble launcher.
-    var launcherController: BubbleLauncherController?
+    private var launcherController: BubbleLauncherController?
 
     /// Always hide the status bar (since in a full-screen game).
     override var prefersStatusBarHidden: Bool {
@@ -38,13 +38,12 @@ class BubbleArenaController: UIViewController {
         bubbleArena.delegate = self
         bubbleArena.dataSource = self
 
-        /// The controller for shooting bubble related.
         shootingController = ShootingBubbleController(level: level, bubbleArena: bubbleArena)
         shootingController?.arenaController = self
-
-        /// The controller for launching bubbles.
         launcherController = BubbleLauncherController(bubbleLauncher: bubbleLauncher)
         launcherController?.arenaController = self
+        
+        shootingController?.launcherController = launcherController
         launcherController?.shootingController = shootingController
     }
 

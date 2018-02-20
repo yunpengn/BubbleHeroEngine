@@ -29,6 +29,7 @@
 		F26681652033389C00AFF5DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F26681642033389C00AFF5DB /* README.md */; };
 		F27CAD22203958C0007FF459 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD21203958C0007FF459 /* Helpers.swift */; };
 		F27CAD26203977CA007FF459 /* GameObjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD25203977CA007FF459 /* GameObjectController.swift */; };
+		F2E18B23203BEC4F0013E566 /* BubbleLauncherController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E18B22203BEC4F0013E566 /* BubbleLauncherController+Delegate.swift */; };
 		F2F8FE0820348A8B00CCFE15 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8FE0720348A8A00CCFE15 /* Stack.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		F26681642033389C00AFF5DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F27CAD21203958C0007FF459 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F27CAD25203977CA007FF459 /* GameObjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectController.swift; sourceTree = "<group>"; };
+		F2E18B22203BEC4F0013E566 /* BubbleLauncherController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BubbleLauncherController+Delegate.swift"; sourceTree = "<group>"; };
 		F2F8FE0720348A8A00CCFE15 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +149,7 @@
 				F224EDEC203306EC00310F48 /* BubbleArenaController.swift */,
 				F218D87D203B2F4D00B61ACB /* BubbleArenaController+Delegate.swift */,
 				F218D87B203B2BFD00B61ACB /* BubbleLauncherController.swift */,
+				F2E18B22203BEC4F0013E566 /* BubbleLauncherController+Delegate.swift */,
 				F218D877203B1BDA00B61ACB /* ShootingBubbleController.swift */,
 				F218D87F203B394C00B61ACB /* ShootingBubbleController+Delegate.swift */,
 				F260297020391B2200779944 /* PhysicsEngine.swift */,
@@ -309,6 +312,7 @@
 				F218D878203B1BDA00B61ACB /* ShootingBubbleController.swift in Sources */,
 				F224EDED203306EC00310F48 /* BubbleArenaController.swift in Sources */,
 				F224EE12203313BD00310F48 /* BubbleCell.swift in Sources */,
+				F2E18B23203BEC4F0013E566 /* BubbleLauncherController+Delegate.swift in Sources */,
 				F260297120391B2200779944 /* PhysicsEngine.swift in Sources */,
 				F260297320391FDB00779944 /* GameObject.swift in Sources */,
 				F218D87C203B2BFD00B61ACB /* BubbleLauncherController.swift in Sources */,

@@ -18,13 +18,15 @@ import UIKit
  */
 class BubbleLauncherController {
     /// Sources for the bubbles being launched.
-    var provider = BubbleProvider()
+    private var provider = BubbleProvider()
     /// The place where the shooting bubbles are launched.
-    let bubbleLauncher: UIButton
+    private let bubbleLauncher: UIButton
     /// The geometric center of `bubbleLauncher`.
-    let launcherCenter: CGPoint
+    private let launcherCenter: CGPoint
+    /// Indicates whether the bubble launcher is ready for next launch.
+    var readyForNextLaunch: Bool
     /// The delegate for `ShootingBubbleController`.
-    var shootingController: ShootingBubbleControllerDelegate?
+    weak var shootingController: ShootingBubbleControllerDelegate?
     /// The delegate for `BubbleArenaController`
     weak var arenaController: BubbleArenaControllerDelegate?
 
@@ -33,19 +35,21 @@ class BubbleLauncherController {
     init(bubbleLauncher: UIButton) {
         self.bubbleLauncher = bubbleLauncher
         self.launcherCenter = bubbleLauncher.center
+        readyForNextLaunch = true
         updateBubbleLauncher()
     }
 
     /// Handles the launch of a bubble when the user single-taps on the screen.
     /// - Parameter location: The location of the single-tap gesture.
     func handleBubbleLaunch(at location: CGPoint) {
-        // Only accepts upward launching of bubble.
-        guard launcherCenter.y >= location.y + Settings.launchVerticalLimit else {
+        // Only accepts when the launcher is ready and the angle is upward.
+        guard readyForNextLaunch, launcherCenter.y >= location.y + Settings.launchVerticalLimit else {
             return
         }
         let angle = getShootAngle(by: location)
         shootBubble(at: angle)
         updateBubbleLauncher()
+        readyForNextLaunch = false
     }
 
     /// Given a point at which the user touches, computes the initial angle of the

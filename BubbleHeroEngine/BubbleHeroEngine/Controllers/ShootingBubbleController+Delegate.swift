@@ -25,7 +25,7 @@ extension ShootingBubbleController: ShootingBubbleControllerDelegate {
     }
 }
 
-protocol ShootingBubbleControllerDelegate {
+protocol ShootingBubbleControllerDelegate: AnyObject {
     /// Adds a shooted bubble (which has just been launched by bubble launcher) to let
     /// `ShootingBubbleController` and `PhysicsEngine` take over the control.
     /// - Parameters:

@@ -22,11 +22,13 @@ class ShootingBubbleController: EngineControllerDelegate {
     /// The controller for all `GameObjects` in the physics engine.
     let gameObjects = GameObjectController()
     /// The `Level` object as the access point to model.
-    let level: Level
+    private let level: Level
     /// The collection view that shows all bubbles.
-    let bubbleArena: UICollectionView
+    private let bubbleArena: UICollectionView
     /// The delegate for `BubbleArenaController`
-    var arenaController: BubbleArenaControllerDelegate?
+    weak var arenaController: BubbleArenaControllerDelegate?
+    /// The delegate for `BubbleLauncherController`
+    weak var launcherController: BubbleLauncherControllerDelegate?
 
     /// Creates a controller for shooting bubble related operations.
     init(level: Level, bubbleArena: UICollectionView) {
@@ -39,11 +41,13 @@ class ShootingBubbleController: EngineControllerDelegate {
         let location = findNearbyCell(of: object)
         guard let type = gameObjects.popShootedBubble(of: object),
             level.isValidLocation(row: location.row, column: location.column) else {
+                launcherController?.markReadyForNextLaunch()
                 return
         }
         let newBubble = fillCell(row: location.row, column: location.column, type: type)
         removeSameColorConnectedBubbles(from: newBubble)
         removeUnattachedBubbles()
+        launcherController?.markReadyForNextLaunch()
     }
 
     /// Finds the coordinates of the nearby cell of a given `GameObject`.
