@@ -30,5 +30,5 @@ class Settings {
     /// The threshold value for collision, i.e., we may ignore
     /// "collision" when the gap can let the bubble merely pass
     /// through.
-    static let collisionThreshold = CGFloat(0.95)
+    static let collisionThreshold = CGFloat(0.9)
 }
