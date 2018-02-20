@@ -69,3 +69,14 @@ The strategy for testing this application is stated as follows:
     - Following above, after snapping to the nearest empty cell, normal behavior should happen if it collides with any other static bubble.
 
 #### Glass-box testing
+- `BubbleArenaController`:
+- `BubbleLauncherController`:
+- `ShootingBubbleController`:
+- `PhysicsEngine`:
+- `GameObjectController`:
+- `GameObject`:
+- `Level`:
+- `FilledBubble`:
+- `BubbleType`:
+- `BubbleProvider`:
+- `BubbleCell`:
