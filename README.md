@@ -94,7 +94,16 @@ The strategy for testing this application is stated as follows:
         - When the passed in `level` is not empty but the number of connected bubbles with the same color is smaller than 3, the same as above should happen.
         - When the passed in `level` is not empty and the number of connected bubbles with the same color is more than or equal to 3, these bubbles should be removed from the `level`.
         - Following above, if there are unattached bubbles after those same-color bubbles are removed, they will also be removed.
-- `PhysicsEngine`:
+- `PhysicsEngine`: Use stub as a delegate for `ShootingBubbleController`.
+    - `init`: Create a physics engine.
+    - `registerGameObject`:
+        - When I register a `GameObject` without setting its speed/acceleration (initial values are both 0), the position and velocity of the `GameObject` should not change.
+        - When I register a `GameObject` with non-zero speed or acceleration, I should expect the position of the `view` in `GameObject` to change according to its speeed & acceleration.
+    - `deregisterGameObject`:
+        - When the provided `GameObject` has not been registered with the `PhysicsEngine` before, I expect nothing should happen.
+        - When the provided `GameObject` was registered with the `PhysicsEngine` before but speed & acceleration are both 0, I expect nothing should happen as well (because it does not move anyway).
+        - When the provided `GameObject` was registered before and speed & acceleration may be non-zero, I expect the speed & acceleration will remain its value from now on.
+    - `removeGameObject`:
 - `GameObjectController`:
 - `GameObject`:
 - `Level`:
@@ -120,3 +129,6 @@ The strategy for testing this application is stated as follows:
     - `nextColor`: For each case, check whether the next color is correct.
 - `BubbleProvider`:
 - `BubbleCell`:
+    - `init`: I expect its `cornerRadius` equal to half of its length.
+    - `fill`: I expect the `UIImage` passed in become a subview of its `contentView`.
+    - `clear`: I expect its image in `contentView` disappear.
