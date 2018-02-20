@@ -70,13 +70,37 @@ The strategy for testing this application is stated as follows:
 
 #### Glass-box testing
 - `BubbleArenaController`:
+    - `viewDidLoad`: Correctly set the delegate and data source of the collection view. Also properly initialize and set the delegate for `BubbleLauncherController` and `ShootingBubbleController`.
+    - `collectionView(_ collectionView: , layout collectionViewLayout: , sizeForItemAt indexPath: )`: The even rows should exactly match the width of screen.
+    - `collectionView(_ collectionView: , layout collectionViewLayout: , insetForSectionAt section: )`: All bubble cells should be tightly packed.
+    - `numberOfSections`: To define the collection view to have 12 sections.
+    - `collectionView(_ collectionView: , numberOfItemsInSection section: )`: 12 items on even rows, 11 items on odd rows.
+    - `collectionView(_ collectionView: , cellForItemAt indexPath: )`: Each cell can be either empty (transparanet) or shown with a certain colored background image.
 - `BubbleLauncherController`:
 - `ShootingBubbleController`:
 - `PhysicsEngine`:
 - `GameObjectController`:
 - `GameObject`:
 - `Level`:
+    - `init`: Checks the `numOfRows`, `evenCount`, `oddCount` after initiaization.
+    - `addOrUpdateBubble`:
+        - The added bubble is at a valid location.
+        - The added bubble is at an invalid location.
+    - `hasBubble` and `hasBubbleAt`:
+        - The location is valid and the bubble exists.
+        - The location is valid but the bubble does not exist.
+        - The location is invalid.
+    - `getBubbleAt`:
+        - The location is valid and the bubble exists.
+        - The location is valid but the bubble does not exist.
+        - The location is invalid.
+    - `deleteBubble` and `deleteBubbleAt`:
+        - The location is valid and the bubble exists.
+        - The location is valid but the bubble does not exist.
+        - The location is invalid.
 - `FilledBubble`:
+    - `init`: Checks the row, column & type after initialization.
 - `BubbleType`:
+    - `nextColor`: For each case, check whether the next color is correct.
 - `BubbleProvider`:
 - `BubbleCell`:
