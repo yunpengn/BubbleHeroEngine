@@ -49,4 +49,11 @@ In the meantime, the `BubbleLauncher` will also be updated by asking `BubbleProv
 
 The strategy for testing this application is stated as follows:
 
-- Black-box testing
+#### Black-box testing
+
+- Test the launch of a bubble
+- Test the movement of a bubble
+- Test collision between two bubbles
+- Test collision between a bubble and a screen edge
+
+#### Glass-box testing
