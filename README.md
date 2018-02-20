@@ -71,12 +71,21 @@ The strategy for testing this application is stated as follows:
 #### Glass-box testing
 - `BubbleArenaController`:
     - `viewDidLoad`: Correctly set the delegate and data source of the collection view. Also properly initialize and set the delegate for `BubbleLauncherController` and `ShootingBubbleController`.
+    - `handleBubbleLaunch`: Should call the `BubbleLauncherController`. We can use a stub to test this.
     - `collectionView(_ collectionView: , layout collectionViewLayout: , sizeForItemAt indexPath: )`: The even rows should exactly match the width of screen.
     - `collectionView(_ collectionView: , layout collectionViewLayout: , insetForSectionAt section: )`: All bubble cells should be tightly packed.
     - `numberOfSections`: To define the collection view to have 12 sections.
     - `collectionView(_ collectionView: , numberOfItemsInSection section: )`: 12 items on even rows, 11 items on odd rows.
     - `collectionView(_ collectionView: , cellForItemAt indexPath: )`: Each cell can be either empty (transparanet) or shown with a certain colored background image.
+- `BubbleArenaControllerDelegate`:
+    - `addMovingBubble`: I expect the resulting `UIImageView` is using the background image corresponding to the provided type. I also expect the center of the result bubble should be on the point passed in.
 - `BubbleLauncherController`:
+    - `init`: Create a controller with a `UIButton` passed in.
+    - `handleBubbleLaunch`: We can use a stub to act as the delegate for `ShootingBubbleController`.
+        - If the point passed in has a y-coordinate not above the y-coordinate of `UIButton` passed in `init` with a difference of `Settings.launchVerticalLimit`, I expect the `addShootedBubble` in the stub not being called.
+        - Otherwise, I expect the `addShootedBubble` in the stub to be called.
+        - Following above, If i call `handleBubbleLaunch` again, no matter the y-coordinate of the point passed in, I expect the `addShootedBubble` in the stub not being called. I also expect the angle derived from the `GameObject`'s speed vector is corresponded to the passed in angle.
+        - Repeat above by initializing a new `BubbleLauncherController` object, I expect the type passed into `addShootedBubble` is random.
 - `ShootingBubbleController`:
 - `PhysicsEngine`:
 - `GameObjectController`:
