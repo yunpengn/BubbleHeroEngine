@@ -104,8 +104,21 @@ The strategy for testing this application is stated as follows:
         - When the provided `GameObject` was registered with the `PhysicsEngine` before but speed & acceleration are both 0, I expect nothing should happen as well (because it does not move anyway).
         - When the provided `GameObject` was registered before and speed & acceleration may be non-zero, I expect the speed & acceleration will remain its value from now on.
     - `removeGameObject`:
+        - When the provided `GameObject` has not been registered with the `PhysicsEngine` before, I expect nothing should happen.
+        - When the provided `GameObject` was registered with the `PhysicsEngine` before but speed & acceleration are both 0, I expect nothing should happen as well (because it does not move anyway).
+        - When the provided `GameObject` was registered before and speed & acceleration may be non-zero, I expect the speed & acceleration will remain 0 from now on.
 - `GameObjectController`:
+    - `addShootedBubble` and `addRemainingBubble`: Should be tested by/with the other two methods.
+    - `popShootedBubble` and `popRemainingBubble`:
+        - When the `GameObject` has been added before, I expect the original `FilledBubble` or `BubbleType` to be returned.
+        - When the `GameObject` has not been added before, I expect `nil` to be returned.
 - `GameObject`:
+    - `move`: I expect its position/speed to change by a unit (as long as its speed/acceleration is not 0).
+    - `stop`: I expect its acceleration & speed both become 0.
+    - `brake`: I expect its speed become 0, while acceleration remains unchanged.
+    - `reflectX`: I expect the x-component of its speed vector to reverse.
+    - `reflectY`: I expect the y-component of its speed vector to reverse.
+    - `isStatic`: I expect it to be true if acceleration & speed are both 0; false otherwise.
 - `Level`:
     - `init`: Checks the `numOfRows`, `evenCount`, `oddCount` after initiaization.
     - `addOrUpdateBubble`:
