@@ -126,6 +126,8 @@ class PhysicsEngine {
     /// - Parameter object: The `GameObject` being checked.
     private func checkCollision(of object: GameObject) {
         for otherObject in gameObjects {
+            // Notice: Here, the lhs object is the one that is moving and actively causes
+            // the collision. The rhs object is static and waiting for being crashed.
             if otherObject !== object && willCollide(lhs: object, rhs: otherObject) {
                 removeGameObject(object)
                 delegate?.handleCollision(by: object)

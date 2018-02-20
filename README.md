@@ -86,7 +86,11 @@ The strategy for testing this application is stated as follows:
         - Otherwise, I expect the `addShootedBubble` in the stub to be called.
         - Following above, If i call `handleBubbleLaunch` again, no matter the y-coordinate of the point passed in, I expect the `addShootedBubble` in the stub not being called. I also expect the angle derived from the `GameObject`'s speed vector is corresponded to the passed in angle.
         - Repeat above by initializing a new `BubbleLauncherController` object, I expect the type passed into `addShootedBubble` is random.
-- `ShootingBubbleController`:
+- `ShootingBubbleController`: Similarly, we need to use stubs to act as the delegate for `BubbleArenaController` and `BubbleLauncherController`.
+    - `init`: Create a controller with a `UICollectionView` and `Level` passed in.
+    - `handleCollision`:
+        - When the `GameObject` passed in is at an invalid location (defined by `level`), I expect the `markReadyForNextLaunch` should be called but nothing else will happen.
+        -
 - `PhysicsEngine`:
 - `GameObjectController`:
 - `GameObject`:
