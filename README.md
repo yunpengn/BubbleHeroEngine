@@ -124,10 +124,13 @@ The strategy for testing this application is stated as follows:
         - The location is valid but the bubble does not exist.
         - The location is invalid.
 - `FilledBubble`:
-    - `init`: Checks the row, column & type after initialization.
+    - `init`: I expect the row, column & type to be correct after initialization.
+    - `==`: When row, column & type are all the same, I expect the result is true; otherwise false.
 - `BubbleType`:
     - `nextColor`: For each case, check whether the next color is correct.
 - `BubbleProvider`:
+    - `peek`: No matter how many times I call this method, I expect the answer to be always the same; unless I re-initialize it.
+    - `pop`: Each time I call this method, I expect the return value to be randomly generated and may not be the same as the previous one.
 - `BubbleCell`:
     - `init`: I expect its `cornerRadius` equal to half of its length.
     - `fill`: I expect the `UIImage` passed in become a subview of its `contentView`.
