@@ -122,20 +122,21 @@ The strategy for testing this application is stated as follows:
 - `Level`:
     - `init`: Checks the `numOfRows`, `evenCount`, `oddCount` after initiaization.
     - `addOrUpdateBubble`:
-        - The added bubble is at a valid location.
-        - The added bubble is at an invalid location.
+        - When the added bubble is at a valid location and there is no bubble at that position before, I expect that position to be filled by this bubble.
+        - When the added bubble is at a valid location and there is a bubble at that position before, I expect the original bubble to be replaced by this bubble.
+        - When the added bubble is at an invalid location, I expect the level to be unchanged.
     - `hasBubble` and `hasBubbleAt`:
-        - The location is valid and the bubble exists.
-        - The location is valid but the bubble does not exist.
-        - The location is invalid.
+        - When the location is valid and the bubble exists, I expect true.
+        - When the location is valid but the bubble does not exist, I expect false.
+        - When the location is invalid, I expect false.
     - `getBubbleAt`:
-        - The location is valid and the bubble exists.
-        - The location is valid but the bubble does not exist.
-        - The location is invalid.
+        - When the location is valid and the bubble exists, I expect the bubble to be returned (and would check the row & column number stored within the bubble).
+        - When the location is valid but the bubble does not exist, I expect `nil` to be returned.
+        - When the location is invalid, I expect `nil` to be returned.
     - `deleteBubble` and `deleteBubbleAt`:
-        - The location is valid and the bubble exists.
-        - The location is valid but the bubble does not exist.
-        - The location is invalid.
+        - When the location is valid and the bubble exists, I expect `nil` to be returned when I `getBubbleAt` afterwards.
+        - When the location is valid but the bubble does not exist, I expect the `level` object remains unchanged.
+        - When the location is invalid, I expect nothing happens the `level` object remains unchanged.
 - `FilledBubble`:
     - `init`: I expect the row, column & type to be correct after initialization.
     - `==`: When row, column & type are all the same, I expect the result is true; otherwise false.
