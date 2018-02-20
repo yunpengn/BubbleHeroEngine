@@ -52,8 +52,20 @@ The strategy for testing this application is stated as follows:
 #### Black-box testing
 
 - Test the launch of a bubble
+    - When I single-tap on a location of the screen that is not at least slighlt higher than the position of the bubble launcher, I expect the input is rejected and nothing will happen.
+    - When I already have a shooted bubble travelling (collision not happened yet), I expect the input is rejected and nothing will happen.
+    - Otherwise, I expect the bubble is launched in the direction towards the point of the single-tap gesture.
 - Test the movement of a bubble
+    - When a bubble has been launched (shooted) successfully, I expect the travelling speed to be a positive constant. I also expect the bubble travels in a staight line (as long as no collision with screen edge or other bubbles happen).
+    - When a bubble is falling down, I expect it to be a free falling process (without the effect of air resistance), i.e., its acceleration is a positive constant. Visually, the velocity should increase. I also expect the falling down in straight downwards.
 - Test collision between two bubbles
+    - When a shooted bubble collides with a remaining static bubble, I expect the shooted bubble to stop moving and snap to the nearest empty cell.
+    - Following above, when there are more than 3 connected bubbles of the same color, I expect them to be removed with a fading away effect.
+    - Following above, when there are bubbles unattached to the top wall, I expect them to be removed by falling down out of the screen.
+    - When a shooted bubble "collides" with a falling bubble, I expect no collision will happen and they will bypass each other.
 - Test collision between a bubble and a screen edge
+    - When a shooted bubble collides with the side wall (left or right), I expect a reflection happens. In other words, the (horizontal component of the) moving direction of the bubble should reverse.
+    - When a shooted bubble collides with the top wall, I expect it to stop moving and snap to the nearest empty cell.
+    - Following above, after snapping to the nearest empty cell, normal behavior should happen if it collides with any other static bubble.
 
 #### Glass-box testing
