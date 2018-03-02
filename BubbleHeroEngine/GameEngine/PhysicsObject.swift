@@ -17,7 +17,7 @@ import UIKit
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-class PhysicsObject: PhysicsBody {
+open class PhysicsObject: PhysicsBody {
     let view: UIView
     var acceleration = CGVector.zero
     var velocity = CGVector.zero

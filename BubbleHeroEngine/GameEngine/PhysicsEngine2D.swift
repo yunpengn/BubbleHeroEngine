@@ -40,9 +40,9 @@ import UIKit
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-class PhysicsEngine2D {
+public class PhysicsEngine2D {
     /// A list of all `PhysicsBody`s controlled by this `PhysicsEngine`.
-    var physicsObjects: [PhysicsBody] = []
+    public var physicsObjects: [PhysicsBody] = []
     /// The rendering engine for this game engine.
     private let renderer: Renderer
     /// The area for this physics engine, in which all `PhysicsBody`s should reside.
@@ -54,7 +54,7 @@ class PhysicsEngine2D {
     /// - Parameters:
     ///    - renderer: The rendering engine for the game engine.
     ///    - area: The area for the game engine.
-    init(renderer: Renderer, area: CGRect) {
+    public init(renderer: Renderer, area: CGRect) {
         self.renderer = renderer
         self.area = area
 
@@ -136,14 +136,14 @@ class PhysicsEngine2D {
     /// before you call this method if it has been registered into any other engine
     /// before.
     /// - Parameter toRegister: The `PhysicsBody` being registered.
-    func registerPhysicsObject(_ toRegister: PhysicsBody) {
+    public func registerPhysicsObject(_ toRegister: PhysicsBody) {
         physicsObjects.append(toRegister)
         renderer.appear(toRegister)
     }
 
     /// Registers an array of `PhysicsBody`s into this engine.
     /// - Parameter contentsOf: The `PhysicsBody`s being registered.
-    func registerPhysicsObject(contentsOf: [PhysicsBody]) {
+    public func registerPhysicsObject(contentsOf: [PhysicsBody]) {
         contentsOf.forEach { registerPhysicsObject($0) }
     }
 
@@ -151,14 +151,14 @@ class PhysicsEngine2D {
     /// by the game engine anymore. This method will do nothing if the `PhysicsBody`
     /// was not registered with this engine before.
     /// - Parameter toDeregister: The `PhysicsBody` being deregistered.
-    func deregisterPhysicsObject(_ toDeregister: PhysicsBody) {
+    public func deregisterPhysicsObject(_ toDeregister: PhysicsBody) {
         physicsObjects = physicsObjects.filter { $0 !== toDeregister }
         renderer.disappear(toDeregister)
     }
 
     /// Deregisters an array of `PhysicsBody`s from this engine.
     /// - Parameter contentsOf: The `PhysicsBody`s being deregistered.
-    func deregisterPhysicsObject(contentsOf: [PhysicsBody]) {
+    public func deregisterPhysicsObject(contentsOf: [PhysicsBody]) {
         contentsOf.forEach { deregisterPhysicsObject($0) }
     }
 }

@@ -15,12 +15,12 @@
  - Author: Niu Yunpeng @ CS3217
  - Date: March 2018
  */
-protocol MagneticBody: PhysicsBody {
+public protocol MagneticBody: PhysicsBody {
     /// Decides whether this magnetic body can attract other bodies now, whose
     /// default value is true.
-    var isAttractable: Bool { get set }
+    public var isAttractable: Bool { get set }
 
     /// Attracts another `PhysicsBody` by moving its position.
     /// - Parameter object: The object being attracted.
-    func attract(object: PhysicsBody)
+    public func attract(object: PhysicsBody)
 }
