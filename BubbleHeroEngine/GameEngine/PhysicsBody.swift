@@ -28,7 +28,7 @@ import UIKit
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-protocol PhysicsBody: AnyObject {
+public protocol PhysicsBody: AnyObject {
     /// The `UIView` object associated with this `PhysicsBody`.
     var view: UIView { get }
     /// The current acceleration of the `PhysicsBody`.
