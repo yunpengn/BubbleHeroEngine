@@ -48,7 +48,7 @@ public class PhysicsEngine2D {
     /// The area for this physics engine, in which all `PhysicsBody`s should reside.
     private let area: CGRect
     /// The delegate for the controller.
-    var controllerDelegate: EngineControllerDelegate?
+    public var controllerDelegate: EngineControllerDelegate?
 
     /// Creates a new physics engine by attaching a rending engine to it.
     /// - Parameters:

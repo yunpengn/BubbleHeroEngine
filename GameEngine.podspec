@@ -10,7 +10,7 @@
 
 Pod::Spec.new do |s|
 s.name               = "GameEngine"
-s.version            = "0.0.4"
+s.version            = "0.0.5"
 s.summary            = "Game engine (physics engine & renderer) for Bubble Blast Saga"
 s.description        = <<-DESC
 CS3217 Software Engineering on Modern Application Platforms
