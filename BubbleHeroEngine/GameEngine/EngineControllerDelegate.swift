@@ -13,7 +13,7 @@
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-public protocol EngineControllerDelegate {
+protocol EngineControllerDelegate {
     /// Handler for the collision between two objects.
-    public func onCollide(lhs: PhysicsBody, rhs: PhysicsBody?)
+    func onCollide(lhs: PhysicsBody, rhs: PhysicsBody?)
 }
