@@ -18,12 +18,12 @@ import UIKit
  - Date: Feb 2018
  */
 open class PhysicsObject: PhysicsBody {
-    let view: UIView
-    var acceleration = CGVector.zero
-    var velocity = CGVector.zero
-    var center: CGPoint
-    let radius: CGFloat
-    var isCollidable = true
+    public let view: UIView
+    public var acceleration = CGVector.zero
+    public var velocity = CGVector.zero
+    public var center: CGPoint
+    public let radius: CGFloat
+    public var isCollidable = true
 
     // An array of objects that it is attached to.
     var attachedWith: [PhysicsBody] = []
@@ -33,7 +33,7 @@ open class PhysicsObject: PhysicsBody {
     ///    - center: The coordinate for the center of the `PhysicsObject`.
     ///    - radius: The radius of this `PhysicsObject`.
     ///    - view: The `UIView` object associated with.
-    init(center: CGPoint, radius: CGFloat, view: UIView) {
+    public init(center: CGPoint, radius: CGFloat, view: UIView) {
         self.center = center
         self.radius = radius
         self.view = view
@@ -47,29 +47,29 @@ open class PhysicsObject: PhysicsBody {
         self.init(center: center, radius: radius, view: view)
     }
 
-    func move() {
+    public func move() {
         move(by: velocity)
         velocity = CGVector(dx: velocity.dx + acceleration.dx, dy: velocity.dy + acceleration.dy)
     }
 
-    func move(by delta: CGVector) {
+    public func move(by delta: CGVector) {
         center = CGPoint(x: center.x + delta.dx, y: center.y + delta.dy)
     }
 
-    func move(to point: CGPoint) {
+    public func move(to point: CGPoint) {
         center = point
     }
 
-    func stop() {
+    public func stop() {
         velocity = CGVector.zero
         acceleration = CGVector.zero
     }
 
-    func brake() {
+    public func brake() {
         velocity = CGVector.zero
     }
 
-    func didCollideWith(_ object: PhysicsBody) -> Bool {
+    public func didCollideWith(_ object: PhysicsBody) -> Bool {
         guard isCollidable && object.isCollidable else {
             return false
         }
@@ -79,33 +79,33 @@ open class PhysicsObject: PhysicsBody {
         return sqrX + sqrY <= sqrRadius * EngineSettings.collisionThreshold
     }
 
-    func attachTo(_ object: PhysicsBody) {
+    public func attachTo(_ object: PhysicsBody) {
         guard object !== self && !isAttachedTo(object) else {
             return
         }
         attachedWith.append(object)
     }
 
-    func isAttachedTo(_ object: PhysicsBody) -> Bool {
+    public func isAttachedTo(_ object: PhysicsBody) -> Bool {
         return attachedWith.contains { $0 === object }
     }
 
-    func canAttachWith(object: PhysicsBody) -> Bool {
+    public func canAttachWith(object: PhysicsBody) -> Bool {
         let sqrX = (center.x - object.center.x) * (center.x - object.center.x)
         let sqrY = (center.y - object.center.y) * (center.y - object.center.y)
         let sqrRadius = (radius + object.radius) * (radius + object.radius)
         return sqrX + sqrY <= sqrRadius * EngineSettings.attachmentThreshold
     }
 
-    func reflectX() {
+    public func reflectX() {
         velocity = CGVector(dx: -velocity.dx, dy: velocity.dy)
     }
 
-    func reflectY() {
+    public func reflectY() {
         velocity = CGVector(dx: velocity.dx, dy: -velocity.dy)
     }
 
-    var isStatic: Bool {
+    public var isStatic: Bool {
         return velocity == CGVector.zero && acceleration == CGVector.zero
     }
 }
