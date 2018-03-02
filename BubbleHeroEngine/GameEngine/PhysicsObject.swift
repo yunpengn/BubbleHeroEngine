@@ -26,7 +26,7 @@ open class PhysicsObject: PhysicsBody {
     public var isCollidable = true
 
     // An array of objects that it is attached to.
-    var attachedWith: [PhysicsBody] = []
+    public var attachedWith: [PhysicsBody] = []
 
     /// Creates a `PhysicsObject` by associating it with a `UIView` object.
     /// - Parameters:
