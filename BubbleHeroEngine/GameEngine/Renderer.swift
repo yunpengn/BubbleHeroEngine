@@ -13,7 +13,7 @@
  - Author: Niu Yunpeng @ CS3217
  - Date: Feb 2018
  */
-protocol Renderer {
+public protocol Renderer {
     /// Render a `PhysicsBody`, such as updating its location and shape in the view.
     func render(for object: PhysicsBody)
 
