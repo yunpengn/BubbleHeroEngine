@@ -41,6 +41,8 @@ public protocol PhysicsBody: AnyObject {
     var radius: CGFloat { get }
     /// Indiciates whether the `PhysicsBody` is collidable.
     var isCollidable: Bool { get set }
+    /// Indicates whether this `PhysicsBody` can be attracted by magnetic bubbles.
+    var isAttractable: Bool { get set }
 
     /// Moves the `PhysicsBody` by its current speed. If the current acceleration is
     /// not 0, its speed will be changed accordingly as well. Notice that this method

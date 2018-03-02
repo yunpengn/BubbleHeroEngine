@@ -24,6 +24,7 @@ open class PhysicsObject: PhysicsBody {
     public var center: CGPoint
     public let radius: CGFloat
     public var isCollidable = true
+    public var isAttractable = true
 
     // An array of objects that it is attached to.
     public var attachedWith: [PhysicsBody] = []
