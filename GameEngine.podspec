@@ -24,8 +24,5 @@ s.source             = { :git => "git@github.com:cs3217/2018-ps4-yunpengn.git", 
 s.swift_version      = '4.0.3'
 s.social_media_url = 'https://www.facebook.com/groups/cs3217/'
 s.platform           = :ios, '11.2'
-s.source_files       = 'BubbleHeroEngine/BubbleHeroEngine/Controllers/*.swift', 
-					   'BubbleHeroEngine/BubbleHeroEngine/Models/*.swift',
-					   'BubbleHeroEngine/BubbleHeroEngine/Others/*.swift',
-					   'BubbleHeroEngine/BubbleHeroEngine/Views/*.swift'
+s.source_files       = 'BubbleHeroEngine/GameEngine/*.swift'
 end
