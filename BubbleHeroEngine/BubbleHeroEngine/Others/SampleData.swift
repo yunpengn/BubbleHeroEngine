@@ -6,8 +6,6 @@
 //  Copyright © 2018 Yunpeng Niu. All rights reserved.
 //
 
-import Darwin
-
 /**
  Defines some utility methods to help create dummy sample data
  for the convenience of further development.
