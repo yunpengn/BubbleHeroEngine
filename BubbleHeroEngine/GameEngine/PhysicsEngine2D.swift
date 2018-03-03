@@ -107,6 +107,7 @@ public class PhysicsEngine2D {
         if object.center.y + object.radius >= area.maxY {
             object.stop()
             deregisterPhysicsObject(object)
+            disappearPhysicsObject(object)
         }
     }
 
