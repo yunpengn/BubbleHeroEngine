@@ -107,7 +107,6 @@ public class PhysicsEngine2D {
         if object.center.y + object.radius >= area.maxY {
             object.stop()
             deregisterPhysicsObject(object)
-            disappearPhysicsObject(object)
         }
     }
 
@@ -156,6 +155,7 @@ public class PhysicsEngine2D {
     /// - Parameter toDeregister: The `PhysicsBody` being deregistered.
     public func deregisterPhysicsObject(_ toDeregister: PhysicsBody) {
         physicsObjects = physicsObjects.filter { $0 !== toDeregister }
+        renderer.disappear(toDisappear)
     }
 
     /// Deregisters an array of `PhysicsBody`s from this engine. Notice that the views
@@ -163,11 +163,5 @@ public class PhysicsEngine2D {
     /// - Parameters contentsOf: The `PhysicsBody`s being deregistered.
     public func deregisterPhysicsObject(contentsOf: [PhysicsBody]) {
         contentsOf.forEach { deregisterPhysicsObject($0) }
-    }
-
-    /// Makes the physics object disappear from the game area.
-    /// - Parameter toDisappear: The `PhysicsBody` being deregistered.
-    public func disappearPhysicsObject(_ toDisappear: PhysicsBody) {
-        renderer.disappear(toDisappear)
     }
 }
