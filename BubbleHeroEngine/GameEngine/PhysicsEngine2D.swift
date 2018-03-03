@@ -150,15 +150,23 @@ public class PhysicsEngine2D {
     /// Deregisters a `PhysicsBody` from this engine, which will not be managed
     /// by the game engine anymore. This method will do nothing if the `PhysicsBody`
     /// was not registered with this engine before.
+    /// Notice that, however, the view associated with the `PhysicsBody` will not be
+    /// removed. To remove the view, call `disappearPhysicsObject` instead.
     /// - Parameter toDeregister: The `PhysicsBody` being deregistered.
     public func deregisterPhysicsObject(_ toDeregister: PhysicsBody) {
         physicsObjects = physicsObjects.filter { $0 !== toDeregister }
-        renderer.disappear(toDeregister)
     }
 
-    /// Deregisters an array of `PhysicsBody`s from this engine.
-    /// - Parameter contentsOf: The `PhysicsBody`s being deregistered.
+    /// Deregisters an array of `PhysicsBody`s from this engine. Notice that the views
+    /// associated will not be removed.
+    /// - Parameters contentsOf: The `PhysicsBody`s being deregistered.
     public func deregisterPhysicsObject(contentsOf: [PhysicsBody]) {
         contentsOf.forEach { deregisterPhysicsObject($0) }
+    }
+
+    /// Makes the physics object disappear from the game area.
+    /// - Parameter toDisappear: The `PhysicsBody` being deregistered.
+    public func disappearPhysicsObject(_ toDisappear: PhysicsBody) {
+        renderer.disappear(toDisappear)
     }
 }
