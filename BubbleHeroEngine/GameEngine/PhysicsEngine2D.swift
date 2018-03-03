@@ -155,7 +155,7 @@ public class PhysicsEngine2D {
     /// - Parameter toDeregister: The `PhysicsBody` being deregistered.
     public func deregisterPhysicsObject(_ toDeregister: PhysicsBody) {
         physicsObjects = physicsObjects.filter { $0 !== toDeregister }
-        renderer.disappear(toDisappear)
+        renderer.disappear(toDeregister)
     }
 
     /// Deregisters an array of `PhysicsBody`s from this engine. Notice that the views
