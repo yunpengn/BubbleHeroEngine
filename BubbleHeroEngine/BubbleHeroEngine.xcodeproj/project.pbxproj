@@ -27,6 +27,8 @@
 		F266816120331BA600AFF5DB /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266816020331BA600AFF5DB /* SampleData.swift */; };
 		F26681632033364B00AFF5DB /* BubbleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26681622033364B00AFF5DB /* BubbleProvider.swift */; };
 		F26681652033389C00AFF5DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F26681642033389C00AFF5DB /* README.md */; };
+		F273270D20496D48009F7ACF /* GameEngine in Resources */ = {isa = PBXBuildFile; fileRef = F273270C20496D48009F7ACF /* GameEngine */; };
+		F273270F20497204009F7ACF /* GameEngine.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F273270E20497203009F7ACF /* GameEngine.podspec */; };
 		F27CAD22203958C0007FF459 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD21203958C0007FF459 /* Helpers.swift */; };
 		F27CAD26203977CA007FF459 /* GameObjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CAD25203977CA007FF459 /* GameObjectController.swift */; };
 		F2E18B23203BEC4F0013E566 /* BubbleLauncherController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E18B22203BEC4F0013E566 /* BubbleLauncherController+Delegate.swift */; };
@@ -68,6 +70,8 @@
 		F266816020331BA600AFF5DB /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		F26681622033364B00AFF5DB /* BubbleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleProvider.swift; sourceTree = "<group>"; };
 		F26681642033389C00AFF5DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F273270C20496D48009F7ACF /* GameEngine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GameEngine; sourceTree = SOURCE_ROOT; };
+		F273270E20497203009F7ACF /* GameEngine.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GameEngine.podspec; path = ../GameEngine.podspec; sourceTree = "<group>"; };
 		F27CAD21203958C0007FF459 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F27CAD25203977CA007FF459 /* GameObjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectController.swift; sourceTree = "<group>"; };
 		F2E18B22203BEC4F0013E566 /* BubbleLauncherController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BubbleLauncherController+Delegate.swift"; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		F224EDDE203306EC00310F48 = {
 			isa = PBXGroup;
 			children = (
+				F273270E20497203009F7ACF /* GameEngine.podspec */,
 				F26681642033389C00AFF5DB /* README.md */,
 				F224EDE9203306EC00310F48 /* BubbleHeroEngine */,
 				F224EDFE203306EC00310F48 /* BubbleHeroEngineUITests */,
@@ -114,6 +119,7 @@
 		F224EDE9203306EC00310F48 /* BubbleHeroEngine */ = {
 			isa = PBXGroup;
 			children = (
+				F273270C20496D48009F7ACF /* GameEngine */,
 				F224EE0E2033131300310F48 /* Controllers */,
 				F224EE102033138F00310F48 /* Models */,
 				F224EE0D2033130B00310F48 /* Views */,
@@ -266,7 +272,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F273270F20497204009F7ACF /* GameEngine.podspec in Resources */,
 				F224EDF5203306EC00310F48 /* LaunchScreen.storyboard in Resources */,
+				F273270D20496D48009F7ACF /* GameEngine in Resources */,
 				F224EDF2203306EC00310F48 /* Assets.xcassets in Resources */,
 				F26681652033389C00AFF5DB /* README.md in Resources */,
 				F224EDF0203306EC00310F48 /* Main.storyboard in Resources */,

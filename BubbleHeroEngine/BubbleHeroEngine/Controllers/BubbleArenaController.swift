@@ -22,9 +22,9 @@ class BubbleArenaController: UIViewController {
     @IBOutlet weak var bubbleLauncher: UIButton!
 
     /// The `Level` object as the access point to model.
-    private let level = SampleData.loadSampleLevel()
+    let level = SampleData.loadSampleLevel()
     /// The controller for shooted bubbles.
-    private var shootingController: ShootingBubbleController?
+    var shootingController: ShootingBubbleController?
     /// The controller for bubble launcher.
     private var launcherController: BubbleLauncherController?
 
