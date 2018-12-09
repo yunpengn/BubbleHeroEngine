@@ -2,6 +2,11 @@
 
 This is the game engine for the iOS game [Bubble Hero](https://github.com/yunpengn/BubbleHero), built with Swift 4 and latest API from iOS 11. It was built by [Yunpeng](https://yunpengn.github.io/) in 2018.
 
+This engine is published as a [Cocoapod](https://cocoapods.org). Add the following line to your `Podfile` for usage:
+```ruby
+pod 'GameEngine', :git => 'git@github.com:yunpengn/BubbleHeroEngine.git', :branch => 'master'
+```
+
 ## Design & Class Diagram
 
 ![Class Diagram](class-diagram.png)
